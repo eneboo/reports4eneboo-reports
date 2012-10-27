@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_albaranescli" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f56b01a9-9a77-44db-85ed-a8201e567af9">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1"/>
+	<property name="ireport.x" value="114"/>
+	<property name="ireport.y" value="225"/>
 	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["albaranescli.codejercicio = '2012' AND albaranescli.fecha >= '2012-06-19T00:00:00' AND albaranescli.fecha <= '2012-06-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
 	</parameter>
@@ -22,8 +22,6 @@
 	albaranescli.codejercicio as codejercicio,
 	albaranescli.codpago as codformapago,
 	albaranescli.codalmacen as codalmacen,
-	albaranescli.pordtoesp as porcentagedescuentoalbaran,
-	albaranescli.dtoesp as descuentoalbaran,
 	albaranescli.totaliva as albarantotaliva,
 	albaranescli.totalrecargo as totalrecargo,
 	albaranescli.codcliente as codcliente,
@@ -38,7 +36,6 @@
 	albaranescli.apartado as apartadoalbaran,
 	albaranescli.codpais as paisalbaran,
 	albaranescli.neto as netoalbaran,
-	albaranescli.netosindtoesp as netoalbaransindto,
 	albaranescli.observaciones as observacionesalbaran,
 	albaranescli.irpf as albaranirpf,
 	albaranescli.totalirpf as albarantotalirpf,
@@ -367,42 +364,6 @@ ORDER BY $P!{ORDERBY}]]>
 					</textElement>
 					<text><![CDATA[Observaciones:]]></text>
 				</staticText>
-				<staticText>
-					<reportElement uuid="f8676e0d-865a-4c2c-8c93-f600ecd68e37" x="391" y="22" width="55" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentoalbaran} != 0]]></printWhenExpression>
-					</reportElement>
-					<textElement textAlignment="Right">
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Desc.]]></text>
-				</staticText>
-				<textField pattern="###0" isBlankWhenNull="true">
-					<reportElement uuid="421cc4d6-5da1-45cc-8e7a-8e3e7918f943" x="446" y="22" width="21" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentoalbaran}!=0]]></printWhenExpression>
-					</reportElement>
-					<textElement textAlignment="Right">
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{porcentagedescuentoalbaran}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement uuid="77dbe670-5f45-4c96-9dfb-893170bfa808" x="467" y="22" width="10" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentoalbaran} != 0]]></printWhenExpression>
-					</reportElement>
-					<textElement>
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<text><![CDATA[%]]></text>
-				</staticText>
-				<textField pattern="#,##0.00;-#,##0.00">
-					<reportElement uuid="2f255217-877e-4ef7-a8f5-798252d2b974" x="477" y="22" width="78" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentoalbaran}!=0]]></printWhenExpression>
-					</reportElement>
-					<textElement textAlignment="Right">
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{descuentoalbaran}]]></textFieldExpression>
-				</textField>
 			</band>
 		</groupFooter>
 	</group>
