@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_pedidoscli" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bc89c813-97ee-4a56-bc4a-beb9dc9fa4ea">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="191"/>
 	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["pedidoscli.codejercicio = '2012' AND pedidoscli.fecha >= '2012-06-18T00:00:00' AND pedidoscli.fecha <= '2012-06-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
 	</parameter>
@@ -22,8 +22,6 @@
 	pedidoscli.codejercicio as codejercicio,
 	pedidoscli.codpago as codformapago,
 	pedidoscli.codalmacen as codalmacen,
-	pedidoscli.pordtoesp as porcentagedescuentopedido,
-	pedidoscli.dtoesp as descuentopedido,
 	pedidoscli.totaliva as pedidototaliva,
 	pedidoscli.totalrecargo as totalrecargo,
 	pedidoscli.codcliente as codcliente,
@@ -38,7 +36,6 @@
 	pedidoscli.apartado as apartadopedido,
 	pedidoscli.codpais as paispedido,
 	pedidoscli.neto as netopedido,
-	pedidoscli.netosindtoesp as netopedidosindto,
 	pedidoscli.observaciones as observacionespedido,
 	pedidoscli.irpf as pedidoirpf,
 	pedidoscli.totalirpf as pedidototalirpf,
@@ -122,7 +119,7 @@ ORDER BY $P!{ORDERBY}]]>
 	<variable name="sumaysigue" class="java.lang.Double" resetType="Group" resetGroup="IDPEDIDO" calculation="Sum">
 		<variableExpression><![CDATA[$F{pvptotallinea}]]></variableExpression>
 	</variable>
-	<group name="IDPEDIDO" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" footerPosition="StackAtBottom" keepTogether="true">
+	<group name="IDPEDIDO" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" keepTogether="true">
 		<groupExpression><![CDATA[$F{idpedido}]]></groupExpression>
 		<groupHeader>
 			<band height="259">
@@ -360,42 +357,6 @@ ORDER BY $P!{ORDERBY}]]>
 					</textElement>
 					<text><![CDATA[Observaciones:]]></text>
 				</staticText>
-				<staticText>
-					<reportElement uuid="04b25ed8-5e59-436e-b2ea-a3b29380ebee" x="391" y="22" width="55" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentopedido} != 0]]></printWhenExpression>
-					</reportElement>
-					<textElement textAlignment="Right">
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Desc.]]></text>
-				</staticText>
-				<textField pattern="###0" isBlankWhenNull="true">
-					<reportElement uuid="d675530f-60f1-4a97-b00a-96c3106bb356" x="446" y="22" width="21" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentopedido}!=0]]></printWhenExpression>
-					</reportElement>
-					<textElement textAlignment="Right">
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{porcentagedescuentopedido}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement uuid="06c5d32c-e811-4833-a078-6169eb4b837e" x="467" y="22" width="10" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentopedido} != 0]]></printWhenExpression>
-					</reportElement>
-					<textElement>
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<text><![CDATA[%]]></text>
-				</staticText>
-				<textField pattern="#,##0.00;-#,##0.00">
-					<reportElement uuid="dac69ffa-1a96-4447-9dd9-ee4ca77b3a84" x="477" y="22" width="78" height="20">
-						<printWhenExpression><![CDATA[$F{porcentagedescuentopedido}!=0]]></printWhenExpression>
-					</reportElement>
-					<textElement textAlignment="Right">
-						<font fontName="Arial" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{descuentopedido}]]></textFieldExpression>
-				</textField>
 				<staticText>
 					<reportElement uuid="1aa97374-58d5-424f-b87f-838dc242af04" x="446" y="50" width="27" height="18"/>
 					<textElement verticalAlignment="Middle">
