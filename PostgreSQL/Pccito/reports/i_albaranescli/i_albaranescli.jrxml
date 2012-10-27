@@ -56,7 +56,7 @@
 	empresa.nombre as nombreempresa,
 	empresa.cifnif as cifempresa,
 	empresa.direccion as direccionempresa,
-	empresa.logo as logoempresa,
+	(select contenido from fllarge where refkey = empresa.logo) as logoempresa,
 	empresa.codpostal as cpempresa,
 	empresa.ciudad as ciudadempresa,
 	empresa.provincia as provinciaempresa,
