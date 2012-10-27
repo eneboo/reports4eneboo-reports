@@ -121,7 +121,7 @@ ORDER BY $P!{ORDERBY}]]>
 	<variable name="sumaysigue" class="java.lang.Double" resetType="Group" resetGroup="IDPRESUPUESTO" calculation="Sum">
 		<variableExpression><![CDATA[$F{pvptotallinea}]]></variableExpression>
 	</variable>
-	<group name="IDPRESUPUESTO" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" footerPosition="StackAtBottom" keepTogether="true">
+	<group name="IDPRESUPUESTO" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" keepTogether="true">
 		<groupExpression><![CDATA[$F{idpresupuesto}]]></groupExpression>
 		<groupHeader>
 			<band height="259">
