@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_presupuestoscli" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Proforma" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -22,6 +22,8 @@
 	presupuestoscli.codejercicio as codejercicio,
 	presupuestoscli.codpago as codformapago,
 	presupuestoscli.codalmacen as codalmacen,
+	presupuestoscli.pordtoesp as porcentagedescuentopresupuesto,
+	presupuestoscli.dtoesp as descuentopresupuesto,
 	presupuestoscli.totaliva as presupuestototaliva,
 	presupuestoscli.totalrecargo as totalrecargo,
 	presupuestoscli.codcliente as codcliente,
@@ -228,7 +230,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<textElement>
 						<font fontName="Arial" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Presupuesto:]]></text>
+					<text><![CDATA[Proforma:]]></text>
 				</staticText>
 				<textField>
 					<reportElement uuid="d98e2490-4335-4e3a-8a85-6c1605591b4c" x="13" y="146" width="147" height="20"/>
@@ -319,7 +321,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Total Presupuesto (IVA no inlcuido)]]></text>
+					<text><![CDATA[Total Proforma (IVA no inlcuido)]]></text>
 				</staticText>
 				<textField pattern="#,##0.00 ¤;-#,##0.00 ¤">
 					<reportElement uuid="d24c6b08-f19a-4de8-9d8d-a4bff1451897" x="473" y="48" width="79" height="38"/>
