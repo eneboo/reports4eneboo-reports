@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Histórico de ventas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="84724afa-9276-4961-a813-2713161c04ef">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["albaranescli.codigo"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     albaranescli."codcliente" AS albaranescli_codcliente,
+     albaranescli."codigo" AS albaranescli_codigo,
+     albaranescli."fecha" AS albaranescli_fecha,
+     albaranescli."nombrecliente" AS albaranescli_nombrecliente,
+     albaranescli."coddivisa" AS albaranescli_coddivisa,
+     albaranescli."codalmacen" AS albaranescli_codalmacen,
+     lineasalbaranescli."idalbaran" AS lineasalbaranescli_idalbaran,
+     lineasalbaranescli."referencia" AS lineasalbaranescli_referencia,
+     lineasalbaranescli."descripcion" AS lineasalbaranescli_descripcion,
+     lineasalbaranescli."cantidad" AS lineasalbaranescli_cantidad,
+     lineasalbaranescli."pvpunitario" AS lineasalbaranescli_pvpunitario,
+     lineasalbaranescli."pvptotal" AS lineasalbaranescli_pvptotal,
+     lineasalbaranescli."dtopor" AS lineasalbaranescli_dtopor,
+     almacenes."nombre" AS almacenes_nombre,
+     almacenes."codalmacen" AS almacenes_codalmacen,
+     empresa."cifnif" AS empresa_cifnif,
+     empresa."direccion" AS empresa_direccion,
+     empresa."nombre" AS empresa_nombre,
+     empresa."codpostal" AS empresa_codpostal,
+     empresa."ciudad" AS empresa_ciudad,
+     empresa."provincia" AS empresa_provincia,
+     empresa."codpais" AS empresa_codpais,
+     empresa."apartado" AS empresa_apartado
+FROM
+     "public"."albaranescli" albaranescli INNER JOIN "public"."almacenes" almacenes ON albaranescli."codalmacen" = almacenes."codalmacen"
+     INNER JOIN "public"."lineasalbaranescli" lineasalbaranescli ON albaranescli."idalbaran" = lineasalbaranescli."idalbaran" INNER JOIN "public"."clientes" clientes ON albaranescli."codcliente" = clientes."codcliente" INNER JOIN "public"."articulos" articulos ON lineasalbaranescli."referencia" = articulos."referencia",
+     "public"."empresa" empresa
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="albaranescli_codcliente" class="java.lang.String"/>
+	<field name="albaranescli_codigo" class="java.lang.String"/>
+	<field name="albaranescli_fecha" class="java.sql.Date"/>
+	<field name="albaranescli_nombrecliente" class="java.lang.String"/>
+	<field name="albaranescli_coddivisa" class="java.lang.String"/>
+	<field name="albaranescli_codalmacen" class="java.lang.String"/>
+	<field name="lineasalbaranescli_idalbaran" class="java.lang.Integer"/>
+	<field name="lineasalbaranescli_referencia" class="java.lang.String"/>
+	<field name="lineasalbaranescli_descripcion" class="java.lang.String"/>
+	<field name="lineasalbaranescli_cantidad" class="java.lang.Double"/>
+	<field name="lineasalbaranescli_pvpunitario" class="java.lang.Double"/>
+	<field name="lineasalbaranescli_pvptotal" class="java.lang.Double"/>
+	<field name="lineasalbaranescli_dtopor" class="java.lang.Double"/>
+	<field name="almacenes_nombre" class="java.lang.String"/>
+	<field name="almacenes_codalmacen" class="java.lang.String"/>
+	<field name="empresa_cifnif" class="java.lang.String"/>
+	<field name="empresa_direccion" class="java.lang.String"/>
+	<field name="empresa_nombre" class="java.lang.String"/>
+	<field name="empresa_codpostal" class="java.lang.String"/>
+	<field name="empresa_ciudad" class="java.lang.String"/>
+	<field name="empresa_provincia" class="java.lang.String"/>
+	<field name="empresa_codpais" class="java.lang.String"/>
+	<field name="empresa_apartado" class="java.lang.String"/>
+	<variable name="lineasalbaranescli_pvptotal_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{lineasalbaranescli_pvptotal}]]></variableExpression>
+	</variable>
+	<variable name="lineasalbaranescli_pvptotal_2" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{lineasalbaranescli_pvptotal}]]></variableExpression>
+	</variable>
+	<variable name="lineasalbaranescli_pvptotal_3" class="java.lang.Double" resetType="Group" resetGroup="ID_ALBARANES" calculation="Sum">
+		<variableExpression><![CDATA[$F{lineasalbaranescli_pvptotal}]]></variableExpression>
+	</variable>
+	<group name="lineasalbaranescli_idalbaran">
+		<groupExpression><![CDATA[$F{lineasalbaranescli_idalbaran}]]></groupExpression>
+	</group>
+	<group name="ID_ALBARANES">
+		<groupExpression><![CDATA[$F{lineasalbaranescli_idalbaran}]]></groupExpression>
+		<groupHeader>
+			<band height="103">
+				<staticText>
+					<reportElement uuid="f32c9593-271a-453e-8cad-d841baede88d" x="-1" y="82" width="100" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Referencia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="1321949d-3819-4190-9361-f6d3365f5a6b" x="100" y="82" width="244" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Descripción]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="9a856a8a-37f1-467b-ae4a-1c89799a9a6a" x="344" y="82" width="47" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="112c17b1-529b-41f5-8b3d-71eb56522b8e" x="391" y="82" width="54" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[PVP/U]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e96ac559-f667-4301-8a3b-16c12e8dade6" x="491" y="82" width="63" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="90b058e2-2f2e-47e4-961b-fa78489d887f" x="445" y="82" width="46" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[DTO %]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="d818edd2-7912-4d1b-8667-5cb46ffe62b2" x="72" y="52" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{albaranescli_codigo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="8d2177e5-08f6-4d0a-adcf-726f801e7cc6" x="0" y="52" width="72" height="20"/>
+					<textElement/>
+					<text><![CDATA[Cod. Albarán]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="56da6c65-e14b-409e-8c96-7a347949c249" x="344" y="52" width="210" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{albaranescli_nombrecliente}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="4de6cbfc-1658-419a-ab9a-edf8a3cd22c8" x="203" y="52" width="38" height="20"/>
+					<textElement/>
+					<text><![CDATA[Cliente]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="a0e5234f-2a9d-4a0c-96e9-541d44c0f933" x="244" y="52" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{albaranescli_codcliente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="54005486-8c71-47d0-85c3-fae12ff6e2c2" x="191" y="32" width="363" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{almacenes_nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="b2f3dbf8-1473-4645-b8e0-a138c89d7f3d" x="72" y="32" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{almacenes_codalmacen}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2f88ad9-2cdf-4e3e-af5e-6d214e5948b0" x="1" y="32" width="62" height="20"/>
+					<textElement/>
+					<text><![CDATA[Almacén]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<staticText>
+					<reportElement uuid="661f0036-fcf8-4bf7-9819-4fade3318cc4" x="346" y="1" width="100" height="20"/>
+					<textElement/>
+					<text><![CDATA[TOTAL ALBARAN]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="0b80fbe0-1331-4b8c-aef8-d1c5ca1e386a" x="455" y="1" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{lineasalbaranescli_pvptotal_3}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b74a8c16-551f-4d0e-8ab6-d4c19420291b" x="1" y="26" width="554" height="24"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HISTÓRICO DE VENTAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="117" splitType="Stretch">
+			<textField>
+				<reportElement uuid="994c629c-9130-4ea2-816c-580ce2d5535b" x="-1" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empresa_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6a5ebb7b-0640-4d68-8c96-3c00d498f99f" x="1" y="20" width="213" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empresa_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a569b07f-6e7e-4c67-be4d-77a8de444bc8" x="1" y="40" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empresa_cifnif}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="426b486e-cd58-4e4d-87f8-e9a11c9b13ad" x="101" y="60" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empresa_ciudad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ba661087-e6ba-4307-b6b6-b80d9db292c7" x="1" y="60" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empresa_codpostal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0f3fe589-aaea-4fb8-a5f6-fd8a804f5495" x="203" y="60" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empresa_provincia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="9a1a59b2-bb45-415f-8a9b-e7ff131f0e56" x="0" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{lineasalbaranescli_referencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9514b900-127c-48eb-8e87-97e4cd964c75" x="101" y="0" width="244" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{lineasalbaranescli_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7f3b1e5e-bc3b-44dc-a42f-24b787ce64a6" x="345" y="0" width="47" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{lineasalbaranescli_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="76b97ab6-7fdd-413a-a09f-1397b6f66fe3" x="392" y="0" width="54" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{lineasalbaranescli_pvpunitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9ce100b0-81c2-44de-aaf0-7ca24d9c5e18" x="446" y="0" width="46" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{lineasalbaranescli_dtopor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="70403908-6842-426c-80c4-3e24e5237826" x="491" y="0" width="63" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{lineasalbaranescli_pvptotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

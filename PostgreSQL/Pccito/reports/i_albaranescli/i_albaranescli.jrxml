@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_albaranescli" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f56b01a9-9a77-44db-85ed-a8201e567af9">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_albaranescli" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f56b01a9-9a77-44db-85ed-a8201e567af9">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="114"/>
 	<property name="ireport.y" value="225"/>
@@ -80,8 +80,6 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="codejercicio" class="java.lang.String"/>
 	<field name="codformapago" class="java.lang.String"/>
 	<field name="codalmacen" class="java.lang.String"/>
-	<field name="porcentagedescuentoalbaran" class="java.lang.Double"/>
-	<field name="descuentoalbaran" class="java.lang.Double"/>
 	<field name="albarantotaliva" class="java.lang.Double"/>
 	<field name="totalrecargo" class="java.lang.Double"/>
 	<field name="codcliente" class="java.lang.String"/>
@@ -96,7 +94,6 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="apartadoalbaran" class="java.lang.String"/>
 	<field name="paisalbaran" class="java.lang.String"/>
 	<field name="netoalbaran" class="java.lang.Double"/>
-	<field name="netoalbaransindto" class="java.lang.Double"/>
 	<field name="observacionesalbaran" class="java.lang.String"/>
 	<field name="albaranirpf" class="java.lang.Double"/>
 	<field name="albarantotalirpf" class="java.lang.Double"/>
