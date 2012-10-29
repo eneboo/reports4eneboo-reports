@@ -76,8 +76,6 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="codejercicio" class="java.lang.String"/>
 	<field name="codformapago" class="java.lang.String"/>
 	<field name="codalmacen" class="java.lang.String"/>
-	<field name="porcentagedescuentopresupuesto" class="java.lang.Double"/>
-	<field name="descuentopresupuesto" class="java.lang.Double"/>
 	<field name="presupuestototaliva" class="java.lang.Double"/>
 	<field name="totalrecargo" class="java.lang.Double"/>
 	<field name="codcliente" class="java.lang.String"/>
@@ -92,7 +90,6 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="apartadopresupuesto" class="java.lang.String"/>
 	<field name="paispresupuesto" class="java.lang.String"/>
 	<field name="netopresupuesto" class="java.lang.Double"/>
-	<field name="netopresupuestosindto" class="java.lang.Double"/>
 	<field name="observacionespresupuesto" class="java.lang.String"/>
 	<field name="presupuestoirpf" class="java.lang.Double"/>
 	<field name="presupuestototalirpf" class="java.lang.Double"/>
@@ -113,7 +110,6 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="provinciaempresa" class="java.lang.String"/>
 	<field name="apartadoempresa" class="java.lang.String"/>
 	<field name="codpaisempresa" class="java.lang.String"/>
-	<field name="?column?" class="java.lang.Double"/>
 	<field name="nomfpago" class="java.lang.String"/>
 	<field name="nombanco" class="java.lang.String"/>
 	<variable name="sumaysigue" class="java.lang.Double" resetType="Group" resetGroup="IDPRESUPUESTO" calculation="Sum">
