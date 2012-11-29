@@ -1,0 +1,11 @@
+net.sf.jasperreports.engine.JRException: java.io.FileNotFoundException: undefined (No existe el archivo o el directorio)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:176)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:156)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:171)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:448)
+	at enebooreports.main(enebooreports.java:102)
+Caused by: java.io.FileNotFoundException: undefined (No existe el archivo o el directorio)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:171)
+	... 4 more
