@@ -22,8 +22,6 @@
 	presupuestoscli.codejercicio as codejercicio,
 	presupuestoscli.codpago as codformapago,
 	presupuestoscli.codalmacen as codalmacen,
-	presupuestoscli.pordtoesp as porcentagedescuentopresupuesto,
-	presupuestoscli.dtoesp as descuentopresupuesto,
 	presupuestoscli.totaliva as presupuestototaliva,
 	presupuestoscli.totalrecargo as totalrecargo,
 	presupuestoscli.codcliente as codcliente,

@@ -120,7 +120,6 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="provinciaempresa" class="java.lang.String"/>
 	<field name="apartadoempresa" class="java.lang.String"/>
 	<field name="codpaisempresa" class="java.lang.String"/>
-	<field name="?column?" class="java.lang.Double"/>
 	<field name="nomfpago" class="java.lang.String"/>
 	<field name="nombanco" class="java.lang.String"/>
 	<variable name="sumaysigue" class="java.lang.Double" resetType="Group" resetGroup="IDFACTURA" calculation="Sum">
