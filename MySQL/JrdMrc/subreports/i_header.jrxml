@@ -28,7 +28,7 @@ FROM    empresa]]>
 			<frame>
 				<reportElement uuid="630c6e62-eb4e-4b65-af76-d9e29f87e869" mode="Opaque" x="0" y="10" width="800" height="45" forecolor="#999999" backcolor="#999999"/>
 				<textField>
-					<reportElement uuid="6f8bb768-d83a-4d0e-a8f5-5a642e07d53c" x="0" y="15" width="773" height="20"/>
+					<reportElement uuid="6f8bb768-d83a-4d0e-a8f5-5a642e07d53c" x="0" y="15" width="790" height="20"/>
 					<textElement textAlignment="Center">
 						<font fontName="Arial" size="14" isBold="true"/>
 					</textElement>
@@ -63,21 +63,21 @@ FROM    empresa]]>
 					<textFieldExpression><![CDATA[$F{cityempresa}]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement uuid="ee375dbe-1584-4df9-9b2a-a5d086548186" x="593" y="2" width="179" height="14" forecolor="#000000"/>
+					<reportElement uuid="ee375dbe-1584-4df9-9b2a-a5d086548186" x="611" y="2" width="179" height="14" forecolor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="672" y="29" width="80" height="14" forecolor="#000000"/>
+					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="704" y="29" width="64" height="14" forecolor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
-					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="753" y="29" width="20" height="14" forecolor="#000000"/>
+					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="769" y="29" width="20" height="14" forecolor="#000000"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>
