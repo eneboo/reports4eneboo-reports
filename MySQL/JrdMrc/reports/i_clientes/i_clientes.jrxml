@@ -6,7 +6,7 @@
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
-	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" hAlign="Left" vAlign="Middle" fontName="Arial Narrow" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman"/>
 	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
@@ -16,6 +16,9 @@
 	<subDataset name="PieChartDataset" uuid="7813872b-d423-406c-9713-ee4e854c8087"/>
 	<parameter name="WHERE" class="java.lang.String"/>
 	<parameter name="ORDERBY" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT 	clientes.codcliente,
 	clientes.nombre,
@@ -85,24 +88,15 @@ ORDER BY $P!{ORDERBY}]]>
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch">
-			<frame>
-				<reportElement uuid="630c6e62-eb4e-4b65-af76-d9e29f87e869" mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#999999" backcolor="#999999"/>
-				<textField>
-					<reportElement uuid="76052c86-1c68-4c28-a1a5-d38167eaceb0" x="293" y="0" width="282" height="25"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{nomempresa}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement uuid="c8b9509b-1ec9-4400-a25b-060887cf887e" x="16" y="2" width="211" height="20"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Listado de Clientes]]></text>
-				</staticText>
-			</frame>
+		<band height="50" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="8819b736-357e-44d9-9750-4d286e2427c3" x="1" y="0" width="800" height="49"/>
+				<subreportParameter name="LISTADO">
+					<subreportParameterExpression><![CDATA["LISTADO CLIENTES"]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_header.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -111,37 +105,37 @@ ORDER BY $P!{ORDERBY}]]>
 				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" positionType="FixRelativeToBottom" x="0" y="14" width="801" height="1"/>
 			</line>
 			<frame>
-				<reportElement uuid="66524702-22b2-4c87-a53d-1874a822124f" x="227" y="0" width="575" height="14"/>
+				<reportElement uuid="66524702-22b2-4c87-a53d-1874a822124f" x="217" y="0" width="578" height="14"/>
 				<staticText>
-					<reportElement uuid="d83eb6fd-6ed1-462d-b27e-907278d16a4a" style="Column header" positionType="Float" x="115" y="0" width="135" height="14" forecolor="#000000"/>
+					<reportElement uuid="d83eb6fd-6ed1-462d-b27e-907278d16a4a" style="Column header" positionType="Float" x="128" y="0" width="135" height="14" forecolor="#000000"/>
 					<textElement>
 						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
 					</textElement>
 					<text><![CDATA[Dirección]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="6d2c84ad-4432-425a-8ca1-7043b7c21758" style="Column header" positionType="Float" x="250" y="0" width="140" height="14" forecolor="#000000"/>
+					<reportElement uuid="6d2c84ad-4432-425a-8ca1-7043b7c21758" style="Column header" positionType="Float" x="263" y="0" width="127" height="14" forecolor="#000000"/>
 					<textElement>
 						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
 					</textElement>
 					<text><![CDATA[Ciudad]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="3a840524-d22f-46ba-89b7-dd47cfe31b26" style="Column header" positionType="Float" x="390" y="0" width="44" height="14" forecolor="#000000"/>
+					<reportElement uuid="3a840524-d22f-46ba-89b7-dd47cfe31b26" style="Column header" positionType="Float" x="403" y="0" width="31" height="14" forecolor="#000000"/>
 					<textElement>
 						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
 					</textElement>
 					<text><![CDATA[C.P.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="3252ed36-a4ec-4969-af32-aef30e002365" style="Column header" positionType="Float" x="434" y="0" width="90" height="14" forecolor="#000000"/>
+					<reportElement uuid="3252ed36-a4ec-4969-af32-aef30e002365" style="Column header" positionType="Float" x="447" y="0" width="77" height="14" forecolor="#000000"/>
 					<textElement>
 						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
 					</textElement>
 					<text><![CDATA[provincia]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="b1284748-7ac7-4731-8878-05771a0423ba" style="Column header" positionType="Float" x="524" y="0" width="44" height="14" forecolor="#000000"/>
+					<reportElement uuid="b1284748-7ac7-4731-8878-05771a0423ba" style="Column header" positionType="Float" x="537" y="0" width="41" height="14" forecolor="#000000"/>
 					<textElement>
 						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
 					</textElement>
@@ -163,7 +157,7 @@ ORDER BY $P!{ORDERBY}]]>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="5b6e2e73-c50b-47f9-afb4-6ce7db2906ef" style="Column header" positionType="Float" x="214" y="0" width="107" height="14" forecolor="#000000"/>
+				<reportElement uuid="5b6e2e73-c50b-47f9-afb4-6ce7db2906ef" style="Column header" positionType="Float" x="217" y="0" width="79" height="14" forecolor="#000000"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
 				</textElement>
@@ -195,14 +189,14 @@ ORDER BY $P!{ORDERBY}]]>
 				<textFieldExpression><![CDATA[$F{fax}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="db31fe2d-6fe2-44ec-a27a-56830b2f1664" style="Detail" positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="215" y="15" width="128" height="12" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="db31fe2d-6fe2-44ec-a27a-56830b2f1664" style="Detail" positionType="Float" stretchType="RelativeToBandHeight" x="217" y="15" width="128" height="12" isRemoveLineWhenBlank="true"/>
 				<textElement>
 					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="fdc9dbab-cc64-49e4-822b-a5a10eca0302" style="Detail" stretchType="RelativeToBandHeight" x="345" y="3" width="135" height="12"/>
+				<reportElement uuid="fdc9dbab-cc64-49e4-822b-a5a10eca0302" style="Detail" stretchType="RelativeToTallestObject" x="345" y="3" width="135" height="12"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
 				</textElement>
@@ -237,7 +231,7 @@ ORDER BY $P!{ORDERBY}]]>
 				<textFieldExpression><![CDATA[$F{codpais}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" positionType="FixRelativeToBottom" x="44" y="28" width="758" height="1"/>
+				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="44" y="28" width="758" height="1"/>
 			</line>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="caa2a719-8abc-4f90-a9a3-17fd705ad315" style="Detail" stretchType="RelativeToBandHeight" x="3" y="3" width="44" height="12"/>
@@ -252,7 +246,7 @@ ORDER BY $P!{ORDERBY}]]>
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="16" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<frame>
 				<reportElement uuid="b2cd14f3-a67e-40e6-abee-915922662c4c" mode="Opaque" x="2" y="0" width="800" height="16" forecolor="#999999" backcolor="#999999"/>
 				<textField evaluationTime="Report">
@@ -267,7 +261,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement uuid="ee375dbe-1584-4df9-9b2a-a5d086548186" style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF"/>
