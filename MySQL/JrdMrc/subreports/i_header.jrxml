@@ -70,15 +70,15 @@ FROM    empresa]]>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="676" y="29" width="80" height="14" forecolor="#000000"/>
+					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="672" y="29" width="80" height="14" forecolor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
-					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="757" y="29" width="20" height="14" forecolor="#000000"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
+					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="753" y="29" width="20" height="14" forecolor="#000000"/>
+					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
