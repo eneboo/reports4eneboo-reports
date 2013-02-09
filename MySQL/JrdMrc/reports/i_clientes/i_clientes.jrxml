@@ -227,9 +227,23 @@ ORDER BY $P!{ORDERBY}]]>
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="14" splitType="Stretch">
+		<band height="16" splitType="Stretch">
 			<frame>
-				<reportElement uuid="b2cd14f3-a67e-40e6-abee-915922662c4c" mode="Opaque" x="1" y="1" width="800" height="12" forecolor="#999999" backcolor="#999999"/>
+				<reportElement uuid="b2cd14f3-a67e-40e6-abee-915922662c4c" mode="Opaque" x="1" y="1" width="800" height="14" forecolor="#999999" backcolor="#999999"/>
+				<textField>
+					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="700" y="0" width="80" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="781" y="0" width="15" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</pageFooter>
