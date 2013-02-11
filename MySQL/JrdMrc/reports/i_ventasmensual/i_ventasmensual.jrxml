@@ -3,9 +3,11 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="WHERE" class="java.lang.String"/>
-	<parameter name="ORDERBY" class="java.lang.String">
-		<defaultValueExpression><![CDATA["clientes.codgrupo"]]></defaultValueExpression>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["fecha >= '2012-01-01T00:00:00' AND fecha <= '2012-12-31T00:00:00'  AND codejercicio = '2012'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$F{Total}]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
@@ -32,8 +34,9 @@ SUM(l.cantidad) as Total
 FROM lineasfacturascli AS l
 	INNER JOIN articulos AS a ON l.referencia = a.referencia
 	LEFT OUTER JOIN facturascli AS f ON f.idfactura = l.idfactura
-GROUP BY l.referencia
-ORDER BY Total DESC]]>
+WHERE $P!{WHERE}
+GROUP BY referencia
+ORDER BY $P!{ORDERBY}]]>
 	</queryString>
 	<field name="referencia" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
