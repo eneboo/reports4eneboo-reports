@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tpv_i_comandas_lineas" pageWidth="226" pageHeight="752" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e2944cf3-5e3a-4942-8f9a-1df6ad655de5">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IDDOCUMENTO" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1874]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tpv_lineascomanda."pvptotal" AS tpv_lineascomanda_pvptotal,
+     tpv_lineascomanda."ivaincluido" AS tpv_lineascomanda_ivaincluido,
+     tpv_lineascomanda."cantidad" AS tpv_lineascomanda_cantidad,
+     tpv_lineascomanda."dtolineal" AS tpv_lineascomanda_dtolineal,
+     tpv_lineascomanda."descripcion" AS tpv_lineascomanda_descripcion,
+     tpv_lineascomanda."codimpuesto" AS tpv_lineascomanda_codimpuesto,
+     tpv_lineascomanda."idtpv_linea" AS tpv_lineascomanda_idtpv_linea,
+     tpv_lineascomanda."iva" AS tpv_lineascomanda_iva,
+     tpv_lineascomanda."pvpunitarioiva" AS tpv_lineascomanda_pvpunitarioiva,
+     tpv_lineascomanda."dtopor" AS tpv_lineascomanda_dtopor,
+     tpv_lineascomanda."pvpsindto" AS tpv_lineascomanda_pvpsindto,
+     tpv_lineascomanda."idtpv_comanda" AS tpv_lineascomanda_idtpv_comanda,
+     tpv_lineascomanda."pvpunitario" AS tpv_lineascomanda_pvpunitario,
+     tpv_lineascomanda."referencia" AS tpv_lineascomanda_referencia
+FROM
+     "tpv_lineascomanda" tpv_lineascomanda
+WHERE
+tpv_lineascomanda.idtpv_comanda = $P{IDDOCUMENTO}]]>
+	</queryString>
+	<field name="tpv_lineascomanda_pvptotal" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_ivaincluido" class="java.lang.Boolean"/>
+	<field name="tpv_lineascomanda_cantidad" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_dtolineal" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_descripcion" class="java.lang.String"/>
+	<field name="tpv_lineascomanda_codimpuesto" class="java.lang.String"/>
+	<field name="tpv_lineascomanda_idtpv_linea" class="java.lang.Integer"/>
+	<field name="tpv_lineascomanda_iva" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_pvpunitarioiva" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_dtopor" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_pvpsindto" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_idtpv_comanda" class="java.lang.Integer"/>
+	<field name="tpv_lineascomanda_pvpunitario" class="java.lang.Double"/>
+	<field name="tpv_lineascomanda_referencia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="###0;-###0">
+				<reportElement uuid="8a37b809-ff10-4e92-9bec-70c626b75d0e" x="0" y="0" width="17" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_lineascomanda_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dcec9e88-2eff-406a-814b-c6b2d19c0231" x="29" y="0" width="116" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_lineascomanda_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="16c7d049-211f-4fb5-b38f-74d9d6d9255d" x="145" y="0" width="45" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_lineascomanda_pvpunitario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="55837419-762b-4aa6-b9c4-541689fbd340" x="190" y="0" width="36" height="15"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_lineascomanda_pvptotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
