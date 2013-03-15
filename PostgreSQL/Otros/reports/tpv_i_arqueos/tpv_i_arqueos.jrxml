@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Arqueo Simple" language="groovy" pageWidth="226" pageHeight="500" columnWidth="206" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="23fe9547-3927-4d71-a0f2-ebd88f86b54b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="IDDOCUMENTO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["tpv_arqueos.idtpv_arqueo"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     tpv_arqueos."m010" AS tpv_arqueos_m010,
+     tpv_arqueos."b10" AS tpv_arqueos_b10,
+     tpv_arqueos."totalmov" AS tpv_arqueos_totalmov,
+     tpv_arqueos."totalvale" AS tpv_arqueos_totalvale,
+     tpv_arqueos."idasiento" AS tpv_arqueos_idasiento,
+     tpv_arqueos."abierta" AS tpv_arqueos_abierta,
+     tpv_arqueos."b500" AS tpv_arqueos_b500,
+     tpv_arqueos."m020" AS tpv_arqueos_m020,
+     tpv_arqueos."m1" AS tpv_arqueos_m1,
+     tpv_arqueos."sacadodecaja" AS tpv_arqueos_sacadodecaja,
+     tpv_arqueos."m2" AS tpv_arqueos_m2,
+     tpv_arqueos."inicio" AS tpv_arqueos_inicio,
+     tpv_arqueos."b20" AS tpv_arqueos_b20,
+     tpv_arqueos."diahasta" AS tpv_arqueos_diahasta,
+     tpv_arqueos."idtpv_arqueo" AS tpv_arqueos_idtpv_arqueo,
+     tpv_arqueos."b200" AS tpv_arqueos_b200,
+     tpv_arqueos."nogenerarasiento" AS tpv_arqueos_nogenerarasiento,
+     tpv_arqueos."totalcaja" AS tpv_arqueos_totalcaja,
+     tpv_arqueos."totaltarjeta" AS tpv_arqueos_totaltarjeta,
+     tpv_arqueos."m001" AS tpv_arqueos_m001,
+     tpv_arqueos."b100" AS tpv_arqueos_b100,
+     tpv_arqueos."m002" AS tpv_arqueos_m002,
+     tpv_arqueos."b5" AS tpv_arqueos_b5,
+     tpv_arqueos."diadesde" AS tpv_arqueos_diadesde,
+     tpv_arqueos."m005" AS tpv_arqueos_m005,
+     tpv_arqueos."m050" AS tpv_arqueos_m050,
+     tpv_arqueos."b50" AS tpv_arqueos_b50,
+     tpv_arqueos."ptoventa" AS tpv_arqueos_ptoventa
+FROM
+     "public"."tpv_arqueos" tpv_arqueos
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="tpv_arqueos_m010" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_b10" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_totalmov" class="java.lang.Double"/>
+	<field name="tpv_arqueos_totalvale" class="java.lang.Double"/>
+	<field name="tpv_arqueos_idasiento" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_abierta" class="java.lang.Boolean"/>
+	<field name="tpv_arqueos_b500" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_m020" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_m1" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_sacadodecaja" class="java.lang.Double"/>
+	<field name="tpv_arqueos_m2" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_inicio" class="java.lang.Double"/>
+	<field name="tpv_arqueos_b20" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_diahasta" class="java.sql.Date"/>
+	<field name="tpv_arqueos_idtpv_arqueo" class="java.lang.String"/>
+	<field name="tpv_arqueos_b200" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_nogenerarasiento" class="java.lang.Boolean"/>
+	<field name="tpv_arqueos_totalcaja" class="java.lang.Double"/>
+	<field name="tpv_arqueos_totaltarjeta" class="java.lang.Double"/>
+	<field name="tpv_arqueos_m001" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_b100" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_m002" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_b5" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_diadesde" class="java.sql.Date"/>
+	<field name="tpv_arqueos_m005" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_m050" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_b50" class="java.lang.Integer"/>
+	<field name="tpv_arqueos_ptoventa" class="java.lang.String"/>
+	<variable name="TOTALREAL" class="java.lang.String">
+		<variableExpression><![CDATA[$F{tpv_arqueos_totalvale} + $F{tpv_arqueos_totaltarjeta} + $F{tpv_arqueos_totalcaja}]]></variableExpression>
+	</variable>
+	<group name="tpv_i_arqueos_id">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="168" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4aa76eb8-dfc4-4f82-a57e-344cb809c702" x="0" y="19" width="206" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ARQUEO DE CAJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="51bf9a69-033d-4fb9-88a3-d2a787896627" x="0" y="68" width="53" height="13"/>
+				<textElement/>
+				<text><![CDATA[NÚMERO]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="abc43620-51c8-4802-b027-e4e0f655a679" x="53" y="68" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tpv_arqueos_idtpv_arqueo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4c52208b-5b7d-418d-8342-3c62874f5ed5" x="53" y="88" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tpv_arqueos_ptoventa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8abbe21a-d5ae-4d08-b8be-4240969fffdb" x="0" y="88" width="44" height="12"/>
+				<textElement/>
+				<text><![CDATA[CAJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1700f4c5-5d4e-4d9c-876b-b398ad882b41" x="7" y="120" width="58" height="15"/>
+				<textElement/>
+				<text><![CDATA[DESDE DIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2c5f89c0-100e-4fae-8b66-691503bf434f" x="7" y="135" width="58" height="15"/>
+				<textElement/>
+				<text><![CDATA[HASTA DIA]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f24fff65-83e8-45f7-946a-cb7dc14bbf83" x="79" y="120" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tpv_arqueos_diadesde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9a121458-faad-48d0-bb2f-f498c7453a6c" x="79" y="135" width="100" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tpv_arqueos_diahasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7ffffbed-8a79-46a5-a31e-5a03bf067f53" x="0" y="0" width="100" height="13"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cd6f84d0-078d-4aa1-b541-85e8fda6d8ec" x="106" y="0" width="100" height="13"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="186" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a6be2430-dc5c-43a0-b9f0-969c1bca60ea" x="65" y="0" width="68" height="13"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[REAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="02535c16-8fcc-4556-b4e2-a8758a466596" x="133" y="0" width="73" height="13"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CALCULADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9dd1795a-705d-4536-be2e-c650cad186a5" x="0" y="23" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[EFECTIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bab3458d-2494-4ae1-b593-327adb6e9d2e" x="0" y="43" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[TARJETA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10d6fa3c-24b0-4e3d-b0bc-e6dac534f457" x="0" y="63" width="53" height="18"/>
+				<textElement/>
+				<text><![CDATA[VALES]]></text>
+			</staticText>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="3da1d0a9-7240-4552-b0e4-2bab1987c170" x="60" y="61" width="73" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{tpv_arqueos_totalvale}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="c7f89499-5b56-4905-9db0-6bc18583f781" x="60" y="43" width="73" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{tpv_arqueos_totaltarjeta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="e5f6aff9-342f-45d8-8e9d-fb661f0f907d" x="60" y="23" width="73" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{tpv_arqueos_totalcaja}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5ce9fe21-628f-4e6d-9575-beeabd5c030c" x="0" y="91" width="53" height="20"/>
+				<textElement/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="94f9863d-309c-4ba3-b810-14a5f542b9e0" x="60" y="91" width="73" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{TOTALREAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9e9f0c65-473c-49d9-92ef-908adad1c002" x="60" y="171" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[.]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="7" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
