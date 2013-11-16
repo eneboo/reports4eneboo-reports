@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header_codigo" pageWidth="174" pageHeight="72" columnWidth="174" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PAGE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+	$P!{TABLE_SUBREPORT}.codigo as codigo,
+    $P!{TABLE_SUBREPORT}.fecha as fecha,
+	$P!{TABLE_SUBREPORT}.coddivisa as divisa
+FROM $P!{TABLE_SUBREPORT}
+WHERE $P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT} = $P!{ID_SUBREPORT}
+]]>
+	</queryString>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="divisa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="72">
+			<elementGroup>
+				<frame>
+					<reportElement uuid="1f63855f-2623-4479-b51a-c5dc35f67836" style="Cabeceras" x="0" y="0" width="174" height="15"/>
+				</frame>
+				<textField>
+					<reportElement uuid="d38cf27a-b235-4dd6-9245-a6839b6f7c4b" x="0" y="0" width="81" height="15"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="10" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{TITLE_SUBREPORT}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="8f20b834-7605-42d5-a02f-e442664cfb2b" x="80" y="0" width="94" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement uuid="8570c31b-e84c-46e9-a184-0115f92c41a3" style="Recuadros" x="0" y="15" width="174" height="57"/>
+					<staticText>
+						<reportElement uuid="3af6fb18-121b-40df-94c9-ee5667e89c2b" x="0" y="20" width="55" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" isBold="false"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Página]]></text>
+					</staticText>
+					<textField>
+						<reportElement uuid="762de803-ae71-49be-85f7-75c3ac2ffa5c" x="84" y="19" width="15" height="15"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font fontName="Arial" size="10"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{PAGE_SUBREPORT}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement uuid="913deae0-ee4e-42f6-bbef-27a02d8e2815" x="84" y="38" width="36" height="15"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font fontName="Arial" size="10"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{divisa}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="4b869161-88e5-4ee2-82f7-02d1cf91f910" x="0" y="39" width="55" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" isBold="false"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Divisa]]></text>
+					</staticText>
+					<textField pattern="dd/MM/yyyy">
+						<reportElement uuid="68b1d17c-078b-4467-8d19-9e0af7059b27" x="84" y="2" width="90" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement uuid="3b1a53b5-9b89-4c8d-b91a-0cb23dbebf07" x="0" y="2" width="55" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" isBold="false"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[Fecha]]></text>
+					</staticText>
+				</frame>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>
