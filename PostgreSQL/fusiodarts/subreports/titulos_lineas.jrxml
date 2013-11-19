@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulos_lineas" pageWidth="555" pageHeight="15" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<queryString>
+		<![CDATA[SELECT
+	empresa.nombre as nombreempresa,
+	empresa.cifnif as cifempresa,
+	empresa.direccion as direccionempresa,
+	empresa.telefono as telefonoempresa,
+	empresa.codpostal as cpempresa,
+	empresa.ciudad as ciudadempresa,
+	empresa.provincia as provinciaempresa,
+	empresa.apartado as apartadoempresa,
+	empresa.codpais as codpaisempresa,
+    empresa.lopd AS empresa_lopd,
+    empresa.rmercantil AS empresa_rmercantil
+FROM
+     empresa
+WHERE
+     empresa.id = 1]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15">
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="c6730ffb-743e-4cd0-bfdc-47243b585c62" style="Cabeceras" x="0" y="0" width="78" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Referencia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="6c46591e-331e-4371-a42d-4837dbe1df80" style="Cabeceras" x="364" y="0" width="49" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cant.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="15edfbba-373b-435a-b323-7f26181e27fd" style="Cabeceras" x="80" y="0" width="230" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descripción]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="e8d2c6b2-f661-4103-94b1-e3bef1cabb54" style="Cabeceras" x="415" y="0" width="60" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Precio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="5405a0c2-97eb-484c-97c8-3b358bff9358" style="Cabeceras" x="312" y="0" width="50" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Dto. %]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="8e38541a-d0d7-4bba-9af1-afbf37c0ca81" style="Cabeceras" x="477" y="0" width="78" height="15"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Importe]]></text>
+				</staticText>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="footer_totales" pageWidth="555" pageHeight="75" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUMA_DTO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+$P!{TABLE_SUBREPORT}.neto as neto,
+$P!{TABLE_SUBREPORT}.codpago as codformapago,
+$P!{TABLE_SUBREPORT}.totaliva as totaliva,
+$P!{TABLE_SUBREPORT}.total as total,
+formaspago.descripcion as nomfpago,
+$P!{TABLE_SUBREPORT}.codpago as codformapago,
+( select impuestos.iva from impuestos where impuestos.codimpuesto = 'GEN' ) as IVA
+FROM $P!{TABLE_SUBREPORT}
+LEFT OUTER JOIN formaspago ON $P!{TABLE_SUBREPORT}.codpago = formaspago.codpago
+WHERE $P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT} = $P!{ID_SUBREPORT}
+]]>
+	</queryString>
+	<field name="IVA" class="java.lang.String"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="totaliva" class="java.lang.Double"/>
+	<field name="neto" class="java.lang.Double"/>
+	<field name="nomfpago" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="35">
+			<elementGroup>
+				<elementGroup/>
+			</elementGroup>
+			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤">
+				<reportElement uuid="51246349-2064-4071-96ea-0ca5c4c012b6" style="Recuadros" x="367" y="15" width="65" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totaliva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3c5722b1-3a31-49c9-9be9-a518aa317b7b" style="Cabeceras" x="206" y="0" width="90" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Base Imp.]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤">
+				<reportElement uuid="446cbc68-700f-44fc-9400-b6f4879b1907" style="Recuadros" x="435" y="15" width="120" height="19"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="59780779-9b66-441a-8b70-6bd98e32a214" style="Cabeceras" x="299" y="0" width="65" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8368820b-c25e-4786-96e9-e35b3398be7f" style="Cabeceras" x="367" y="0" width="65" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="00fdf2b3-d0a6-49ae-957c-545ecda38b24" style="Cabeceras" x="73" y="0" width="130" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="099a456a-1509-48c4-9ece-c331803ed300" style="Cabeceras" x="0" y="0" width="70" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Dto.]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1cadce65-5119-4c3f-a572-34287bc9bcba" style="Cabeceras" x="435" y="0" width="120" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total " + $P{TITLE_SUBREPORT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="d6992a9e-6fa4-445b-9ec1-9187a2bbc1dc" style="Recuadros" x="73" y="15" width="130" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+					<paragraph leftIndent="2" rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomfpago}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="f38f2a04-8efc-4dd9-9a62-d085a1577bf5" style="Recuadros" x="0" y="15" width="70" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SUMA_DTO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤">
+				<reportElement uuid="f1c4774d-b39f-49ca-bcfb-748adf8ead34" style="Recuadros" x="206" y="15" width="90" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{neto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤">
+				<reportElement uuid="62532300-663d-4651-85f2-d1d99cbe9d45" style="Recuadros" x="299" y="15" width="65" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IVA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

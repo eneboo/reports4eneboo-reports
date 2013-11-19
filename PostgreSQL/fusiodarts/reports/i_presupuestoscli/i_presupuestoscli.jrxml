@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Presupuestos de Clientes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
+	<property name="ireport.zoom" value="1.4641000000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="34"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["presupuestoscli.codejercicio = '2012' AND presupuestoscli.fecha >= '2012-01-01T00:00:00' AND presupuestoscli.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["presupuestoscli.codigo"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA['presupuestoscli']]></defaultValueExpression>
+	</parameter>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA['Presupuesto']]></defaultValueExpression>
+	</parameter>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA['presupuesto']]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT $P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT} as id,
+	$P!{TABLE_SUBREPORT}.codigo as codigo,
+	$P!{TABLE_SUBREPORT}.codserie as codserie,
+	$P!{TABLE_SUBREPORT}.total as total,
+	$P!{TABLE_SUBREPORT}.codejercicio as codejercicio,
+	$P!{TABLE_SUBREPORT}.codpago as codformapago,
+	$P!{TABLE_SUBREPORT}.codalmacen as codalmacen,
+	$P!{TABLE_SUBREPORT}.totaliva as totaliva,
+	$P!{TABLE_SUBREPORT}.totalrecargo as totalrecargo,
+	$P!{TABLE_SUBREPORT}.tasaconv as tasaconv,
+	$P!{TABLE_SUBREPORT}.neto as neto,
+	$P!{TABLE_SUBREPORT}.irpf as irpf,
+	$P!{TABLE_SUBREPORT}.totalirpf as totalirpf,
+    ( select impuestos.iva from impuestos where impuestos.codimpuesto = 'GEN' ) as IVA,
+ 	lineas$P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT} as idlinea,
+	lineas$P!{TABLE_SUBREPORT}.referencia as referencia,
+	lineas$P!{TABLE_SUBREPORT}.descripcion as descripcionreferencia,
+	lineas$P!{TABLE_SUBREPORT}.cantidad as cantidadreferencia,
+	lineas$P!{TABLE_SUBREPORT}.pvpunitario as referenciaprecio,
+	lineas$P!{TABLE_SUBREPORT}.pvptotal as pvptotallinea,
+	lineas$P!{TABLE_SUBREPORT}.codimpuesto as ivalinea,
+	lineas$P!{TABLE_SUBREPORT}.iva as porivalinea,
+    lineas$P!{TABLE_SUBREPORT}.dtopor as dtoporreferencia,
+    empresa.lopd AS empresa_lopd,
+    empresa.rmercantil AS empresa_rmercantil,
+	$P!{TABLE_SUBREPORT}.neto+$P!{TABLE_SUBREPORT}.totaliva+$P!{TABLE_SUBREPORT}.totalrecargo,
+	(
+		select cuentasbcocli.descripcion from cuentasbcocli where cuentasbcocli.codcliente = $P!{TABLE_SUBREPORT}.codcliente and cuentasbcocli.codcuenta = clientes.codcuentadom
+	) as nombanco
+FROM empresa, $P!{TABLE_SUBREPORT}
+INNER JOIN lineas$P!{TABLE_SUBREPORT} ON $P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT} = lineas$P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT}
+LEFT OUTER JOIN formaspago ON $P!{TABLE_SUBREPORT}.codpago = formaspago.codpago
+LEFT OUTER JOIN clientes ON clientes.codcliente = $P!{TABLE_SUBREPORT}.codcliente
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="codserie" class="java.lang.String"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="codejercicio" class="java.lang.String"/>
+	<field name="codformapago" class="java.lang.String"/>
+	<field name="codalmacen" class="java.lang.String"/>
+	<field name="totaliva" class="java.lang.Double"/>
+	<field name="totalrecargo" class="java.lang.Double"/>
+	<field name="tasaconv" class="java.lang.Double"/>
+	<field name="neto" class="java.lang.Double"/>
+	<field name="irpf" class="java.lang.Double"/>
+	<field name="totalirpf" class="java.lang.Double"/>
+	<field name="idlinea" class="java.lang.Integer"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="descripcionreferencia" class="java.lang.String"/>
+	<field name="cantidadreferencia" class="java.lang.Double"/>
+	<field name="referenciaprecio" class="java.lang.Double"/>
+	<field name="pvptotallinea" class="java.lang.Double"/>
+	<field name="ivalinea" class="java.lang.String"/>
+	<field name="porivalinea" class="java.lang.Double"/>
+	<field name="nombanco" class="java.lang.String"/>
+	<field name="IVA" class="java.lang.String"/>
+	<field name="empresa_rmercantil" class="java.lang.String"/>
+	<field name="empresa_lopd" class="java.lang.String"/>
+	<field name="dtoporreferencia" class="java.lang.Integer"/>
+	<variable name="sumaysigue" class="java.math.BigDecimal" resetType="Group" resetGroup="ID" calculation="Sum">
+		<variableExpression><![CDATA[$F{pvptotallinea}]]></variableExpression>
+	</variable>
+	<variable name="sumaysigueround" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{sumaysigue}.setScale(2, java.math.RoundingMode.HALF_UP)]]></variableExpression>
+	</variable>
+	<variable name="sumadtopor" class="java.lang.Integer" resetType="Group" resetGroup="ID" calculation="Sum">
+		<variableExpression><![CDATA[($F{referenciaprecio}.intValue() * $F{dtoporreferencia}.intValue()) / 100]]></variableExpression>
+	</variable>
+	<group name="ID" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" footerPosition="ForceAtBottom" keepTogether="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="100">
+				<elementGroup/>
+				<elementGroup/>
+				<elementGroup/>
+				<subreport isUsingCache="false">
+					<reportElement uuid="ab1f3d5d-9f04-494c-98b7-412a9c63b62b" x="0" y="80" width="555" height="15"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "titulos_lineas.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport isUsingCache="false">
+					<reportElement uuid="878f5e8b-94e9-47cd-a566-bf5ddcccbf9d" x="199" y="3" width="355" height="73"/>
+					<subreportParameter name="TABLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TABLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TITLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TITLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TEXT_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TEXT_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ID_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header_cliente.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport isUsingCache="false">
+					<reportElement uuid="9ef9e30e-c16f-4adc-8f83-36312d956b06" x="0" y="3" width="177" height="73"/>
+					<subreportParameter name="TABLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TABLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TITLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TITLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PAGE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TEXT_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TEXT_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ID_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header_codigo.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="70" splitType="Stretch">
+				<subreport isUsingCache="false">
+					<reportElement uuid="25b4d44d-ffe3-4787-a0a9-6e332edf91bd" x="0" y="1" width="554" height="41"/>
+					<subreportParameter name="TABLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TABLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TITLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TITLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUMA_DTO">
+						<subreportParameterExpression><![CDATA[$V{sumadtopor}.intValue()]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TEXT_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TEXT_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ID_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_totales.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport isUsingCache="false">
+					<reportElement uuid="0345c3f7-adc9-447f-b582-04d9d4e8b0d1" stretchType="RelativeToTallestObject" x="0" y="50" width="554" height="20" isPrintWhenDetailOverflows="true"/>
+					<subreportParameter name="TABLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TABLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TITLE_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TITLE_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="TEXT_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$P{TEXT_SUBREPORT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ID_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_observaciones.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="75">
+			<subreport isUsingCache="false">
+				<reportElement uuid="134b6849-52ed-482b-9d59-0ace48d348ad" x="-1" y="0" width="556" height="72"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21" splitType="Immediate">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d" x="80" y="0" width="230" height="17"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0" isBlankWhenNull="false">
+				<reportElement uuid="f88d3006-6144-4bd3-a6d2-f8a51c5c9e22" x="364" y="0" width="49" height="17">
+					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidadreferencia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement uuid="f3e68a67-1a55-4e0a-8943-795a7aa6593f" x="415" y="0" width="60" height="17">
+					<printWhenExpression><![CDATA[$F{referenciaprecio} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referenciaprecio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
+				<reportElement uuid="2c41dcb6-caaf-4455-9238-e051b5164172" x="477" y="0" width="78" height="17">
+					<printWhenExpression><![CDATA[$F{pvptotallinea} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pvptotallinea}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0;-###0" isBlankWhenNull="false">
+				<reportElement uuid="5bf5fb2c-2fce-4125-9447-34317bd43f39" x="312" y="0" width="50" height="17">
+					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dtoporreferencia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="3f12babc-5e82-43c6-af94-bf258fa87894" x="0" y="0" width="78" height="17">
+					<printWhenExpression><![CDATA[$F{referencia} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="9"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="62" splitType="Stretch">
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="0870b338-dc40-4f9f-ac11-33c2f28229ce" x="476" y="-1" width="78" height="15">
+					<printWhenExpression><![CDATA[!$V{sumaysigueround}.equals($F{neto})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sumaysigueround}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="9d2db475-52f6-4bc5-a4ab-2165f7f53cee" x="382" y="-1" width="91" height="15">
+					<printWhenExpression><![CDATA[!$V{sumaysigueround}.equals($F{neto})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Suma y sigue:]]></text>
+			</staticText>
+			<elementGroup>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="371bc6b5-1306-425e-902a-b6ca8f4716cb" x="0" y="14" width="555" height="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{empresa_rmercantil}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="ee4b2559-eafd-421a-a18b-6412efbd592d" x="0" y="27" width="555" height="35"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{empresa_lopd}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="f992d50c-406c-453c-b5b8-66a2adede0f4" x="0" y="13" width="555" height="1" forecolor="#AAAAAA"/>
+				</line>
+			</elementGroup>
+		</band>
+	</pageFooter>
+</jasperReport>

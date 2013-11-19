@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header" pageWidth="555" pageHeight="75" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.9487171000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	empresa.nombre as nombreempresa,
+	empresa.cifnif as cifempresa,
+	empresa.direccion as direccionempresa,
+	empresa.telefono as telefonoempresa,
+    empresa.email as emailempresa,
+	empresa.codpostal as cpempresa,
+	empresa.ciudad as ciudadempresa,
+	empresa.provincia as provinciaempresa,
+	empresa.apartado as apartadoempresa,
+	empresa.codpais as codpaisempresa,
+    empresa.lopd AS empresa_lopd,
+    empresa.rmercantil AS empresa_rmercantil,
+    (select contenido from fllarge where refkey = empresa.logo) as logoempresa
+FROM
+     empresa
+WHERE
+     empresa.id = 1]]>
+	</queryString>
+	<field name="nombreempresa" class="java.lang.String"/>
+	<field name="cifempresa" class="java.lang.String"/>
+	<field name="direccionempresa" class="java.lang.String"/>
+	<field name="cpempresa" class="java.lang.String"/>
+	<field name="ciudadempresa" class="java.lang.String"/>
+	<field name="provinciaempresa" class="java.lang.String"/>
+	<field name="apartadoempresa" class="java.lang.String"/>
+	<field name="codpaisempresa" class="java.lang.String"/>
+	<field name="empresa_rmercantil" class="java.lang.String"/>
+	<field name="empresa_lopd" class="java.lang.String"/>
+	<field name="telefonoempresa" class="java.lang.String"/>
+	<field name="emailempresa" class="java.lang.String"/>
+	<field name="logoempresa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="72">
+			<elementGroup>
+				<image>
+					<reportElement uuid="d06d644a-ab34-4586-aace-6feeeb12cfae" stretchType="RelativeToTallestObject" x="0" y="0" width="174" height="72"/>
+					<imageExpression><![CDATA[Xpm.XpmToImage($F{logoempresa})]]></imageExpression>
+				</image>
+				<image onErrorType="Blank">
+					<reportElement uuid="bcfaf1d8-21ad-49bf-b766-f87f1c5b0824" x="0" y="0" width="555" height="72"/>
+					<imageExpression><![CDATA["../../logo.jpg"]]></imageExpression>
+				</image>
+				<elementGroup>
+					<frame>
+						<reportElement uuid="e42f4c96-3d13-49c5-a466-aba9c214df29" style="Cabeceras" x="200" y="1" width="355" height="15"/>
+						<textField isBlankWhenNull="true">
+							<reportElement uuid="95781c47-77e0-4cfd-9af4-b6f7f5d3f78f" x="255" y="0" width="100" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial"/>
+								<paragraph rightIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{cifempresa}]]></textFieldExpression>
+						</textField>
+					</frame>
+					<textField isBlankWhenNull="true">
+						<reportElement uuid="4cf4791c-de6e-4ef2-9ba8-ee26e4f76464" x="200" y="1" width="250" height="15"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" isBold="true"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nombreempresa}]]></textFieldExpression>
+					</textField>
+					<frame>
+						<reportElement uuid="b56d44cc-933c-439a-a420-4e116eecee40" style="Recuadros" x="200" y="16" width="355" height="56"/>
+						<textField>
+							<reportElement uuid="f8583f4d-b584-4bac-bf85-dd8a9e5a7b6f" x="0" y="4" width="355" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial"/>
+								<paragraph leftIndent="5" rightIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{direccionempresa}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="423af2b4-d5c6-4a9d-80cb-ec00151a90fd" x="0" y="22" width="40" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{cpempresa}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="cf04fae3-64c8-4a72-a51b-dfaaa7eb11d4" x="45" y="21" width="155" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{ciudadempresa}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement uuid="b820738a-ea77-488a-a9e4-62c2dc351c7a" x="208" y="21" width="147" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{provinciaempresa}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement uuid="4880d971-d974-4441-b73a-ae697b73c7a9" x="0" y="39" width="26" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" isBold="false"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<text><![CDATA[Telf:]]></text>
+						</staticText>
+						<textField>
+							<reportElement uuid="1b24943f-8634-4500-910c-333d36e3a878" x="30" y="40" width="100" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{telefonoempresa}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="84c6eb95-3be8-4806-88fe-f5bf72ccbe0e" x="182" y="39" width="173" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{emailempresa}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement uuid="c03cd643-4747-470e-8b3a-61a671bd0f90" x="144" y="40" width="34" height="15"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" isBold="false"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<text><![CDATA[Email:]]></text>
+						</staticText>
+					</frame>
+				</elementGroup>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>
