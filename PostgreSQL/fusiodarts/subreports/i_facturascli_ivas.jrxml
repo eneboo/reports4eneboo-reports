@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_facturascli_ivas" pageWidth="226" pageHeight="20" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<parameter name="IDFACTURA" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1874]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     lineasivafactcli."iva" AS lineasivafactcli_iva,
+     SUM(lineasivafactcli."totaliva") AS lineasivafactcli_totaliva,
+     SUM(lineasivafactcli."neto") AS lineasivafactcli_neto
+FROM
+     "public"."lineasivafactcli" lineasivafactcli
+WHERE
+     lineasivafactcli."idfactura" = $P{IDFACTURA}
+GROUP BY lineasivafactcli_iva]]>
+	</queryString>
+	<field name="lineasivafactcli_iva" class="java.lang.Double"/>
+	<field name="lineasivafactcli_totaliva" class="java.lang.Double"/>
+	<field name="lineasivafactcli_neto" class="java.lang.Double"/>
+	<group name="lineasivafactcli_iva">
+		<groupExpression><![CDATA[$F{lineasivafactcli_iva}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="d7aed7fe-51dd-4bc0-b598-b29c74811297" style="Recuadros" x="0" y="0" width="90" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineasivafactcli_neto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="adec7c9d-7ef8-4338-9e16-0156f84c2e4c" style="Recuadros" x="93" y="0" width="65" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineasivafactcli_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="2007e7b3-f47d-4c78-a876-6fda5de321a7" style="Recuadros" x="161" y="0" width="65" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineasivafactcli_totaliva}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
