@@ -1,0 +1,41 @@
+SELECT 
+	servicioscli.numservicio AS numservicio, 
+	servicioscli.contratomant AS contratomant, 
+	servicioscli.fecha AS fecha, 
+	servicioscli.codcliente AS codcliente, 
+	servicioscli.codtecnico AS codtecnico, 
+	servicioscli.descripcion AS descripcion, 
+	servicioscli.solucion AS solucion, 		
+	tecnicos.nombre AS tecnicosnombre, 
+	tecnicos.apellidos AS tecnicoapellidos,
+	clientes.nombre AS clientenombre,
+	clientes.telefono1 AS clientetelefono,
+
+	( select dirclientes.direccion from dirclientes where dirclientes.domfacturacion = '1') AS clientesdireccion,
+	( select dirclientes.ciudad from dirclientes where dirclientes.domfacturacion = '1') AS clientesciudad,
+	( select dirclientes.codpostal from dirclientes where dirclientes.domfacturacion = '1') AS clientescodpostal,
+	( select dirclientes.provincia from dirclientes where dirclientes.domfacturacion = '1') AS clientesprovincia,	
+
+	lineasservicioscli.referencia AS referencia, 
+	lineasservicioscli.descripcion AS descripcion,
+	lineasservicioscli.cantidad AS cantidad, 
+	lineasservicioscli.pvpunitario AS pvpunitario,
+	lineasservicioscli.pvptotal AS pvptotal,
+
+	empresa.nombre as nombreempresa,
+	empresa.cifnif as cifempresa,
+	empresa.direccion as direccionempresa,
+	(select contenido from fllarge where refkey = empresa.logo) as logoempresa,
+	empresa.codpostal as cpempresa,
+	empresa.ciudad as ciudadempresa,
+	empresa.provincia as provinciaempresa,
+	empresa.apartado as apartadoempresa,
+	empresa.codpais as codpaisempresa
+FROM 
+    empresa, servicioscli
+	LEFT JOIN lineasservicioscli AS lineasservicioscli ON servicioscli.idservicio = lineasservicioscli.idservicio
+	LEFT JOIN tecnicos AS tecnicos ON tecnicos.codtecnico = servicioscli.codtecnico
+	INNER JOIN clientes AS clientes ON clientes.codcliente = servicios.codcliente
+
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}
