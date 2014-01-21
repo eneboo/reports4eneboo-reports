@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Resumen Recibos de Proveedor" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2257e4bc-c6dc-4545-b2dd-81ac679e385d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="7813872b-d423-406c-9713-ee4e854c8087"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+            clientes.codcliente,
+            clientes.nombre,
+            clientes.telefono1,
+            clientes.fax,
+            clientes.email,
+            dirclientes.direccion,
+            dirclientes.ciudad,
+            dirclientes.codpostal,
+            dirclientes.provincia,
+            dirclientes.codpais,
+            empresa.direccion,
+            empresa.nombre as nomempresa,
+            empresa.codpostal,
+            empresa.ciudad,
+            empresa.provincia,
+            empresa.apartado,
+            empresa.codpais,
+            empresa.cifnif,
+            empresa.telefono,
+            empresa.fax
+        FROM empresa, clientes
+        LEFT OUTER JOIN dirclientes ON clientes.codcliente = dirclientes.codcliente
+        WHERE $P!{WHERE}
+        ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="codcliente" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="telefono1" class="java.lang.String"/>
+	<field name="fax" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="ciudad" class="java.lang.String"/>
+	<field name="codpostal" class="java.lang.String"/>
+	<field name="provincia" class="java.lang.String"/>
+	<field name="codpais" class="java.lang.String"/>
+	<field name="apartado" class="java.lang.String"/>
+	<field name="cifnif" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="nomempresa" class="java.lang.String"/>
+	<detail>
+		<band height="50"/>
+	</detail>
+</jasperReport>

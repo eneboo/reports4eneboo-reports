@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Resumen Recibos de Cliente" pageWidth="595" pageHeight="842" columnWidth="551" leftMargin="25" rightMargin="19" topMargin="19" bottomMargin="19" uuid="2257e4bc-c6dc-4545-b2dd-81ac679e385d">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="7813872b-d423-406c-9713-ee4e854c8087"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+            reciboscli.codigo as cod_recibo,
+            reciboscli.fecha as fecha_recibo,
+            reciboscli.fechav as venc_recibo,
+            reciboscli.estado as estado_recibo,
+            reciboscli.importe as importe_recibo,
+            reciboscli.coddivisa as coddivisa_recibo,
+            reciboscli.codcliente as cod_cliente,
+            reciboscli.nombrecliente as nombre_cliente,
+            reciboscli.cifnif as cifnif_cliente,
+            clientes.telefono1 as telf_cliente,
+            empresa.nombre as nombre_empresa
+        FROM empresa, reciboscli
+        LEFT JOIN clientes ON clientes.codcliente = reciboscli.codcliente
+        WHERE $P!{WHERE}
+        ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="cod_recibo" class="java.lang.String"/>
+	<field name="fecha_recibo" class="java.sql.Date"/>
+	<field name="venc_recibo" class="java.sql.Date"/>
+	<field name="estado_recibo" class="java.lang.String"/>
+	<field name="importe_recibo" class="java.lang.Double"/>
+	<field name="coddivisa_recibo" class="java.lang.String"/>
+	<field name="cod_cliente" class="java.lang.String"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="cifnif_cliente" class="java.lang.String"/>
+	<field name="telf_cliente" class="java.lang.String"/>
+	<field name="nombre_empresa" class="java.lang.String"/>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<frame>
+				<reportElement uuid="630c6e62-eb4e-4b65-af76-d9e29f87e869" mode="Opaque" x="0" y="0" width="551" height="45" forecolor="#999999" backcolor="#999999"/>
+				<textField>
+					<reportElement uuid="76052c86-1c68-4c28-a1a5-d38167eaceb0" x="6" y="5" width="545" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Resumen de Recibos de Cliente - " + $F{nombre_empresa}]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE, dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+					<reportElement uuid="ee375dbe-1584-4df9-9b2a-a5d086548186" style="Column header" x="6" y="27" width="200" height="15" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" style="Column header" x="521" y="27" width="30" height="15" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" style="Column header" x="441" y="27" width="80" height="15" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="74303f1f-4e33-40a6-be10-b2c4d6f57b48" style="Column header" positionType="Float" x="0" y="0" width="70" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Código recibo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a037044f-7ea9-4cc9-9868-ee28fbea3122" style="Column header" positionType="Float" x="70" y="0" width="40" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b6e2e73-c50b-47f9-afb4-6ce7db2906ef" style="Column header" positionType="Float" x="110" y="0" width="40" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Vencim.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d83eb6fd-6ed1-462d-b27e-907278d16a4a" style="Column header" positionType="Float" x="155" y="0" width="230" height="20" forecolor="#000000"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6d2c84ad-4432-425a-8ca1-7043b7c21758" style="Column header" positionType="Float" x="386" y="0" width="60" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a840524-d22f-46ba-89b7-dd47cfe31b26" style="Column header" positionType="Float" x="446" y="0" width="40" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3252ed36-a4ec-4969-af32-aef30e002365" style="Column header" positionType="Float" x="486" y="0" width="65" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Importe recibo]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="00b8e142-bf1a-4561-86cc-874f671abd83" mode="Transparent" x="0" y="0" width="70" height="20"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="c6a6091c-1df2-422c-9fb6-0657e9755a20" mode="Transparent" x="70" y="0" width="40" height="20"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="354b0e52-672f-470e-bf8b-35e2d59a45ba" mode="Transparent" x="110" y="0" width="40" height="20"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="dc5c567c-d306-42a7-82f8-32e4e16a0175" mode="Transparent" x="150" y="0" width="236" height="20"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="95237595-b1b3-40ad-92af-e8261aad8183" mode="Transparent" x="386" y="0" width="60" height="20"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="abefd2da-5faf-47bb-a040-ea085d8e5aa0" mode="Transparent" x="446" y="0" width="40" height="20"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="31a5b7ca-6057-4bd8-a2c8-959e27360534" mode="Transparent" x="486" y="0" width="65" height="20"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<line>
+				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" positionType="FixRelativeToBottom" x="0" y="17" width="551" height="1"/>
+			</line>
+			<textField pattern="dd/MM/yy">
+				<reportElement uuid="cc583261-f360-4b60-98a6-159591bfd96c" x="70" y="1" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_recibo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement uuid="0880dad1-45ce-4107-8120-ccc445a6eff2" x="110" y="1" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{venc_recibo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4932a9cf-ad47-47d5-9f48-6c328c85860d" x="446" y="1" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_recibo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="d617e452-aeb5-4a19-ad25-44508d841b7d" x="486" y="1" width="45" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{importe_recibo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="638a2c67-07ca-4f2e-ac5e-47c01ce12df8" x="155" y="1" width="230" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(" + $F{cifnif_cliente} + ") " + $F{nombre_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c1773be-73b4-4e81-8078-2ad0e2cae161" x="531" y="1" width="20" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{coddivisa_recibo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="159afbc9-5713-490b-a446-2dbea144a04a" x="386" y="1" width="60" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telf_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="32ea837b-806a-4cb3-a6c4-838572e220d0" x="0" y="1" width="70" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_recibo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

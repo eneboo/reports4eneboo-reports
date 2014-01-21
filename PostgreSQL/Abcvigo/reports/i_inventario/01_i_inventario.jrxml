@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Inventario" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="534" leftMargin="42" rightMargin="19" topMargin="19" bottomMargin="19" isSummaryWithPageHeaderAndFooter="true" uuid="a1e01e34-7ec4-47a8-8760-d0814938e96f">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["stocks.referencia"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+            empresa.nombre as nombre_empresa,
+            almacenes.codalmacen as cod_almacen,
+            almacenes.nombre as nombre_almacen,
+            stocks.cantidad as cantidad_articulo,
+            stocks.referencia as referencia_articulo,
+            articulos.descripcion as descripcion_articulo,
+            FROM empresa, almacenes
+            INNER JOIN stocks ON almacenes.codalmacen = stocks.codalmacen
+            INNER JOIN articulos ON stocks.referencia = articulos.referencia
+            WHERE $P!{WHERE}
+            ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="nombre_empresa" class="java.lang.String"/>
+	<field name="cod_almacen" class="java.lang.String"/>
+	<field name="nombre_almacen" class="java.lang.String"/>
+	<field name="cantidad_articulo" class="java.lang.Double"/>
+	<field name="referencia_articulo" class="java.lang.String"/>
+	<field name="descripcion_articulo" class="java.lang.String"/>
+	<variable name="contaref" class="java.lang.Double" resetType="Group" resetGroup="ALMACEN" calculation="Sum">
+		<variableExpression><![CDATA[new Double($F{cantidad_articulo}.doubleValue() > 0 ? 1:0)]]></variableExpression>
+	</variable>
+	<group name="ALMACEN">
+		<groupExpression><![CDATA[$F{cod_almacen}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="50"/>
+	</detail>
+</jasperReport>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_facturascli_vencimientos" columnCount="3" printOrder="Horizontal" pageWidth="150" pageHeight="15" columnWidth="50" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7f0b40a4-2f47-449f-a5ba-78cc35424b23">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IDFACTURA" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+        reciboscli.fechav as fechav,
+        reciboscli.importe as importe
+        FROM reciboscli
+        WHERE reciboscli.idfactura = $P{IDFACTURA}]]>
+	</queryString>
+	<field name="fechav" class="java.sql.Date"/>
+	<field name="importe" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="782e098e-572a-42e2-9088-c23ae529b242" x="0" y="0" width="45" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechav}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

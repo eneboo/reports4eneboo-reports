@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado de Clientes" pageWidth="595" pageHeight="842" columnWidth="534" leftMargin="42" rightMargin="19" topMargin="19" bottomMargin="19" uuid="2257e4bc-c6dc-4545-b2dd-81ac679e385d">
+	<property name="ireport.zoom" value="1.1176583815064796"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="7813872b-d423-406c-9713-ee4e854c8087"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+            clientes.codcliente as codigocliente,
+            clientes.debaja as clientedebaja,
+            clientes.nombre as nombrecliente,
+            clientes.nombrecomercial as nombrecomercialcliente,
+            clientes.cifnif as cifnifcliente,
+            clientes.regimeniva as regimenivacliente,
+            clientes.telefono1 as telefonocliente,
+            clientes.fax as faxcliente,
+            clientes.email as emailcliente,
+            clientes.web as webcliente,
+            clientes.riesgomax as riesgomaxcliente,
+            clientes.riesgoalcanzado as deudacliente,
+            clientes.capitalimpagado as impagadocliente,
+            clientes.observaciones as observacionescliente,
+            dirclientes.direccion as direccioncliente,
+            dirclientes.descripcion as dircliente_descripcion,
+            dirclientes.domfacturacion as dircliente_defacturacion,
+            dirclientes.codpostal as cpcliente,
+            dirclientes.ciudad as ciudadcliente,
+            dirclientes.provincia as provinciacliente,
+            paises.nombre as paiscliente,
+            formaspago.descripcion as formapagocliente,
+            empresa.nombre as nombreempresa,
+            empresa.cifnif as cifempresa,
+            empresa.direccion as direccionempresa,
+            empresa.codpostal as cpempresa,
+            empresa.ciudad as ciudadempresa,
+            empresa.provincia as provinciaempresa
+        FROM empresa, clientes
+        LEFT OUTER JOIN dirclientes ON clientes.codcliente = dirclientes.codcliente
+        INNER JOIN paises ON paises.codpais = dirclientes.codpais
+        INNER JOIN formaspago ON formaspago.codpago = clientes.codpago
+        WHERE $P!{WHERE}
+        ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="codigocliente" class="java.lang.String"/>
+	<field name="clientedebaja" class="java.lang.Boolean"/>
+	<field name="nombrecliente" class="java.lang.String"/>
+	<field name="nombrecomercialcliente" class="java.lang.String"/>
+	<field name="cifnifcliente" class="java.lang.String"/>
+	<field name="regimenivacliente" class="java.lang.String"/>
+	<field name="telefonocliente" class="java.lang.String"/>
+	<field name="faxcliente" class="java.lang.String"/>
+	<field name="emailcliente" class="java.lang.String"/>
+	<field name="webcliente" class="java.lang.String"/>
+	<field name="riesgomaxcliente" class="java.lang.Double"/>
+	<field name="deudacliente" class="java.lang.Double"/>
+	<field name="impagadocliente" class="java.lang.Double"/>
+	<field name="observacionescliente" class="java.lang.String"/>
+	<field name="direccioncliente" class="java.lang.String"/>
+	<field name="dircliente_descripcion" class="java.lang.String"/>
+	<field name="dircliente_defacturacion" class="java.lang.Boolean"/>
+	<field name="cpcliente" class="java.lang.String"/>
+	<field name="ciudadcliente" class="java.lang.String"/>
+	<field name="provinciacliente" class="java.lang.String"/>
+	<field name="paiscliente" class="java.lang.String"/>
+	<field name="formapagocliente" class="java.lang.String"/>
+	<field name="nombreempresa" class="java.lang.String"/>
+	<field name="cifempresa" class="java.lang.String"/>
+	<field name="direccionempresa" class="java.lang.String"/>
+	<field name="cpempresa" class="java.lang.String"/>
+	<field name="ciudadempresa" class="java.lang.String"/>
+	<field name="provinciaempresa" class="java.lang.String"/>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<frame>
+				<reportElement uuid="630c6e62-eb4e-4b65-af76-d9e29f87e869" mode="Opaque" x="0" y="0" width="534" height="25" forecolor="#999999" backcolor="#999999"/>
+				<textField>
+					<reportElement uuid="76052c86-1c68-4c28-a1a5-d38167eaceb0" x="0" y="0" width="534" height="25"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Listado de Clientes de " + $F{nombreempresa}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement uuid="fcd3c639-0462-42a5-8c0c-8acd5ab18210" positionType="FixRelativeToBottom" x="0" y="30" width="534" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="107" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{clientedebaja}.equals(false)]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="7b974a68-e5fa-41ea-8ca6-b1c583484ed1" style="Detail" stretchType="RelativeToBandHeight" x="125" y="0" width="407" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecliente}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="fdc9dbab-cc64-49e4-822b-a5a10eca0302" style="Detail" stretchType="RelativeToBandHeight" x="15" y="18" width="517" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ciudadcliente} + " - " + $F{paiscliente} + " (Tlf.: " + $F{telefonocliente} + " - Fax: " + $F{faxcliente} + " - email: " + $F{emailcliente} + ")"
+
+]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" positionType="FixRelativeToBottom" x="0" y="100" width="534" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="caa2a719-8abc-4f90-a9a3-17fd705ad315" style="Detail" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigocliente} + " - " + $F{cifnifcliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b41312af-e7c6-4a00-b4e3-cbdaffea0af2" x="15" y="50" width="85" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Riesgo máximo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b10e4c58-c909-48ef-9d38-dca2e08dfa20" x="15" y="65" width="85" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Riesgo alcanzado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c70405a6-8c86-4064-be41-ef031a533d8e" x="15" y="80" width="85" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Capital impagado:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="84cacf03-e656-4c5f-8a17-ac5bf81d7f68" x="100" y="50" width="100" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{riesgomaxcliente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="3060773d-5364-4f1f-8650-123290f56b75" x="100" y="65" width="100" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deudacliente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="15924bfc-b7d6-402b-b67f-26e1ee8d6c45" x="100" y="80" width="100" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{impagadocliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4ec38a5e-fd3f-4e7d-ac1a-f16ebfc7b6f2" x="210" y="35" width="322" height="60"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Observaciones: " + $F{observacionescliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="461d16e1-678e-416a-a4fd-bd24c30bc387" x="100" y="35" width="100" height="15"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{formapagocliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d7c12965-ed5c-4237-8ce1-4aee1136c1f4" x="15" y="35" width="85" height="15"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[Forma de pago:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement uuid="b2cd14f3-a67e-40e6-abee-915922662c4c" mode="Opaque" x="0" y="0" width="534" height="16" forecolor="#999999" backcolor="#999999"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="ee375dbe-1584-4df9-9b2a-a5d086548186" style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement uuid="65a1e9c9-3047-47c7-a91a-07ae05d05f18" x="517" y="0" width="15" height="16" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="30da9766-a487-47a5-92fc-a65501de84bb" x="450" y="0" width="67" height="16" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["hoja nº " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

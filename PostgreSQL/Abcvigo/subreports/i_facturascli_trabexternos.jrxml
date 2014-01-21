@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_facturascli_trabexternos" printOrder="Horizontal" pageWidth="530" pageHeight="20" columnWidth="530" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7f0b40a4-2f47-449f-a5ba-78cc35424b23">
+	<property name="ireport.zoom" value="1.8"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IDFACTURA" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["lineasfacturascliext.numlinea"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+            lineasfacturascliext.idfactura as idfactura,
+            lineasfacturascliext.idservicio as idservicio,
+            lineasfacturascliext.cantidad as cantidadlinea,
+            lineasfacturascliext.referencia as referencialinea,
+            lineasfacturascliext.descripcion as descripcionlinea,
+            lineasfacturascliext.pvpunitario as unitariolinea,
+            lineasfacturascliext.pvptotal as pvptotallinea,
+            lineasfacturascliext.pvpsindto as pvpsindtolinea,
+            lineasfacturascliext.iva as porivalinea
+            FROM lineasfacturascliext
+            WHERE lineasfacturascliext.idfactura = $P{IDFACTURA}
+            ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="idfactura" class="java.lang.Integer"/>
+	<field name="idservicio" class="java.lang.Integer"/>
+	<field name="cantidadlinea" class="java.lang.Double"/>
+	<field name="referencialinea" class="java.lang.String"/>
+	<field name="descripcionlinea" class="java.lang.String"/>
+	<field name="unitariolinea" class="java.lang.Double"/>
+	<field name="pvptotallinea" class="java.lang.Double"/>
+	<field name="pvpsindtolinea" class="java.lang.Double"/>
+	<field name="porivalinea" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement uuid="33fdefc0-e0e0-4aca-a15c-bcb2fb6a362b" x="468" y="0" width="60" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pvpsindtolinea}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.##;-#,##0.##">
+				<reportElement uuid="bfae8299-37c1-466a-b6cb-cd81a6d6959b" x="0" y="0" width="39" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidadlinea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9a0134e5-6508-4cf2-833d-39c867e3e212" x="148" y="0" width="260" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionlinea}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="6d9fd55b-2f63-4d45-b52d-22069b0e2ea3" x="408" y="0" width="55" height="14"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unitariolinea}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="ab48890b-8810-4244-8f20-c78e66a40b09" x="38" y="0" width="104" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencialinea}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

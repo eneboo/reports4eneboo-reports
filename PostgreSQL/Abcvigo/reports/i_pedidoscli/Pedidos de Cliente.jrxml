@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedidos de Cliente" pageWidth="595" pageHeight="842" columnWidth="534" leftMargin="42" rightMargin="19" topMargin="19" bottomMargin="19" uuid="ef2811f9-cd4d-4ffc-ba58-8d2f08856bfb">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="240"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["lineaspedidoscli.numlinea"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGENES_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../imagenes/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+            pedidoscli.codigo as codigo_pedido,
+            pedidoscli.codejercicio as ejercicio_pedido,
+            pedidoscli.codserie as serie_pedido,
+            pedidoscli.numero as numero_pedido,
+            pedidoscli.fecha as fecha_pedido,
+            pedidoscli.coddivisa as divisa_pedido,
+            pedidoscli.codalmacen as almacen_pedido,
+            pedidoscli.codcliente as codigo_cliente,
+            pedidoscli.nombrecliente as nombre_cliente,
+            pedidoscli.cifnif as cifnif_cliente,
+            pedidoscli.direccion as direccion_cliente,
+            pedidoscli.codpostal as cp_cliente,
+            pedidoscli.ciudad as ciudad_cliente,
+            pedidoscli.provincia as provincia_cliente,
+            pedidoscli.apartado as apartado_cliente,
+            paises.nombre as pais_cliente,
+            pedidoscli.codpedido as codped_cliente,
+            pedidoscli.nombrebuque as nombre_buque,
+            pedidoscli.codmotor as motor_buque,
+            pedidoscli.observaciones as observaciones_pedido,
+            pedidoscli.neto as baseimponible_pedido,
+            pedidoscli.regimeniva as regimeniva_pedido,
+            pedidoscli.totaliva as totaliva_pedido,
+            pedidoscli.total as total_pedido,
+            pedidoscli.entrega as entrega_paqueteria,
+            pedidoscli.direntrega as direntrega_paqueteria,
+            pedidoscli.fechalimite as fechalimite_paqueteria,
+            pedidoscli.agencia as agencia_paqueteria,
+            pedidoscli.dimensiones as dimensiones_paqueteria,
+            pedidoscli.tipoportes as tipoportes_paqueteria,
+            pedidoscli.impportes as impportes_paqueteria,
+            pedidoscli.gestaduana as gestaduana_paqueteria,
+            presupuestoscli.codigo as codigo_presupuesto,
+            presupuestoscli.fecha as fecha_presupuesto,
+            (select lineaspresupuestoscli.idpresupuesto from lineaspresupuestoscli where lineaspresupuestoscli.idlinea = lineaspedidoscli.idlineapresupuesto) as idpresupuesto_linea,
+            lineaspedidoscli.idpedido as idpedido_linea,
+            lineaspedidoscli.numlinea as num_linea,
+            lineaspedidoscli.cantidad as cantidad_linea,
+            lineaspedidoscli.referencia as referencia_linea,
+            lineaspedidoscli.descripcion as descripcion_linea,
+            lineaspedidoscli.pvpunitario as unitario_linea,
+            lineaspedidoscli.pvptotal as pvptotal_linea,
+            lineaspedidoscli.pvpsindto as pvpsindto_linea,
+            lineaspedidoscli.iva as poriva_linea,
+            empresa.nombre as nombre_empresa,
+            empresa.cifnif as cif_empresa,
+            empresa.direccion as direccion_empresa,
+            empresa.codpostal as cp_empresa,
+            empresa.ciudad as ciudad_empresa,
+            empresa.provincia as provincia_empresa,
+            formaspago.descripcion as nomfpago
+            FROM empresa, pedidoscli
+            LEFT JOIN lineaspedidoscli ON pedidoscli.idpedido = lineaspedidoscli.idpedido
+            LEFT JOIN formaspago ON pedidoscli.codpago = formaspago.codpago
+            LEFT JOIN clientes ON clientes.codcliente = pedidoscli.codcliente
+            LEFT JOIN paises ON paises.codpais = pedidoscli.codpais
+            LEFT JOIN presupuestoscli ON presupuestoscli.idpresupuesto = pedidoscli.idpresupuesto
+            WHERE $P!{WHERE}
+            ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="codigo_pedido" class="java.lang.String"/>
+	<field name="ejercicio_pedido" class="java.lang.String"/>
+	<field name="serie_pedido" class="java.lang.String"/>
+	<field name="numero_pedido" class="java.lang.String"/>
+	<field name="fecha_pedido" class="java.sql.Date"/>
+	<field name="divisa_pedido" class="java.lang.String"/>
+	<field name="almacen_pedido" class="java.lang.String"/>
+	<field name="codigo_cliente" class="java.lang.String"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="cifnif_cliente" class="java.lang.String"/>
+	<field name="direccion_cliente" class="java.lang.String"/>
+	<field name="cp_cliente" class="java.lang.String"/>
+	<field name="ciudad_cliente" class="java.lang.String"/>
+	<field name="provincia_cliente" class="java.lang.String"/>
+	<field name="apartado_cliente" class="java.lang.String"/>
+	<field name="pais_cliente" class="java.lang.String"/>
+	<field name="codped_cliente" class="java.lang.String"/>
+	<field name="nombre_buque" class="java.lang.String"/>
+	<field name="motor_buque" class="java.lang.String"/>
+	<field name="observaciones_pedido" class="java.lang.String"/>
+	<field name="baseimponible_pedido" class="java.lang.Double"/>
+	<field name="regimeniva_pedido" class="java.lang.String"/>
+	<field name="totaliva_pedido" class="java.lang.Double"/>
+	<field name="total_pedido" class="java.lang.Double"/>
+	<field name="entrega_paqueteria" class="java.lang.String"/>
+	<field name="direntrega_paqueteria" class="java.lang.String"/>
+	<field name="fechalimite_paqueteria" class="java.sql.Date"/>
+	<field name="agencia_paqueteria" class="java.lang.String"/>
+	<field name="dimensiones_paqueteria" class="java.lang.String"/>
+	<field name="tipoportes_paqueteria" class="java.lang.String"/>
+	<field name="impportes_paqueteria" class="java.lang.Double"/>
+	<field name="gestaduana_paqueteria" class="java.lang.String"/>
+	<field name="codigo_presupuesto" class="java.lang.String"/>
+	<field name="fecha_presupuesto" class="java.sql.Date"/>
+	<field name="idpresupuesto_linea" class="java.lang.Integer"/>
+	<field name="idpedido_linea" class="java.lang.Integer"/>
+	<field name="num_linea" class="java.lang.Integer"/>
+	<field name="cantidad_linea" class="java.lang.Double"/>
+	<field name="referencia_linea" class="java.lang.String"/>
+	<field name="descripcion_linea" class="java.lang.String"/>
+	<field name="unitario_linea" class="java.lang.Double"/>
+	<field name="pvptotal_linea" class="java.lang.Double"/>
+	<field name="pvpsindto_linea" class="java.lang.Double"/>
+	<field name="poriva_linea" class="java.lang.Double"/>
+	<field name="nombre_empresa" class="java.lang.String"/>
+	<field name="cif_empresa" class="java.lang.String"/>
+	<field name="direccion_empresa" class="java.lang.String"/>
+	<field name="cp_empresa" class="java.lang.String"/>
+	<field name="ciudad_empresa" class="java.lang.String"/>
+	<field name="provincia_empresa" class="java.lang.String"/>
+	<field name="nomfpago" class="java.lang.String"/>
+	<variable name="sumaysigue" class="java.lang.Double" resetType="Group" resetGroup="IDPEDIDO" calculation="Sum">
+		<variableExpression><![CDATA[$F{pvpsindto_linea}]]></variableExpression>
+	</variable>
+	<variable name="dtototal" class="java.lang.Double" resetType="Group" resetGroup="IDPEDIDO" calculation="Sum">
+		<variableExpression><![CDATA[$F{pvptotal_linea} - $F{pvpsindto_linea}]]></variableExpression>
+	</variable>
+	<variable name="maxiva" class="java.lang.Double" resetType="Group" resetGroup="IDPEDIDO" calculation="Highest">
+		<variableExpression><![CDATA[$F{poriva_linea}]]></variableExpression>
+	</variable>
+	<group name="IDPEDIDO" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" footerPosition="StackAtBottom">
+		<groupExpression><![CDATA[$F{idpedido_linea}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1 & ($F{codped_cliente}!=null || $F{codigo_presupuesto}!=null)]]></printWhenExpression>
+				<staticText>
+					<reportElement uuid="f2b617e4-a7f3-4f1c-a6a0-076f5b5811bd" x="150" y="0" width="53" height="16">
+						<printWhenExpression><![CDATA[$F{codped_cliente} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[S/ Pedido:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="09893eeb-4e7c-4915-93a5-b0303b9b5072" x="202" y="0" width="207" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codped_cliente}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="bcb77470-bb15-4aa3-acfb-e3c216e15041" x="230" y="18" width="75" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codigo_presupuesto}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement uuid="50e6f029-6ccf-495c-844d-26653b5474f4" x="345" y="18" width="110" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fecha_presupuesto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="a243c2cc-2a4b-4fab-93e8-eba3e9e40e07" x="150" y="18" width="80" height="16">
+						<printWhenExpression><![CDATA[$F{codigo_presupuesto} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[S/ Presupuesto:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d38a3219-8052-40fd-b506-25187b3c08a8" x="305" y="18" width="40" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[de fecha]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="45">
+				<printWhenExpression><![CDATA[$F{entrega_paqueteria}.equals("Entregar paquetes") & ($F{fechalimite_paqueteria}!=null || $F{direntrega_paqueteria}!=null)]]></printWhenExpression>
+				<staticText>
+					<reportElement uuid="dbcbf6c5-1049-44a2-bf5c-ea499a8fc6f5" x="0" y="25" width="135" height="14">
+						<printWhenExpression><![CDATA[$F{direntrega_paqueteria}!=null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Mercancía para entregar en ]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="8b04706a-b75a-4130-abbd-caaaf6ae3a38" x="135" y="25" width="395" height="14"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{direntrega_paqueteria}]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
+					<reportElement uuid="afaf1365-6594-4589-b97d-6fd3fad5bf0e" x="135" y="5" width="148" height="14"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{fechalimite_paqueteria}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="fa0034d1-159b-42d4-beb2-a823f5889158" x="0" y="5" width="135" height="14">
+						<printWhenExpression><![CDATA[$F{direntrega_paqueteria}!=null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha límite de entrega:]]></text>
+				</staticText>
+			</band>
+			<band height="45">
+				<staticText>
+					<reportElement uuid="05615491-43bd-43b4-bb1a-5e9fd5d16a7a" x="0" y="22" width="105" height="14">
+						<printWhenExpression><![CDATA[$F{dimensiones_paqueteria}!=null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Peso y dimensiones:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="58ed224c-0b92-4ce5-bd96-a92ec13d7b46" x="108" y="22" width="422" height="14"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dimensiones_paqueteria}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="28ce62d9-d835-4f92-8c71-9ad1a33993f9" x="0" y="5" width="80" height="14">
+						<printWhenExpression><![CDATA[($F{gestaduana_paqueteria}.equals("Solicitamos nosotros")) || ($F{gestaduana_paqueteria}.equals("Solicita cliente"))]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Gestión aduana:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="665eb11d-026f-4acb-8ef5-aa7c021bd00f" x="85" y="5" width="150" height="14">
+						<printWhenExpression><![CDATA[$F{gestaduana_paqueteria}.equals("Solicitamos nosotros")]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Tramitado por]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="b2fd576c-6888-48d2-9252-880c22ae347b" x="85" y="5" width="150" height="14">
+						<printWhenExpression><![CDATA[$F{gestaduana_paqueteria}.equals("Solicita cliente")]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Tramitado por el cliente]]></text>
+				</staticText>
+			</band>
+			<band height="30">
+				<printWhenExpression><![CDATA[$F{observaciones_pedido}!=null]]></printWhenExpression>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="44b90daf-5084-473a-b045-ec5910363334" x="0" y="5" width="534" height="14"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["                            " + $F{observaciones_pedido}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="f83ace23-702c-43ce-bbb9-21cdb837a484" x="0" y="5" width="80" height="14">
+						<printWhenExpression><![CDATA[$F{observaciones_pedido}!=null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Observaciones:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="804" splitType="Stretch">
+			<image>
+				<reportElement uuid="4587d86c-c7ce-4a38-b2a2-2bf53a4563b1" mode="Opaque" x="60" y="230" width="425" height="425"/>
+				<imageExpression><![CDATA[$P{IMAGENES_DIR} + "fondo bn.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="235">
+			<rectangle>
+				<reportElement uuid="407c72b3-6585-4a15-a640-9db76a0003f0" mode="Transparent" x="0" y="110" width="534" height="90" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="702a109a-d70c-4266-a2aa-a4e3476e3d90" x="240" y="156" width="285" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cp_cliente} + ", " + $F{ciudad_cliente} + " - " + $F{provincia_cliente} + " (" + $F{pais_cliente} + ")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4b2f757a-b24c-4fa2-9e06-d60cfcf0ded5" x="60" y="150" width="130" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_pedido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5594dae2-36bd-464d-97ad-c6bf9639d050" x="10" y="115" width="180" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[P E D I D O]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="88d13cae-8b6d-4562-861a-17c6b793c3f6" x="135" y="0" width="325" height="34"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans" size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="260ce8d5-868a-499f-87f3-48025d7ed62a" x="170" y="35" width="273" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion_empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="96fdeecf-75ca-43fb-bcb0-0cc9982e11e6" x="170" y="50" width="29" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cp_empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="535e3101-516b-43a7-b840-b53a9bb6c55f" x="202" y="50" width="22" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ciudad_empresa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f9a92f9b-78d3-4c6c-8af1-f39b0aa81835" x="240" y="141" width="285" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e2d6dd2f-a236-4e7f-914a-5fe970dcf949" x="240" y="120" width="294" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_cliente}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="e31fbb1d-630c-4546-961a-cee349231143" x="0" y="0" width="135" height="104"/>
+				<imageExpression><![CDATA[$P{IMAGENES_DIR} + "logo empresa bn.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="4587d86c-c7ce-4a38-b2a2-2bf53a4563b1" x="467" y="35" width="52" height="52"/>
+				<imageExpression><![CDATA[$P{IMAGENES_DIR} + "logo marca bn.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="665f31dd-c28e-46e3-83be-b83d95acc048" x="170" y="65" width="273" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tlf.:  - Fax: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b3e5b79a-2bcf-4a9d-9b7c-449e09a28f58" x="170" y="80" width="273" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[e-mail:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="32a0e106-d353-48f0-95ff-c4bf64bfcdd6" x="445" y="183" width="67" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["hoja nº " + $V{PAGE_NUMBER} + "de "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="41691d6d-e9c3-47bd-8bc1-8e142036bb5b" x="35" y="150" width="25" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="41691d6d-e9c3-47bd-8bc1-8e142036bb5b" x="452" y="90" width="82" height="12"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SERVICIO OFICIAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="786f9bf8-cf38-42f9-b509-b04cb0db41e1" mode="Transparent" x="145" y="207" width="389" height="22" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1d46e002-b7cd-4747-8107-8ccccb6da441" x="90" y="175" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_pedido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="41691d6d-e9c3-47bd-8bc1-8e142036bb5b" x="35" y="175" width="55" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6f3a4cbf-8b7a-4443-b5a9-f00061ee0652" x="1" y="209" width="38" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANT]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d9908e59-8537-4cb3-913f-9c4441be50f5" x="283" y="175" width="150" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cifnif_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="175e9233-52db-4877-9d28-86f876f2cf2c" x="150" y="209" width="380" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="328e9da2-fa4c-4bb5-8ee6-a22fea167298" x="41" y="209" width="104" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFERENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="41691d6d-e9c3-47bd-8bc1-8e142036bb5b" x="240" y="175" width="43" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.I.F.:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="786f9bf8-cf38-42f9-b509-b04cb0db41e1" mode="Transparent" x="40" y="207" width="105" height="22" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField evaluationTime="Report">
+				<reportElement uuid="c9301d83-8dac-473c-a7ae-e96897b2792d" x="512" y="183" width="15" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ed2aaf09-f0ee-497b-9071-ebd9c9abea94" x="224" y="50" width="219" height="15"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[- Pontevedra (ESPAÑA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a4f6df46-ebe7-4737-84d9-31e2c763bd33" x="200" y="120" width="40" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="65e3338c-b167-4fa7-9193-0b249e89b2f8" mode="Transparent" x="0" y="207" width="40" height="22" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1 & $F{nombre_buque}!=null]]></printWhenExpression>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="b089df34-c371-4f31-b972-5ca3c4c23a32" x="150" y="5" width="259" height="16">
+					<printWhenExpression><![CDATA[$F{nombre_buque}!=null & $F{motor_buque}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["B/ " + $F{nombre_buque} + " (" + $F{motor_buque} + ")"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="ad617422-0b91-4c5a-b88e-1e2b362f5e84" x="150" y="5" width="133" height="16">
+					<printWhenExpression><![CDATA[$F{nombre_buque}!=null & $F{motor_buque}==null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["B/ " + $F{nombre_buque}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="07cd253c-9e93-430c-9784-571911d861d2" x="150" y="4" width="380" height="14"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion_linea}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.##;-#,##0.##" isBlankWhenNull="true">
+				<reportElement uuid="d478c472-c31d-48c3-baeb-bf45b3ed0714" x="0" y="4" width="39" height="14"/>
+				<box leftPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_linea}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f4d8a653-19e5-436a-b1a7-f5a1043a8f7e" x="40" y="4" width="104" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia_linea}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<image scaleImage="FillFrame">
+				<reportElement uuid="cd9cc9e2-9d09-4a1d-9230-f5572511f753" positionType="Float" x="448" y="11" width="86" height="39"/>
+				<imageExpression><![CDATA[$P{IMAGENES_DIR} + "ISO9001 bn.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="afecd97e-7607-4587-acdb-c5f240c8517f" x="0" y="38" width="80" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Doc. C01a.A02.R00]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="3e1f1040-7479-4cc6-9db5-b1fa7b7b1196" x="0" y="10" width="534" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

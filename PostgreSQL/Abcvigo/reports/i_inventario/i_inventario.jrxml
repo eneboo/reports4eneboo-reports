@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Inventario" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="534" leftMargin="42" rightMargin="19" topMargin="19" bottomMargin="19" isSummaryWithPageHeaderAndFooter="true" uuid="a1e01e34-7ec4-47a8-8760-d0814938e96f">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["stocks.referencia"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGENES_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../imagenes/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+            empresa.nombre as nombre_empresa,
+            almacenes.codalmacen as cod_almacen,
+            almacenes.nombre as nombre_almacen,
+            stocks.cantidad as cantidad_articulo,
+            stocks.referencia as referencia_articulo,
+            articulos.descripcion as descripcion_articulo
+            FROM empresa, almacenes
+            INNER JOIN stocks ON almacenes.codalmacen = stocks.codalmacen
+            INNER JOIN articulos ON stocks.referencia = articulos.referencia
+            WHERE $P!{WHERE}
+            ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="nombre_empresa" class="java.lang.String"/>
+	<field name="cod_almacen" class="java.lang.String"/>
+	<field name="nombre_almacen" class="java.lang.String"/>
+	<field name="cantidad_articulo" class="java.lang.Double"/>
+	<field name="referencia_articulo" class="java.lang.String"/>
+	<field name="descripcion_articulo" class="java.lang.String"/>
+	<variable name="contaref" class="java.lang.Double" resetType="Group" resetGroup="ALMACEN" calculation="Sum">
+		<variableExpression><![CDATA[new Double($F{cantidad_articulo}.doubleValue() > 0 ? 1:0)]]></variableExpression>
+	</variable>
+	<variable name="contaref_negativo" class="java.lang.Double" resetType="Group" resetGroup="ALMACEN" calculation="Sum">
+		<variableExpression><![CDATA[new Double($F{cantidad_articulo}.doubleValue() < 0 ? 1:0)]]></variableExpression>
+	</variable>
+	<group name="ALMACEN">
+		<groupExpression><![CDATA[$F{cod_almacen}]]></groupExpression>
+		<groupFooter>
+			<band height="30">
+				<textField pattern="#,##0 referencias en stock">
+					<reportElement uuid="12a87cd6-d97a-47e4-94e3-e74c5e47698b" x="0" y="10" width="265" height="15"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{contaref}]]></textFieldExpression>
+				</textField>
+				<textField pattern="(+#,##0 con stock negativo)">
+					<reportElement uuid="27abef8b-3861-4fc2-9944-6f2432b1a940" x="269" y="10" width="265" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{contaref_negativo}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60">
+			<staticText>
+				<reportElement uuid="cbc03dbb-941a-4273-854f-ef91d24eef90" x="0" y="10" width="534" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[INVENTARIO]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="4c9852f8-c7f1-4b0a-8fff-15a1bcb2cead" x="0" y="3" width="67" height="52"/>
+				<imageExpression><![CDATA[$P{IMAGENES_DIR} + "logo empresa bn.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="c30a67ad-653d-4fbd-9bfd-d9fc36319ba5" x="0" y="0" width="534" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="7310b73b-0e15-402e-831f-ba79dae7a50c" x="0" y="55" width="534" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement uuid="1b26b17e-9ba1-46a8-875e-8fbedddac054" x="489" y="6" width="45" height="45"/>
+				<imageExpression><![CDATA[$P{IMAGENES_DIR} + "logo marca bn.jpg"]]></imageExpression>
+			</image>
+			<textField evaluationTime="Report" pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="cc0a6d15-a6d3-4e53-98d2-5a8ba3505c86" x="0" y="34" width="534" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25">
+			<staticText>
+				<reportElement uuid="7c12b0d3-dfed-4f2d-9d70-32a600afd5d0" x="41" y="2" width="104" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFERENCIA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="29f0788b-9e66-4a2a-acde-c88562a125a1" mode="Transparent" x="40" y="0" width="105" height="22" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="9ae48f40-d45a-4d53-90bd-d68ab3f57b25" mode="Transparent" x="145" y="0" width="389" height="22" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="7dcc161f-0fce-465c-a2f3-ee1f2b8e92be" x="151" y="2" width="383" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="831d3f42-cb58-4393-8176-3e48ad96cdb0" mode="Transparent" x="0" y="0" width="40" height="22" forecolor="#000000"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="61317263-e6a9-4782-bad4-89c152f08c85" x="1" y="2" width="38" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANT]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{cantidad_articulo}!=0]]></printWhenExpression>
+			<textField pattern="#,##0.##;-#,##0.##">
+				<reportElement uuid="afca272e-7855-40bd-bc2e-9f04803861de" x="0" y="0" width="39" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad_articulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5a3320ea-33f4-4fef-8380-1e4afb1493ae" x="41" y="0" width="104" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia_articulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b3865261-6ecb-47ba-a3c8-07c2856aabcc" x="151" y="0" width="383" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion_articulo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="d441764f-e037-459c-abfb-2bc2a3b300eb" x="0" y="15" width="534" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25">
+			<textField>
+				<reportElement uuid="5e9da848-4740-427f-ab97-d26a5987cb51" x="450" y="10" width="67" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["hoja nº " + $V{PAGE_NUMBER} + " de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="79174c56-1c84-40ef-8caa-5427456de00c" x="519" y="10" width="15" height="14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
