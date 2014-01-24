@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_clientes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2257e4bc-c6dc-4545-b2dd-81ac679e385d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" hAlign="Left" vAlign="Middle" fontName="Arial Narrow" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="7813872b-d423-406c-9713-ee4e854c8087"/>
+	<parameter name="WHERE" class="java.lang.String"/>
+	<parameter name="ORDERBY" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT 	clientes.codcliente AS codigo,
+	clientes.nombre AS nombe,
+	clientes.telefono1 AS telefono1,
+	clientes.fax AS fax,
+	clientes.email AS email,
+	dirclientes.direccion AS direccion,
+	dirclientes.ciudad AS ciudad,
+	dirclientes.codpostal AS codpostal,
+	dirclientes.provincia AS provincia,
+	dirclientes.codpais AS cospais
+FROM    	clientes
+	LEFT OUTER JOIN dirclientes ON clientes.codcliente = dirclientes.codcliente
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefono1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fax" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codpostal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codpais" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="8819b736-357e-44d9-9750-4d286e2427c3" x="1" y="0" width="800" height="49"/>
+				<subreportParameter name="LISTADO">
+					<subreportParameterExpression><![CDATA["LISTADO PROVEEDORES"]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<line>
+				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" positionType="FixRelativeToBottom" x="0" y="14" width="801" height="1"/>
+			</line>
+			<frame>
+				<reportElement uuid="66524702-22b2-4c87-a53d-1874a822124f" x="217" y="0" width="578" height="14"/>
+				<staticText>
+					<reportElement uuid="d83eb6fd-6ed1-462d-b27e-907278d16a4a" style="Column header" positionType="Float" x="128" y="0" width="135" height="14" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Dirección]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="6d2c84ad-4432-425a-8ca1-7043b7c21758" style="Column header" positionType="Float" x="263" y="0" width="127" height="14" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Ciudad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3a840524-d22f-46ba-89b7-dd47cfe31b26" style="Column header" positionType="Float" x="403" y="0" width="31" height="14" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[C.P.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3252ed36-a4ec-4969-af32-aef30e002365" style="Column header" positionType="Float" x="447" y="0" width="77" height="14" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[provincia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="b1284748-7ac7-4731-8878-05771a0423ba" style="Column header" positionType="Float" x="537" y="0" width="41" height="14" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[País]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement uuid="74303f1f-4e33-40a6-be10-b2c4d6f57b48" style="Column header" positionType="Float" x="0" y="0" width="44" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a037044f-7ea9-4cc9-9868-ee28fbea3122" style="Column header" positionType="Float" x="44" y="0" width="170" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b6e2e73-c50b-47f9-afb4-6ce7db2906ef" style="Column header" positionType="Float" x="217" y="0" width="79" height="14" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[tel./fax/email]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="7b974a68-e5fa-41ea-8ca6-b1c583484ed1" style="Detail" stretchType="RelativeToBandHeight" x="47" y="3" width="170" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="eb5233fb-635e-469c-a0c0-9c822a5721b1" style="Detail" stretchType="RelativeToBandHeight" x="217" y="3" width="62" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d8fa10f0-3b35-429e-a794-3641360421f1" style="Detail" stretchType="RelativeToTallestObject" x="279" y="3" width="58" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fax}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="db31fe2d-6fe2-44ec-a27a-56830b2f1664" style="Detail" positionType="Float" stretchType="RelativeToBandHeight" x="217" y="15" width="128" height="12" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="fdc9dbab-cc64-49e4-822b-a5a10eca0302" style="Detail" stretchType="RelativeToTallestObject" x="345" y="3" width="135" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="a451f969-911f-40e9-b1b5-5000c413e2e5" style="Detail" stretchType="RelativeToBandHeight" x="480" y="3" width="140" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ciudad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="82fa4ca2-3dce-4692-b6c1-f45356f05996" style="Detail" stretchType="RelativeToBandHeight" x="620" y="3" width="44" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codpostal}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d0378958-4b0d-42d7-b831-5b7d1a52d1a4" style="Detail" stretchType="RelativeToBandHeight" x="664" y="3" width="90" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="a2837a28-9501-42e6-9134-df5a1e1cab9c" style="Detail" stretchType="RelativeToBandHeight" x="754" y="3" width="44" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codpais}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="44" y="28" width="758" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="caa2a719-8abc-4f90-a9a3-17fd705ad315" style="Detail" stretchType="RelativeToBandHeight" x="3" y="3" width="44" height="12"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement uuid="b2cd14f3-a67e-40e6-abee-915922662c4c" mode="Opaque" x="1" y="1" width="800" height="14" forecolor="#999999" backcolor="#999999"/>
+				<textField>
+					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="700" y="0" width="80" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="781" y="0" width="15" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

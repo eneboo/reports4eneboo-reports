@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_serviciosclixcliente" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec71d650-6e81-4060-aecd-967042c34e7d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select servicioscli.codcliente AS codcliente,
+       clientes.nombre AS nombrecliente,
+       servicioscli.fecha AS fecha,
+       servicioscli.codtecnico AS codtecnico,
+       tecnicos.nombre AS nombretecnico,
+       tecnicos.apellidos AS apellidotecnico,
+       servicioscli.horas AS horas
+FROM servicioscli
+inner join tecnicos on servicioscli.codtecnico = tecnicos.codtecnico
+inner join clientes on servicioscli.codcliente = clientes.codcliente
+order by servicioscli.codcliente, servicioscli.fecha]]>
+	</queryString>
+	<field name="codcliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombrecliente" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codtecnico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombretecnico" class="java.lang.String"/>
+	<field name="apellidotecnico" class="java.lang.String"/>
+	<field name="horas" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TotalCliente" class="java.lang.Integer" resetType="Group" resetGroup="codcliente" calculation="Sum">
+		<variableExpression><![CDATA[$F{horas}]]></variableExpression>
+	</variable>
+	<group name="codcliente">
+		<groupExpression><![CDATA[$F{codcliente}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField>
+					<reportElement x="0" y="3" width="50" height="20" uuid="f4a8a770-5201-45b0-9997-bb6f162c3557"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codcliente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="3" width="187" height="20" uuid="8d2de942-68c6-4225-916b-557b061321f3"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombrecliente}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<textField pattern="###0.00">
+					<reportElement x="474" y="4" width="79" height="20" uuid="ebcdca18-9e0f-4bba-87fa-f6dd6d3c74d2"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalCliente}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="49" uuid="718782e3-8fe3-49cd-9130-0336d9adb8d3"/>
+				<subreportParameter name="LISTADO">
+					<subreportParameterExpression><![CDATA["SERVICIOS A CLIENTE"]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_header_l.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="18">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="50" y="0" width="61" height="16" uuid="21155620-98c6-424e-8623-bece436e7013"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="58" height="16" uuid="4e828892-5a89-4c33-875f-040ada060aba"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codtecnico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="0" width="44" height="16" uuid="1cfaf6b0-534a-42ad-8ec4-29b312f1afa9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombretecnico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="2" width="261" height="16" uuid="56898001-3275-49ab-9d90-3b14df5bc059"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidotecnico}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="474" y="0" width="79" height="16" uuid="0135991b-accb-4989-92c9-02f716cff202"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
