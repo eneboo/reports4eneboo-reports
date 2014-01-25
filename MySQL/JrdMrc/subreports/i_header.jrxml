@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_header" pageWidth="800" pageHeight="595" orientation="Landscape" columnWidth="800" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="65d9244d-30f9-40d3-8dd2-2076ef3c156a">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="480"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="LISTADO" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["LISTADO DE CLIENTES"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 	empresa.nombre AS nomempresa,
+	empresa.direccion AS dirempresa,
+	empresa.codpostal AS codposempresa,
+	empresa.ciudad AS cityempresa,
+	empresa.provincia AS provempresa,
+	empresa.apartado AS aptdempresa,
+	empresa.codpais AS codpaisempresa,
+	empresa.cifnif AS nifempresa,
+	empresa.telefono AS telempresa,
+	empresa.fax AS empresa
+FROM    empresa]]>
+	</queryString>
+	<field name="dirempresa" class="java.lang.String"/>
+	<field name="codposempresa" class="java.lang.String"/>
+	<field name="cityempresa" class="java.lang.String"/>
+	<field name="nomempresa" class="java.lang.String"/>
+	<pageHeader>
+		<band height="65">
+			<frame>
+				<reportElement uuid="630c6e62-eb4e-4b65-af76-d9e29f87e869" mode="Opaque" x="0" y="10" width="800" height="45" forecolor="#999999" backcolor="#999999"/>
+				<textField>
+					<reportElement uuid="6f8bb768-d83a-4d0e-a8f5-5a642e07d53c" x="0" y="15" width="790" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{LISTADO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="76052c86-1c68-4c28-a1a5-d38167eaceb0" x="6" y="2" width="203" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nomempresa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0d28af4e-4a4e-4801-b5a5-3cec3d0c71dd" x="6" y="15" width="203" height="14"/>
+					<textElement>
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dirempresa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="643f40a2-62b8-4bfb-887f-e7db6095d27c" x="6" y="28" width="38" height="14"/>
+					<textElement>
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codposempresa}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="c2b8cdde-5c2d-4eff-9b09-a3a2aadd4c36" x="44" y="28" width="165" height="14"/>
+					<textElement>
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cityempresa}]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="ee375dbe-1584-4df9-9b2a-a5d086548186" x="676" y="2" width="114" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="694" y="29" width="80" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="775" y="29" width="15" height="14" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+</jasperReport>

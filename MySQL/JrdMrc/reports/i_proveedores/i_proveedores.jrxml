@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_clientes" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2257e4bc-c6dc-4545-b2dd-81ac679e385d">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_proveedores" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2257e4bc-c6dc-4545-b2dd-81ac679e385d">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -20,18 +20,18 @@
 		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
 	</parameter>
 	<queryString language="SQL">
-		<![CDATA[SELECT 	clientes.codcliente AS codigo,
-	clientes.nombre AS nombe,
-	clientes.telefono1 AS telefono1,
-	clientes.fax AS fax,
-	clientes.email AS email,
-	dirclientes.direccion AS direccion,
-	dirclientes.ciudad AS ciudad,
-	dirclientes.codpostal AS codpostal,
-	dirclientes.provincia AS provincia,
-	dirclientes.codpais AS cospais
-FROM    	clientes
-	LEFT OUTER JOIN dirclientes ON clientes.codcliente = dirclientes.codcliente
+		<![CDATA[SELECT 	proveedores.codproveedor AS codigo,
+	proveedores.nombre AS nombre,
+	proveedores.telefono1 AS telefono1,
+	proveedores.fax AS fax,
+	proveedores.email AS email,
+	dirproveedores.direccion AS direccion,
+	dirproveedores.ciudad AS ciudad,
+	dirproveedores.codpostal AS codpostal,
+	dirproveedores.provincia AS provincia,
+	dirproveedores.codpais AS codpais
+FROM    	proveedores
+	LEFT OUTER JOIN dirproveedores ON proveedores.codproveedor = dirproveedores.codproveedor
 WHERE $P!{WHERE}
 ORDER BY $P!{ORDERBY}]]>
 	</queryString>
@@ -231,14 +231,14 @@ ORDER BY $P!{ORDERBY}]]>
 			<frame>
 				<reportElement uuid="b2cd14f3-a67e-40e6-abee-915922662c4c" mode="Opaque" x="1" y="1" width="800" height="14" forecolor="#999999" backcolor="#999999"/>
 				<textField>
-					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="700" y="0" width="80" height="14" forecolor="#000000"/>
+					<reportElement uuid="ebfe7be6-48a8-4782-8461-fa35d2662d8a" x="701" y="0" width="80" height="14" forecolor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Report">
-					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="781" y="0" width="15" height="14" forecolor="#000000"/>
+					<reportElement uuid="b0e67152-b2b9-4bc5-bd93-420420660b0a" x="782" y="0" width="15" height="14" forecolor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
 					</textElement>

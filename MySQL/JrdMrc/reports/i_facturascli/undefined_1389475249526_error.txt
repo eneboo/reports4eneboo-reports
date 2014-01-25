@@ -1,0 +1,20 @@
+
+Eneboo Reports :
+
+* Build 20130928.
+* Versión Jasper Reports 5.2.0.
+* Nombre fichero undefined.
+
+
+* StackTrace Java :
+net.sf.jasperreports.engine.JRException: java.io.FileNotFoundException: undefined (No existe el fichero o el directorio)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:176)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:156)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:172)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:459)
+	at enebooreports.main(enebooreports.java:130)
+Caused by: java.io.FileNotFoundException: undefined (No existe el fichero o el directorio)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:146)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:171)
+	... 4 more
