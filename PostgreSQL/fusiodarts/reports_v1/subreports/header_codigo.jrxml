@@ -18,8 +18,7 @@
     $P!{TABLE_SUBREPORT}.fecha as fecha,
 	$P!{TABLE_SUBREPORT}.coddivisa as divisa
 FROM $P!{TABLE_SUBREPORT}
-WHERE $P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT} = $P!{ID_SUBREPORT}
-]]>
+WHERE $P!{TABLE_SUBREPORT}.id$P!{TEXT_SUBREPORT} = $P!{ID_SUBREPORT}]]>
 	</queryString>
 	<field name="fecha" class="java.util.Date"/>
 	<field name="codigo" class="java.lang.String"/>
