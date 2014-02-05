@@ -305,9 +305,7 @@ ORDER BY $P!{ORDERBY}]]>
 				<textFieldExpression><![CDATA[$F{referenciaprecio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
-				<reportElement uuid="2c41dcb6-caaf-4455-9238-e051b5164172" x="497" y="0" width="58" height="17">
-					<printWhenExpression><![CDATA[$F{pvptotallinea} != 0]]></printWhenExpression>
-				</reportElement>
+				<reportElement uuid="2c41dcb6-caaf-4455-9238-e051b5164172" x="497" y="0" width="58" height="17"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial"/>
 				</textElement>
