@@ -52,42 +52,44 @@ WHERE $P!{WHERE}]]>
 	</background>
 	<detail>
 		<band height="20">
-			<elementGroup/>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="6b7e009e-b265-4db4-8bc5-eda1970fa2c0" x="126" y="0" width="80" height="20" isRemoveLineWhenBlank="true"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{codreldoc}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="c3ef345e-78b4-4e16-ba33-31c9236499ac" x="2" y="0" width="40" height="20"/>
-				<textElement textAlignment="Center">
-					<font fontName="Arial"/>
-				</textElement>
-				<text><![CDATA[>>>>]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="b9b19651-808c-4464-bfff-fc5d580e1bcb" x="239" y="0" width="116" height="20" isRemoveLineWhenBlank="true"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fechareldoc}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="904f4c53-5c11-4007-ac57-1060caffeffb" x="211" y="0" width="23" height="20"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<text><![CDATA[de]]></text>
-			</staticText>
-			<textField>
-				<reportElement uuid="1cca06ee-7911-4a6e-a59d-c199d324f934" x="43" y="0" width="84" height="20"/>
-				<textElement>
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{titulo_reldoc}]]></textFieldExpression>
-			</textField>
+			<frame>
+				<reportElement uuid="37cc8117-3b54-499e-a945-e6f835d56c95" isPrintRepeatedValues="false" x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true"/>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="6b7e009e-b265-4db4-8bc5-eda1970fa2c0" x="124" y="0" width="80" height="20" isRemoveLineWhenBlank="true"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codreldoc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c3ef345e-78b4-4e16-ba33-31c9236499ac" x="0" y="0" width="40" height="20"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[>>>>]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="b9b19651-808c-4464-bfff-fc5d580e1bcb" x="237" y="0" width="116" height="20" isRemoveLineWhenBlank="true"/>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fechareldoc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="904f4c53-5c11-4007-ac57-1060caffeffb" x="209" y="0" width="23" height="20"/>
+					<textElement>
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[de]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="1cca06ee-7911-4a6e-a59d-c199d324f934" x="41" y="0" width="84" height="20"/>
+					<textElement>
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{titulo_reldoc}]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</detail>
 </jasperReport>
