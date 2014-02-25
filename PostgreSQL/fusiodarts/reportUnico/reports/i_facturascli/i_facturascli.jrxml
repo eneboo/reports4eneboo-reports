@@ -95,7 +95,7 @@ ORDER BY $P!{ORDERBY}]]>
 		<variableExpression><![CDATA[$V{sumaysigue}.setScale(2, java.math.RoundingMode.HALF_UP)]]></variableExpression>
 	</variable>
 	<variable name="sumadtopor" class="java.lang.Integer" resetType="Group" resetGroup="ID" calculation="Sum">
-		<variableExpression><![CDATA[($F{referenciaprecio}.intValue() * $F{dtoporreferencia}.intValue()) / 100]]></variableExpression>
+		<variableExpression><![CDATA[($F{referenciaprecio} * $F{cantidadreferencia} * $F{dtoporreferencia}) / 100]]></variableExpression>
 	</variable>
 	<variable name="orderdef" class="java.lang.String">
 		<variableExpression><![CDATA["facturascli.codigo"]]></variableExpression>

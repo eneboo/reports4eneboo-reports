@@ -92,7 +92,7 @@ ORDER BY $P!{ORDERBY}]]>
 		<variableExpression><![CDATA[$V{sumaysigue}.setScale(2, java.math.RoundingMode.HALF_UP)]]></variableExpression>
 	</variable>
 	<variable name="sumadtopor" class="java.lang.Integer" resetType="Group" resetGroup="ID" calculation="Sum">
-		<variableExpression><![CDATA[($F{referenciaprecio}.intValue() * $F{dtoporreferencia}.intValue()) / 100]]></variableExpression>
+		<variableExpression><![CDATA[($F{referenciaprecio} * $F{cantidadreferencia} * $F{dtoporreferencia}) / 100]]></variableExpression>
 	</variable>
 	<group name="ID" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" footerPosition="ForceAtBottom" keepTogether="true">
 		<groupExpression><![CDATA[$F{id}]]></groupExpression>
