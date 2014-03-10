@@ -67,7 +67,7 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 				<frame>
 					<reportElement uuid="6abac60b-54e3-498e-b485-a401beeb2e7a" style="Recuadros" x="0" y="15" width="355" height="57"/>
 					<textField isBlankWhenNull="true">
-						<reportElement uuid="e50bbeef-caf0-4a05-98f3-c3a8b0f2b204" x="0" y="2" width="154" height="15"/>
+						<reportElement uuid="e50bbeef-caf0-4a05-98f3-c3a8b0f2b204" x="0" y="2" width="215" height="15"/>
 						<textElement verticalAlignment="Middle">
 							<font fontName="Arial"/>
 							<paragraph leftIndent="5"/>
@@ -75,7 +75,7 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 						<textFieldExpression><![CDATA[$F{nombrecliente}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement uuid="b3715721-af88-4fbe-a855-b90d3c0d1ad7" x="209" y="1" width="40" height="15"/>
+						<reportElement uuid="b3715721-af88-4fbe-a855-b90d3c0d1ad7" x="223" y="2" width="40" height="15"/>
 						<textElement textAlignment="Right" verticalAlignment="Middle">
 							<font fontName="Arial" isBold="false"/>
 							<paragraph leftIndent="5"/>
@@ -83,7 +83,7 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 						<text><![CDATA[CIF/NIF]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement uuid="b2b3348b-a757-4e1e-a673-d7fbb37e8cc0" x="256" y="1" width="99" height="15"/>
+						<reportElement uuid="b2b3348b-a757-4e1e-a673-d7fbb37e8cc0" x="266" y="2" width="89" height="15"/>
 						<textElement verticalAlignment="Middle">
 							<font fontName="Arial"/>
 							<paragraph rightIndent="5"/>
