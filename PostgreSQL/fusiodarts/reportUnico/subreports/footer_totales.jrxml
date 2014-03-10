@@ -10,7 +10,7 @@
 	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="SUMA_DTO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="SUMA_DTO" class="java.lang.Double" isForPrompting="false"/>
 	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
@@ -106,7 +106,7 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomfpago}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤">
+			<textField pattern="#,##0.00 ¤ ">
 				<reportElement uuid="f38f2a04-8efc-4dd9-9a62-d085a1577bf5" style="Recuadros" x="0" y="15" width="70" height="19"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="false"/>
