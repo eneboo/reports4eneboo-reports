@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Resumen de Cliente" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="798" leftMargin="25" rightMargin="19" topMargin="19" bottomMargin="19" uuid="2257e4bc-c6dc-4545-b2dd-81ac679e385d">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="264"/>
 	<property name="ireport.y" value="0"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
-	<subDataset name="PieChartDataset" uuid="7813872b-d423-406c-9713-ee4e854c8087"/>
 	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
@@ -63,6 +62,95 @@
 	<field name="totalivagen" class="java.lang.Double"/>
 	<field name="totalivared" class="java.lang.Double"/>
 	<field name="totalivasred" class="java.lang.Double"/>
+	<variable name="total_totales" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_neto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{neto}]]></variableExpression>
+	</variable>
+	<variable name="total_ivagen" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalivagen}]]></variableExpression>
+	</variable>
+	<variable name="total_ivared" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalivared}]]></variableExpression>
+	</variable>
+	<variable name="total_ivasred" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalivasred}]]></variableExpression>
+	</variable>
+	<variable name="total_ivatotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totaliva}]]></variableExpression>
+	</variable>
+	<variable name="total_totalrecargo" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalrecargo}]]></variableExpression>
+	</variable>
+	<group name="COD">
+		<groupFooter>
+			<band height="20">
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement uuid="7a5e0ebd-b1bc-41ed-872a-997941a0cdd5" x="720" y="5" width="78" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{total_totales}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="439cdc08-7d67-4833-9f4d-1d0053700c46" style="Recuadros" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="0" width="798" height="1"/>
+					<graphicElement>
+						<pen lineWidth="2.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement uuid="72572b44-5db3-4014-ae76-8cbc497ce521" x="640" y="5" width="38" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{total_totalrecargo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement uuid="0353535c-e6b7-46b7-a87d-fc18945087bb" x="568" y="5" width="70" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{total_ivatotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="64bf1cf7-4b52-4152-9eb5-a54f4f828e0d" x="524" y="5" width="42" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{total_ivasred}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="b9f2d53e-a5a7-496b-b416-30a33bf7fd3d" x="480" y="5" width="42" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{total_ivared}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="11e4b5f9-1089-4f6d-8c44-77b0a2fef56a" x="436" y="5" width="42" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{total_ivagen}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00;-#,##0.00">
+					<reportElement uuid="bbf1e966-ba06-47a7-90b9-3bda90df723f" x="396" y="5" width="38" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{total_neto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="277ae816-539b-4a72-a854-0d8f279dbc21" style="Cabeceras" positionType="Float" x="334" y="5" width="58" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Totales]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
 	<title>
 		<band splitType="Stretch"/>
 	</title>
@@ -199,7 +287,7 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<line>
-				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" style="Recuadros" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="18" width="798" height="1"/>
+				<reportElement uuid="8701105c-8923-44ec-a621-b79eff71c8ce" style="Recuadros" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="19" width="798" height="1"/>
 			</line>
 			<textField pattern="dd/MM/yy">
 				<reportElement uuid="cc583261-f360-4b60-98a6-159591bfd96c" x="70" y="1" width="48" height="15"/>
