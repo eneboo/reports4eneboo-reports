@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="footer_cuentabco" pageWidth="205" pageHeight="35" columnWidth="205" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUMA_DTO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+   $P!{PARAM_tabla}.codpago as codformapago,
+   formaspago.domiciliado as domiciliado,
+   cuentasbcocli.entidad as cliente_entidad,
+   cuentasbcocli.ctaagencia as cliente_oficina,
+   cuentasbcocli.cuenta as cliente_cuenta,
+   (SELECT entidad FROM cuentasbanco WHERE codcuenta = (SELECT codcuenta FROM formaspago WHERE codpago = $P!{PARAM_tabla}.codpago)) as empresabco_entidad,
+   (SELECT ctaagencia FROM cuentasbanco WHERE codcuenta = (SELECT codcuenta FROM formaspago WHERE codpago = $P!{PARAM_tabla}.codpago)) as empresabco_oficina,
+   (SELECT cuenta FROM cuentasbanco WHERE codcuenta = (SELECT codcuenta FROM formaspago WHERE codpago = $P!{PARAM_tabla}.codpago)) as empresabco_cuenta
+FROM $P!{PARAM_tabla}
+LEFT OUTER JOIN clientes ON facturascli.codcliente = clientes.codcliente
+LEFT OUTER JOIN formaspago ON $P!{PARAM_tabla}.codpago = formaspago.codpago
+LEFT OUTER JOIN cuentasbcocli ON $P!{PARAM_tabla}.codcliente = cuentasbcocli.codcliente
+WHERE cuentasbcocli.codcuenta = clientes.codcuentadom AND $P!{WHERE}]]>
+	</queryString>
+	<field name="empresabco_cuenta" class="java.lang.String"/>
+	<field name="empresabco_oficina" class="java.lang.String"/>
+	<field name="empresabco_entidad" class="java.lang.String"/>
+	<field name="domiciliado" class="java.lang.Boolean"/>
+	<field name="cliente_cuenta" class="java.lang.String"/>
+	<field name="cliente_entidad" class="java.lang.String"/>
+	<field name="cliente_oficina" class="java.lang.String"/>
+	<variable name="calculaDC" class="java.lang.String">
+		<variableExpression><![CDATA[ERUtil.calculaDC($F{empresabco_entidad},$F{empresabco_oficina},$F{empresabco_cuenta})]]></variableExpression>
+	</variable>
+	<variable name="cliente_calculaDC" class="java.lang.String">
+		<variableExpression><![CDATA[ERUtil.calculaDC($F{cliente_entidad},$F{cliente_oficina},$F{cliente_cuenta})]]></variableExpression>
+	</variable>
+	<variable name="empresa_cuentabco" class="java.lang.String">
+		<variableExpression><![CDATA[$F{empresabco_entidad} + "  " + $F{empresabco_oficina} + "  " + $V{calculaDC} + "  " + $F{empresabco_cuenta}]]></variableExpression>
+	</variable>
+	<variable name="cliente_cuentabco" class="java.lang.String">
+		<variableExpression><![CDATA[$F{cliente_entidad} + "  " + $F{cliente_oficina} + "  " + $V{cliente_calculaDC} + "  " + $F{cliente_cuenta}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="35">
+			<elementGroup>
+				<elementGroup/>
+			</elementGroup>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8663ce2c-436f-4053-876b-79c0bb6625a8" style="Recuadros" x="0" y="16" width="205" height="19">
+					<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == true && $F{cliente_cuenta} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{cliente_cuentabco}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="727f2c61-93cc-4ab8-92a1-141f1875e21d" style="Cabeceras" x="0" y="1" width="205" height="15">
+					<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == true && $F{cliente_cuenta} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuenta de Cargo]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

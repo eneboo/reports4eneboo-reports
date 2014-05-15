@@ -29,3 +29,9 @@ Espero que sea de gran ayuda, saludos.
 
 
 *Podeis visitar nuestra web en [www.fusiodarts.com](http://www.fusiodarts.com)* o poneros en contacto con nosotros a través de contacto@fusiodarts.com
+
+
+DETALLES DE LAS OPCIONES
+------------------------
+- Cuenta bancaria y cuenta de cargo: 
+	Si la factura tiene una forma de pago con la opción domiciliado se muestra la cuenta bancaria del cliente configurada coo domiciliada. Si la forma de pago no es domiciliada y tiene asociada una cuenta bancaria de la empresa se mostrará esta.
