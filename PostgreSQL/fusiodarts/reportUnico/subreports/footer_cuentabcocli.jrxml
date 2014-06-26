@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="footer_cuentabco" pageWidth="205" pageHeight="35" columnWidth="205" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="footer_cuentabco" pageWidth="130" pageHeight="34" columnWidth="130" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
 	<property name="ireport.zoom" value="1.4641000000000013"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<template><![CDATA["../../style.jrtx"]]></template>
+	<template><![CDATA["../style.jrtx"]]></template>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
 	</parameter>
@@ -57,25 +57,25 @@ WHERE cuentasbcocli.codcuenta = clientes.codcuentadom AND $P!{WHERE}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="35">
+		<band height="34">
 			<elementGroup>
 				<elementGroup/>
 			</elementGroup>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="8663ce2c-436f-4053-876b-79c0bb6625a8" style="Recuadros" x="0" y="16" width="205" height="19">
+				<reportElement style="Recuadros" x="0" y="15" width="130" height="19" uuid="8663ce2c-436f-4053-876b-79c0bb6625a8">
 					<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == true && $F{cliente_cuenta} != null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{cliente_cuentabco}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="727f2c61-93cc-4ab8-92a1-141f1875e21d" style="Cabeceras" x="0" y="1" width="205" height="15">
+				<reportElement style="Cabeceras" x="0" y="0" width="130" height="15" uuid="727f2c61-93cc-4ab8-92a1-141f1875e21d">
 					<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == true && $F{cliente_cuenta} != null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="10" isBold="true"/>
+					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cuenta de Cargo]]></text>
 			</staticText>

@@ -18,6 +18,11 @@ Los parametros creados han sido:
  * PARAM_reldoc (Necesario para documento relacionado -> albaran o pedido)
 
 
+Logo
+-----------------
+Si se guarda un archivo logo.jpg de 555x92 se mostrará en toda la cabecera escondiendo los datos de la empresa.
+
+
 Archivo de estilo
 ------------------
 Dentro del directorio de los reports se encuentra un archivo llamado style.jrtx, en el se define el color de las cabeceras y el color de las lineas de los recuadros.

@@ -47,28 +47,28 @@ tpv_lineascomanda.idtpv_comanda = $P{IDDOCUMENTO}]]>
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField pattern="###0;-###0">
-				<reportElement uuid="8a37b809-ff10-4e92-9bec-70c626b75d0e" x="0" y="0" width="45" height="15"/>
+				<reportElement  x="0" y="0" width="45" height="15" uuid="8a37b809-ff10-4e92-9bec-70c626b75d0e"/>
 				<textElement textAlignment="Center">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tpv_lineascomanda_cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="dcec9e88-2eff-406a-814b-c6b2d19c0231" x="45" y="0" width="73" height="15"/>
+				<reportElement  x="45" y="0" width="73" height="15" uuid="dcec9e88-2eff-406a-814b-c6b2d19c0231"/>
 				<textElement>
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tpv_lineascomanda_descripcion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement uuid="16c7d049-211f-4fb5-b38f-74d9d6d9255d" x="118" y="0" width="54" height="15"/>
+				<reportElement  x="118" y="0" width="54" height="15" uuid="16c7d049-211f-4fb5-b38f-74d9d6d9255d"/>
 				<textElement textAlignment="Left">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tpv_lineascomanda_pvpunitario}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###0.00;-###0.00">
-				<reportElement uuid="55837419-762b-4aa6-b9c4-541689fbd340" x="172" y="0" width="34" height="15"/>
+				<reportElement  x="172" y="0" width="34" height="15" uuid="55837419-762b-4aa6-b9c4-541689fbd340"/>
 				<textElement textAlignment="Right">
 					<font fontName="DejaVu Sans" size="8"/>
 				</textElement>
