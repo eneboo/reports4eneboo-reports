@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe Oficial" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="87"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -52,12 +52,10 @@
     lineas$P!{PARAM_tabla}.dtopor as dtoporreferencia,
     empresa.lopd AS empresa_lopd,
     empresa.rmercantil AS empresa_rmercantil,
-	$P!{PARAM_tabla}.neto+$P!{PARAM_tabla}.totaliva+$P!{PARAM_tabla}.totalrecargo,
-	(select cuentasbcocli.descripcion from cuentasbcocli where cuentasbcocli.codcliente = $P!{PARAM_tabla}.codcliente and cuentasbcocli.codcuenta = clientes.codcuentadom) as nombanco
+	$P!{PARAM_tabla}.neto+$P!{PARAM_tabla}.totaliva+$P!{PARAM_tabla}.totalrecargo
 FROM empresa, $P!{PARAM_tabla}
 INNER JOIN lineas$P!{PARAM_tabla} ON $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = lineas$P!{PARAM_tabla}.id$P!{PARAM_subtabla}
 LEFT OUTER JOIN formaspago ON $P!{PARAM_tabla}.codpago = formaspago.codpago
-LEFT OUTER JOIN clientes ON clientes.codcliente = $P!{PARAM_tabla}.codcliente
 WHERE $P!{WHERE}
 ORDER BY $P!{ORDERBY}]]>
 	</queryString>
@@ -82,7 +80,6 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="pvptotallinea" class="java.lang.Double"/>
 	<field name="ivalinea" class="java.lang.String"/>
 	<field name="porivalinea" class="java.lang.Double"/>
-	<field name="nombanco" class="java.lang.String"/>
 	<field name="IVA" class="java.lang.String"/>
 	<field name="empresa_rmercantil" class="java.lang.String"/>
 	<field name="empresa_lopd" class="java.lang.String"/>
@@ -97,24 +94,78 @@ ORDER BY $P!{ORDERBY}]]>
 	<variable name="sumadtopor" class="java.lang.Integer" resetType="Group" resetGroup="ID" calculation="Sum">
 		<variableExpression><![CDATA[($F{referenciaprecio} * $F{cantidadreferencia} * $F{dtoporreferencia}) / 100]]></variableExpression>
 	</variable>
-	<variable name="orderdef" class="java.lang.String">
-		<variableExpression><![CDATA["facturascli.codigo"]]></variableExpression>
-	</variable>
 	<variable name="subreport_count" class="java.lang.Integer"/>
 	<group name="ID" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" footerPosition="ForceAtBottom" keepTogether="true">
 		<groupExpression><![CDATA[$F{id}]]></groupExpression>
 		<groupHeader>
 			<band height="100">
 				<subreport isUsingCache="false">
-					<reportElement x="199" y="3" width="355" height="73" uuid="878f5e8b-94e9-47cd-a566-bf5ddcccbf9d"/>
+					<reportElement x="199" y="3" width="355" height="73" uuid="3aeb2a94-68b1-442d-9502-645a8dc4e236">
+						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturasprov" || $P{PARAM_tabla} == "albaranesprov" || $P{PARAM_tabla} == "pedidosprov"]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_subtabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="WHERE">
+						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_reldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tablareldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ID_SUBREPORT">
+						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header_prov.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport isUsingCache="false">
+					<reportElement x="199" y="3" width="355" height="73" uuid="878f5e8b-94e9-47cd-a566-bf5ddcccbf9d">
+						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_subtabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="WHERE">
+						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_titulo">
+						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_reldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tablareldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="ID_SUBREPORT">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
