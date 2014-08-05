@@ -10,7 +10,7 @@
 	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="SUMA_DTO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="SUMA_DTO" class="java.lang.Double" isForPrompting="false"/>
 	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>

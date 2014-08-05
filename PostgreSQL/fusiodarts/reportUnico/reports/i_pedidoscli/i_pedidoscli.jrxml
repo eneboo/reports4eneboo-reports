@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe Oficial" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="87"/>
+	<property name="ireport.y" value="60"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -91,7 +91,7 @@ ORDER BY $P!{ORDERBY}]]>
 	<variable name="sumaysigueround" class="java.lang.Double">
 		<variableExpression><![CDATA[$V{sumaysigue}.setScale(2, java.math.RoundingMode.HALF_UP)]]></variableExpression>
 	</variable>
-	<variable name="sumadtopor" class="java.lang.Integer" resetType="Group" resetGroup="ID" calculation="Sum">
+	<variable name="sumadtopor" class="java.lang.Double" resetType="Group" resetGroup="ID" calculation="Sum">
 		<variableExpression><![CDATA[($F{referenciaprecio} * $F{cantidadreferencia} * $F{dtoporreferencia}) / 100]]></variableExpression>
 	</variable>
 	<variable name="subreport_count" class="java.lang.Integer"/>
@@ -274,17 +274,17 @@ ORDER BY $P!{ORDERBY}]]>
 			<band height="42" splitType="Stretch">
 				<subreport isUsingCache="false">
 					<reportElement x="0" y="1" width="555" height="41" uuid="25b4d44d-ffe3-4787-a0a9-6e332edf91bd"/>
+					<subreportParameter name="PARAM_subtabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="SUMA_DTO">
+						<subreportParameterExpression><![CDATA[$V{sumadtopor}.doubleValue()]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="SUMA_DTO">
-						<subreportParameterExpression><![CDATA[$V{sumadtopor}.intValue()]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_subtabla">
-						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="ID_SUBREPORT">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
