@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header_direnvio" pageWidth="556" pageHeight="37" columnWidth="556" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.7715610000000044"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+$P!{PARAM_tabla}.codcliente as codcliente,
+$P!{PARAM_tabla}.coddirenv as coddirenv,
+$P!{PARAM_tabla}.direccionenv as direccionenv,
+$P!{PARAM_tabla}.codpostalenv as cpenv,
+$P!{PARAM_tabla}.ciudadenv as ciudadenv,
+$P!{PARAM_tabla}.provinciaenv as provinciaenv,
+$P!{PARAM_tabla}.apartadoenv as apartadoenv,
+$P!{PARAM_tabla}.codpaisenv as codpaisenv,
+dirclientes.descripcion as descripcionenv,
+paises.nombre as paisenv
+FROM $P!{PARAM_tabla}
+LEFT OUTER JOIN clientes ON clientes.codcliente = $P!{PARAM_tabla}.codcliente
+LEFT OUTER JOIN dirclientes ON dirclientes.id = $P!{PARAM_tabla}.coddirenv
+LEFT OUTER JOIN paises ON paises.codpais = $P!{PARAM_tabla}.codpaisenv
+WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
+	</queryString>
+	<field name="codcliente" class="java.lang.String"/>
+	<field name="coddirenv" class="java.lang.Integer"/>
+	<field name="direccionenv" class="java.lang.String"/>
+	<field name="cpenv" class="java.lang.String"/>
+	<field name="ciudadenv" class="java.lang.String"/>
+	<field name="provinciaenv" class="java.lang.String"/>
+	<field name="apartadoenv" class="java.lang.String"/>
+	<field name="paisenv" class="java.lang.String"/>
+	<field name="descripcionenv" class="java.lang.String"/>
+	<field name="codpaisenv" class="java.lang.String"/>
+	<variable name="direccionenv" class="java.lang.String">
+		<variableExpression><![CDATA[$F{direccionenv} + "     -     "]]></variableExpression>
+	</variable>
+	<variable name="ciudadenv" class="java.lang.String">
+		<variableExpression><![CDATA[$F{ciudadenv} + "     -     "]]></variableExpression>
+	</variable>
+	<variable name="provinciaenv" class="java.lang.String">
+		<variableExpression><![CDATA[$F{provinciaenv} + "     -     "]]></variableExpression>
+	</variable>
+	<variable name="cpenv" class="java.lang.String">
+		<variableExpression><![CDATA[$F{cpenv} + "     -     "]]></variableExpression>
+	</variable>
+	<variable name="paisenv" class="java.lang.String">
+		<variableExpression><![CDATA[$F{paisenv} + "     -     "]]></variableExpression>
+	</variable>
+	<variable name="dirEnvio" class="java.lang.String"/>
+	<variable name="separador" class="java.lang.String">
+		<variableExpression><![CDATA["   -   "]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="37">
+			<printWhenExpression><![CDATA[$F{coddirenv} != 0 || $F{coddirenv} != null]]></printWhenExpression>
+			<elementGroup>
+				<frame>
+					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>
+				</frame>
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="0" width="99" height="15" uuid="9abba737-1804-4cce-b039-bfd6c641744c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Dirección de Envío]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="99" y="0" width="457" height="15" uuid="caeda6bc-6c4a-49ff-90d6-4d5d3c056600"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descripcionenv}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement style="Recuadros" x="0" y="15" width="556" height="22" isPrintWhenDetailOverflows="true" uuid="6abac60b-54e3-498e-b485-a401beeb2e7a"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+						<reportElement x="0" y="3" width="556" height="15" uuid="026f1017-51cf-4eda-89f6-f8353c526f3c"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="8"/>
+							<paragraph leftIndent="5" rightIndent="5"/>
+						</textElement>
+						<textFieldExpression><![CDATA[( $F{direccionenv} != null ? $F{direccionenv} + $V{separador} : "" ) +
+( $F{ciudadenv} != null ? $F{ciudadenv} + $V{separador} : "" ) +
+( $F{cpenv} != null ? $F{cpenv} + $V{separador} : "" ) +
+( $F{provinciaenv} != null ? $F{provinciaenv} + $V{separador} : "" ) +
+( $F{paisenv} != null ? $F{paisenv} : "" )]]></textFieldExpression>
+					</textField>
+				</frame>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>
