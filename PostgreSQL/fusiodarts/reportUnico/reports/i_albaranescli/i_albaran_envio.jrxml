@@ -200,6 +200,7 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreport>
 			</band>
 			<band height="20">
+				<printWhenExpression><![CDATA[$F{transportista} != null]]></printWhenExpression>
 				<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 					<reportElement style="Recuadros" x="91" y="0" width="464" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="2b584854-6c83-4be7-b5fd-8fcf05d23529"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -210,7 +211,7 @@ ORDER BY $P!{ORDERBY}]]>
 				</textField>
 				<staticText>
 					<reportElement style="Cabeceras" x="2" y="0" width="89" height="17" uuid="f0a45528-8516-4133-a002-8507314da22b"/>
-					<textElement textAlignment="Center">
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Transportista]]></text>
