@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Albarán de Envío" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="8"/>
+	<property name="ireport.y" value="66"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PAGE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
@@ -163,14 +163,6 @@ WHERE $P!{WHERE}]]>
 				</elementGroup>
 			</band>
 			<band height="40">
-				<staticText>
-					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="0f964608-8050-40e4-a88a-6a12d6202b53"/>
-					<textElement verticalAlignment="Middle" markup="none">
-						<font fontName="Arial" size="9" isBold="true"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<text><![CDATA[ALMACEN DE ORIGEN]]></text>
-				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 					<reportElement style="Recuadros" x="0" y="15" width="556" height="15" uuid="4c3f85fd-2cb9-46b0-be8c-ed5c28d65d94"/>
 					<textElement verticalAlignment="Middle">
@@ -183,8 +175,46 @@ WHERE $P!{WHERE}]]>
 ( $F{almaorigen_provincia} != null ? $F{almaorigen_provincia} + "   -   " : "" ) +
 ( $F{almaorigen_pais} != null ? $F{almaorigen_pais} : "" )]]></textFieldExpression>
 				</textField>
+				<frame>
+					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="8684a42a-6073-4c52-b541-387b4f9947d5"/>
+					<staticText>
+						<reportElement mode="Transparent" x="0" y="0" width="118" height="15" uuid="4650ea23-35e8-46f5-9470-6478c2e3531c"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[ALMACEN DE ORIGEN:]]></text>
+					</staticText>
+					<textField>
+						<reportElement mode="Transparent" x="118" y="0" width="436" height="15" uuid="e1c22be9-d5d9-4287-8652-0ddd94b4a39a"/>
+						<textElement verticalAlignment="Middle" markup="none">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5" rightIndent="5"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{almaorigen_nombre}]]></textFieldExpression>
+					</textField>
+				</frame>
 			</band>
 			<band height="40">
+				<frame>
+					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="4761c098-e0ed-4753-bd22-bffe5937cb9e"/>
+					<staticText>
+						<reportElement mode="Transparent" x="0" y="0" width="118" height="15" uuid="75ec8267-e720-415b-b66e-e3a0133818b3"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[ALMACEN DE DESTINO:]]></text>
+					</staticText>
+					<textField>
+						<reportElement mode="Transparent" x="118" y="0" width="436" height="15" uuid="3254ed5f-0729-43b6-8b6e-7783c01e2110"/>
+						<textElement verticalAlignment="Middle" markup="none">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5" rightIndent="5"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{almadestino_nombre}]]></textFieldExpression>
+					</textField>
+				</frame>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 					<reportElement style="Recuadros" x="0" y="15" width="556" height="15" uuid="a14b5adc-183a-42a6-a812-a03c9e398266"/>
 					<textElement verticalAlignment="Middle">
@@ -197,14 +227,6 @@ WHERE $P!{WHERE}]]>
 ( $F{almadestino_provincia} != null ? $F{almadestino_provincia} + "   -   " : "" ) +
 ( $F{almadestino_pais} != null ? $F{almadestino_pais} : "" )]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="3d14c9da-f702-497f-b3ce-c9e47775e3ad"/>
-					<textElement verticalAlignment="Middle" markup="none">
-						<font fontName="Arial" size="9" isBold="true"/>
-						<paragraph leftIndent="5"/>
-					</textElement>
-					<text><![CDATA[ALMACEN DE DESTINO]]></text>
-				</staticText>
 			</band>
 			<band height="40">
 				<printWhenExpression><![CDATA[$F{transportista} != null]]></printWhenExpression>
