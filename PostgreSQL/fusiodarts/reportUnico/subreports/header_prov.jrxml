@@ -31,7 +31,8 @@ dirproveedores.codpais as paisproveedor
 FROM $P!{PARAM_tabla}
 LEFT OUTER JOIN proveedores ON proveedores.codproveedor = $P!{PARAM_tabla}.codproveedor
 LEFT OUTER JOIN dirproveedores ON dirproveedores.codproveedor = $P!{PARAM_tabla}.codproveedor
-WHERE $P!{WHERE}]]>
+WHERE $P!{WHERE}
+LIMIT 1]]>
 	</queryString>
 	<field name="direccionproveedor" class="java.lang.String"/>
 	<field name="nombreproveedor" class="java.lang.String"/>

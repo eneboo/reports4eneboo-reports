@@ -34,7 +34,7 @@ WHERE $P!{WHERE}]]>
 	</background>
 	<detail>
 		<band height="36" splitType="Prevent">
-			<printWhenExpression><![CDATA[$F{incoterm} != "" || $F{incoterm} != null]]></printWhenExpression>
+			<printWhenExpression><![CDATA[$F{incoterm} != null]]></printWhenExpression>
 			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="0" y="16" width="44" height="19" isRemoveLineWhenBlank="true" uuid="9a7fd8b1-31a8-4006-bdb9-62f6cad5da53"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
