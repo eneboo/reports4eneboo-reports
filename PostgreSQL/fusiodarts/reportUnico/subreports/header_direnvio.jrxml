@@ -11,12 +11,31 @@
 	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["facturasprov"]]></defaultValueExpression>
+	</parameter>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="codcliprov" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals("facturascli")
+|| $P{PARAM_tabla}.equals("albaranescli")
+|| $P{PARAM_tabla}.equals("pedidoscli")
+|| $P{PARAM_tabla}.equals("presupuestoscli")
+? "cliente"
+: "proveedor" )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="clis_provs" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals("facturascli")
+|| $P{PARAM_tabla}.equals("albaranescli")
+|| $P{PARAM_tabla}.equals("pedidoscli")
+|| $P{PARAM_tabla}.equals("presupuestoscli")
+? "clientes"
+: "proveedores" )]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-$P!{PARAM_tabla}.codcliente as codcliente,
+$P!{PARAM_tabla}.cod$P!{codcliprov} as codcliprov,
 $P!{PARAM_tabla}.coddirenv as coddirenv,
 $P!{PARAM_tabla}.direccionenv as direccionenv,
 $P!{PARAM_tabla}.codpostalenv as cpenv,
@@ -24,15 +43,15 @@ $P!{PARAM_tabla}.ciudadenv as ciudadenv,
 $P!{PARAM_tabla}.provinciaenv as provinciaenv,
 $P!{PARAM_tabla}.apartadoenv as apartadoenv,
 $P!{PARAM_tabla}.codpaisenv as codpaisenv,
-dirclientes.descripcion as descripcionenv,
+dir$P!{clis_provs}.descripcion as descripcionenv,
 paises.nombre as paisenv
 FROM $P!{PARAM_tabla}
-LEFT OUTER JOIN clientes ON clientes.codcliente = $P!{PARAM_tabla}.codcliente
-LEFT OUTER JOIN dirclientes ON dirclientes.id = $P!{PARAM_tabla}.coddirenv
+LEFT OUTER JOIN $P!{clis_provs} ON $P!{clis_provs}.cod$P!{codcliprov} = $P!{PARAM_tabla}.cod$P!{codcliprov}
+LEFT OUTER JOIN dir$P!{clis_provs} ON dir$P!{clis_provs}.id = $P!{PARAM_tabla}.coddirenv
 LEFT OUTER JOIN paises ON paises.codpais = $P!{PARAM_tabla}.codpaisenv
 WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 	</queryString>
-	<field name="codcliente" class="java.lang.String"/>
+	<field name="codcliprov" class="java.lang.String"/>
 	<field name="coddirenv" class="java.lang.Integer"/>
 	<field name="direccionenv" class="java.lang.String"/>
 	<field name="cpenv" class="java.lang.String"/>
