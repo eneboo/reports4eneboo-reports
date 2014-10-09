@@ -335,7 +335,7 @@ ORDER BY $P!{ORDERBY}]]>
 			<band height="42">
 				<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"]]></printWhenExpression>
 				<subreport>
-					<reportElement x="435" y="5" width="120" height="34" uuid="ba7aef0c-4a02-4953-b771-12602672a847"/>
+					<reportElement x="455" y="5" width="100" height="34" uuid="ba7aef0c-4a02-4953-b771-12602672a847"/>
 					<subreportParameter name="ID">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -343,7 +343,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_facturascli_vencimientos.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement x="302" y="5" width="130" height="35" uuid="7a5dd860-88c0-401c-b414-1d883938e481">
+					<reportElement x="282" y="5" width="170" height="35" uuid="7a5dd860-88c0-401c-b414-1d883938e481">
 						<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == false]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
@@ -380,7 +380,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_cuentabco.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport runToBottom="false">
-					<reportElement x="302" y="5" width="130" height="35" uuid="054fc1e8-bd8d-4a72-bae9-1b0efa26c70b">
+					<reportElement x="282" y="5" width="170" height="35" uuid="054fc1e8-bd8d-4a72-bae9-1b0efa26c70b">
 						<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == true]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="PARAM_subtabla">
@@ -417,7 +417,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_cuentabcocli.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="5" width="226" height="35" uuid="dd2a6355-6a0c-4d96-9c40-17309af92797"/>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="5" width="206" height="35" uuid="dd2a6355-6a0c-4d96-9c40-17309af92797"/>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -452,7 +452,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_facturascli_totalivas.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement x="229" y="5" width="70" height="34" uuid="ebb32d8e-df41-4b93-b1d7-988b9e208879">
+					<reportElement x="209" y="5" width="70" height="34" uuid="ebb32d8e-df41-4b93-b1d7-988b9e208879">
 						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
