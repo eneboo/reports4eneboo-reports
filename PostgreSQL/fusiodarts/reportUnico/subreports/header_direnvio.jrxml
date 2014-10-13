@@ -85,7 +85,7 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 	</background>
 	<detail>
 		<band height="37">
-			<printWhenExpression><![CDATA[$F{coddirenv} != 0 || $F{coddirenv} != null]]></printWhenExpression>
+			<printWhenExpression><![CDATA[$F{direccionenv} != null]]></printWhenExpression>
 			<elementGroup>
 				<frame>
 					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>

@@ -47,9 +47,7 @@ WHERE $P!{WHERE}]]>
 	<field name="total_ivared" class="java.lang.Double"/>
 	<field name="total_ivasred" class="java.lang.Double"/>
 	<field name="totalrecargo" class="java.lang.Double"/>
-	<variable name="ivagen" class="java.lang.String"/>
-	<variable name="ivared" class="java.lang.String"/>
-	<variable name="ivasred" class="java.lang.String"/>
+	<variable name="suma_ivas" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -164,37 +162,45 @@ WHERE $P!{WHERE}]]>
 				<textFieldExpression><![CDATA[$F{total_ivasred}*$F{RESRED}/100]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Cabeceras" x="31" y="0" width="47" height="15" uuid="c7f5f354-33b8-48f5-a690-51bbec24bf58"/>
+				<reportElement style="Cabeceras" x="31" y="0" width="47" height="15" uuid="7ea8dc7f-e852-4d36-9b66-6b01f293bdec">
+					<printWhenExpression><![CDATA[!$F{total_ivagen}.equals( null ) ||
+!$F{total_ivared}.equals( null ) ||
+!$F{total_ivasred}.equals( null )]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="7" isBold="true"/>
 				</textElement>
 				<text><![CDATA[BASE IMP.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Cabeceras" x="80" y="0" width="44" height="15" uuid="3bea1609-6271-48f6-bae3-fbb2b6aee563"/>
+				<reportElement style="Cabeceras" x="80" y="0" width="44" height="15" uuid="3bea1609-6271-48f6-bae3-fbb2b6aee563">
+					<printWhenExpression><![CDATA[!$F{total_ivagen}.equals( null ) ||
+!$F{total_ivared}.equals( null ) ||
+!$F{total_ivasred}.equals( null )]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Cabeceras" x="126" y="0" width="39" height="15" uuid="7c90674a-5b36-4c7d-9202-04c438f6a9af">
-					<printWhenExpression><![CDATA[$F{totalrecargo} != 0 && $F{totalrecargo} != null]]></printWhenExpression>
+				<reportElement style="Cabeceras" x="126" y="0" width="39" height="15" isRemoveLineWhenBlank="true" uuid="7c90674a-5b36-4c7d-9202-04c438f6a9af">
+					<printWhenExpression><![CDATA[!$F{totalrecargo}.equals( 0.00 ) || $F{totalrecargo}.equals( null )]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[% RE]]></text>
 			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="167" y="0" width="39" height="15" uuid="feb1ff5b-3359-42d1-adbd-39fe25fc7ff6">
-					<printWhenExpression><![CDATA[$F{totalrecargo} != 0 && $F{totalrecargo} != null]]></printWhenExpression>
+			<textField>
+				<reportElement style="Cabeceras" x="167" y="0" width="39" height="15" isRemoveLineWhenBlank="true" uuid="84cca166-456a-45a0-ab23-76d243f733bb">
+					<printWhenExpression><![CDATA[!$F{totalrecargo}.equals( 0.00 ) || $F{totalrecargo}.equals( null )]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[RE]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA["RE"]]></textFieldExpression>
+			</textField>
 			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="80" y="37" width="44" height="19" isRemoveLineWhenBlank="true" uuid="26c4c9c0-6767-431c-aef2-c03820054fd0">
 					<printWhenExpression><![CDATA[$F{total_ivared} != 0 && $F{total_ivared} != null]]></printWhenExpression>
@@ -223,7 +229,11 @@ WHERE $P!{WHERE}]]>
 				<textFieldExpression><![CDATA[$F{total_ivasred}*$F{IVASRED}/100]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Cabeceras" x="0" y="0" width="29" height="15" uuid="bb1c256d-c86f-46c4-9647-cf0b20f34655"/>
+				<reportElement style="Cabeceras" x="0" y="0" width="29" height="15" uuid="bb1c256d-c86f-46c4-9647-cf0b20f34655">
+					<printWhenExpression><![CDATA[!$F{total_ivagen}.equals( null ) ||
+!$F{total_ivared}.equals( null ) ||
+!$F{total_ivasred}.equals( null )]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
