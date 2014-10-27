@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe Oficial" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="252"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -24,6 +24,15 @@
 	</parameter>
 	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_dirEnvio" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_incoterms" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_seriesobs" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT $P!{PARAM_tabla}.id$P!{PARAM_subtabla} as id,
@@ -195,6 +204,7 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreport>
 			</band>
 			<band height="40">
+				<printWhenExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}.equals( "Si" )]]></printWhenExpression>
 				<subreport isUsingCache="false">
 					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="37" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="555f1066-c394-40ec-a5f4-6ba2d8457856"/>
 					<subreportParameter name="SUBREPORT_DIR">
@@ -306,6 +316,46 @@ ORDER BY $P!{ORDERBY}]]>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<returnValue subreportVariable="PAGE_COUNT" toVariable="subreport_count"/>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "doc_rel.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="20">
+				<subreport isUsingCache="false">
+					<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="5575b67e-67e2-401f-890c-909923d83c94">
+						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_subtabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="WHERE">
+						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_titulo">
+						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_reldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tablareldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="PAGE_COUNT" toVariable="subreport_count"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_facturascli_deabono.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 		</groupHeader>
@@ -453,7 +503,9 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_totalivas.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement x="224" y="5" width="54" height="34" isRemoveLineWhenBlank="true" uuid="ebb32d8e-df41-4b93-b1d7-988b9e208879"/>
+					<reportElement x="224" y="5" width="54" height="34" isRemoveLineWhenBlank="true" uuid="ebb32d8e-df41-4b93-b1d7-988b9e208879">
+						<printWhenExpression><![CDATA[$P{PARAM_LOAD_incoterms}.equals( "Si" )]]></printWhenExpression>
+					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -508,10 +560,12 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreport>
 			</band>
 			<band height="20">
-				<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"
+				<printWhenExpression><![CDATA[$P{PARAM_LOAD_seriesobs}.equals( "Si" )
+&& $P{PARAM_tabla} == "facturascli"
 || $P{PARAM_tabla} == "albaranescli"
 || $P{PARAM_tabla} == "pedidoscli"
-|| $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
+|| $P{PARAM_tabla} == "presupuestoscli"
+]]></printWhenExpression>
 				<subreport isUsingCache="false">
 					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="71b9ec3b-28c3-4ce0-b453-2896363ab7f5"/>
 					<subreportParameter name="SUBREPORT_DIR">
