@@ -9,7 +9,7 @@
 	</parameter>
 	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.Integer" isForPrompting="false"/>
 	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["facturasprov"]]></defaultValueExpression>

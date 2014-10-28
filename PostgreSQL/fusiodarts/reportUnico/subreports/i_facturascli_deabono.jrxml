@@ -41,6 +41,7 @@ WHERE $P!{WHERE}]]>
 	</background>
 	<detail>
 		<band height="20">
+			<printWhenExpression><![CDATA[$F{deabono}.equals( true )]]></printWhenExpression>
 			<frame>
 				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="37cc8117-3b54-499e-a945-e6f835d56c95"/>
 				<textField isBlankWhenNull="true">
