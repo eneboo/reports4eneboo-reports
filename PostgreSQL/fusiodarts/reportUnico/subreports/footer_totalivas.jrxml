@@ -53,7 +53,7 @@ WHERE $P!{WHERE}]]>
 	</background>
 	<detail>
 		<band height="77" splitType="Prevent">
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="31" y="16" width="47" height="19" isRemoveLineWhenBlank="true" uuid="9a7fd8b1-31a8-4006-bdb9-62f6cad5da53">
 					<printWhenExpression><![CDATA[$F{total_ivagen} != 0 && $F{total_ivagen} != null]]></printWhenExpression>
 				</reportElement>
@@ -80,7 +80,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{IVARED} + "%"]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="31" y="37" width="47" height="19" isRemoveLineWhenBlank="true" uuid="e99a371b-1092-4696-859c-03b893b4e50e">
 					<printWhenExpression><![CDATA[$F{total_ivared} != 0 && $F{total_ivared} != null]]></printWhenExpression>
 				</reportElement>
@@ -98,7 +98,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{IVASRED} + "%"]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="31" y="58" width="47" height="19" isRemoveLineWhenBlank="true" uuid="9cf8271b-71f1-4f03-b72d-a7aa779ed8f3">
 					<printWhenExpression><![CDATA[$F{total_ivasred} != 0 && $F{total_ivasred} != null]]></printWhenExpression>
 				</reportElement>
@@ -116,7 +116,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{REGEN} + "%"]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="167" y="16" width="39" height="19" isRemoveLineWhenBlank="true" uuid="9473af64-d321-4ac1-bb5d-eec471549747">
 					<printWhenExpression><![CDATA[$F{totalrecargo} != 0 && $F{totalrecargo} != null]]></printWhenExpression>
 				</reportElement>
@@ -134,7 +134,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RERED} + "%"]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="167" y="37" width="39" height="19" isRemoveLineWhenBlank="true" uuid="f87dacd1-b79f-4f03-961d-5b6ce8c035ff">
 					<printWhenExpression><![CDATA[$F{totalrecargo} != 0 && $F{totalrecargo} != null]]></printWhenExpression>
 				</reportElement>
@@ -152,7 +152,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RESRED} + "%"]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="167" y="58" width="39" height="19" isRemoveLineWhenBlank="true" uuid="e8ff50fe-3379-428b-8fd7-536433940504">
 					<printWhenExpression><![CDATA[$F{totalrecargo} != 0 && $F{totalrecargo} != null]]></printWhenExpression>
 				</reportElement>
@@ -201,7 +201,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA["RE"]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="80" y="37" width="44" height="19" isRemoveLineWhenBlank="true" uuid="26c4c9c0-6767-431c-aef2-c03820054fd0">
 					<printWhenExpression><![CDATA[$F{total_ivared} != 0 && $F{total_ivared} != null]]></printWhenExpression>
 				</reportElement>
@@ -210,7 +210,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_ivared}*$F{IVARED}/100]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="80" y="16" width="44" height="19" isRemoveLineWhenBlank="true" uuid="8bd1993c-5f9c-4f7b-986f-0f0de1340916">
 					<printWhenExpression><![CDATA[$F{total_ivagen} != 0 && $F{total_ivagen} != null]]></printWhenExpression>
 				</reportElement>
@@ -219,7 +219,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_ivagen}*$F{IVAGEN}/100]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤" isBlankWhenNull="true">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="80" y="58" width="44" height="19" isRemoveLineWhenBlank="true" uuid="a3aca519-cefb-4758-911f-0f707a3a5956">
 					<printWhenExpression><![CDATA[$F{total_ivasred} != 0 && $F{total_ivasred} != null]]></printWhenExpression>
 				</reportElement>

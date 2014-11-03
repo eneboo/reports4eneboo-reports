@@ -50,6 +50,9 @@ WHERE $P!{WHERE}]]>
 	</background>
 	<detail>
 		<band height="53">
+			<printWhenExpression><![CDATA[!$F{empresabco_entidad}.equals( null ) ||
+!$F{empresabco_oficina}.equals( null ) ||
+!$F{empresabco_cuenta}.equals( null )]]></printWhenExpression>
 			<elementGroup>
 				<elementGroup/>
 			</elementGroup>
@@ -77,11 +80,7 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[( $F{cliente_codpais}.matches( "ES" )
     ? $V{empresa_cuentabco}
-    : "IBAN " + $F{empresabco_iban}.replaceAll("(....)", "$1 ").trim())
-
-
-
-]]></textFieldExpression>
+    : "IBAN " + $F{empresabco_iban}.replaceAll("(....)", "$1 ").trim())]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="34" width="170" height="19" uuid="65bb3a97-6188-461c-af97-d8df42f59445">

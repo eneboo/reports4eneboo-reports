@@ -22,7 +22,7 @@
 	</parameter>
 	<parameter name="tabla_direnvio" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[( $P{PARAM_LOAD_dirEnvio}.equals( "Si" ) ?
-    "facturasprov" : "dirproveedores" )]]></defaultValueExpression>
+    $P{PARAM_tabla} : "dirproveedores" )]]></defaultValueExpression>
 	</parameter>
 	<parameter name="where_direnvio" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[( $P{PARAM_LOAD_dirEnvio}.equals( "Si" ) ?

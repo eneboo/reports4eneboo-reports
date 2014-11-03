@@ -11,6 +11,15 @@
 	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="ID_SUBREPORT" class="java.lang.Integer" isForPrompting="false"/>
 	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{PARAM_orderdef}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["facturasprov"]]></defaultValueExpression>
 	</parameter>
@@ -49,7 +58,7 @@ FROM $P!{PARAM_tabla}
 LEFT OUTER JOIN $P!{clis_provs} ON $P!{clis_provs}.cod$P!{codcliprov} = $P!{PARAM_tabla}.cod$P!{codcliprov}
 LEFT OUTER JOIN dir$P!{clis_provs} ON dir$P!{clis_provs}.id = $P!{PARAM_tabla}.coddirenv
 LEFT OUTER JOIN paises ON paises.codpais = $P!{PARAM_tabla}.codpaisenv
-WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
+WHERE $P!{WHERE}]]>
 	</queryString>
 	<field name="codcliprov" class="java.lang.String"/>
 	<field name="coddirenv" class="java.lang.Integer"/>
@@ -61,22 +70,6 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 	<field name="paisenv" class="java.lang.String"/>
 	<field name="descripcionenv" class="java.lang.String"/>
 	<field name="codpaisenv" class="java.lang.String"/>
-	<variable name="direccionenv" class="java.lang.String">
-		<variableExpression><![CDATA[$F{direccionenv} + "     -     "]]></variableExpression>
-	</variable>
-	<variable name="ciudadenv" class="java.lang.String">
-		<variableExpression><![CDATA[$F{ciudadenv} + "     -     "]]></variableExpression>
-	</variable>
-	<variable name="provinciaenv" class="java.lang.String">
-		<variableExpression><![CDATA[$F{provinciaenv} + "     -     "]]></variableExpression>
-	</variable>
-	<variable name="cpenv" class="java.lang.String">
-		<variableExpression><![CDATA[$F{cpenv} + "     -     "]]></variableExpression>
-	</variable>
-	<variable name="paisenv" class="java.lang.String">
-		<variableExpression><![CDATA[$F{paisenv} + "     -     "]]></variableExpression>
-	</variable>
-	<variable name="dirEnvio" class="java.lang.String"/>
 	<variable name="separador" class="java.lang.String">
 		<variableExpression><![CDATA["   -   "]]></variableExpression>
 	</variable>
@@ -85,7 +78,6 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 	</background>
 	<detail>
 		<band height="37">
-			<printWhenExpression><![CDATA[$F{direccionenv} != null]]></printWhenExpression>
 			<elementGroup>
 				<frame>
 					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>
@@ -114,11 +106,11 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 							<font fontName="Arial" size="8"/>
 							<paragraph leftIndent="5" rightIndent="5"/>
 						</textElement>
-						<textFieldExpression><![CDATA[( $F{direccionenv} != null ? $F{direccionenv} + $V{separador} : "" ) +
-( $F{ciudadenv} != null ? $F{ciudadenv} + $V{separador} : "" ) +
-( $F{cpenv} != null ? $F{cpenv} + $V{separador} : "" ) +
-( $F{provinciaenv} != null ? $F{provinciaenv} + $V{separador} : "" ) +
-( $F{paisenv} != null ? $F{paisenv} : "" )]]></textFieldExpression>
+						<textFieldExpression><![CDATA[( !$F{direccionenv}.equals(null) ? $F{direccionenv} + $V{separador} : "" ) +
+( !$F{ciudadenv}.equals(null) ? $F{ciudadenv} + $V{separador} : "" ) +
+( !$F{cpenv}.equals(null) ? $F{cpenv} + $V{separador} : "" ) +
+( !$F{provinciaenv}.equals(null) ? $F{provinciaenv} + $V{separador} : "" ) +
+( !$F{paisenv}.equals(null) ? $F{paisenv} : "" )]]></textFieldExpression>
 					</textField>
 				</frame>
 			</elementGroup>

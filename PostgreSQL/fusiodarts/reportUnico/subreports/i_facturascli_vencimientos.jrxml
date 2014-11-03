@@ -50,7 +50,7 @@ WHERE
 			<frame>
 				<reportElement style="Recuadros" x="0" y="15" width="100" height="19" uuid="86c15537-cdb8-4669-aca3-d4ff181f130d"/>
 			</frame>
-			<textField pattern="#,##0.00 ¤">
+			<textField pattern="#,##0.00">
 				<reportElement mode="Transparent" x="57" y="15" width="43" height="19" uuid="df74b1e9-d7fb-45d3-931a-d77b1b67340f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
