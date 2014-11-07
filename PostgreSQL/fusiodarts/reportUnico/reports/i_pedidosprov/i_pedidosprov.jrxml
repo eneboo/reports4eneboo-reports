@@ -266,50 +266,33 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreport>
 			</band>
 			<band height="20">
-				<elementGroup>
-					<staticText>
-						<reportElement style="Cabeceras" x="62" y="0" width="287" height="15" uuid="5ea80f58-df36-4a78-99d3-80c39c0a0713"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Descripción]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="0" y="0" width="60" height="15" uuid="b3bdefc4-ff7e-453e-bfa3-233687821837"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Referencia]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="445" y="0" width="50" height="15" uuid="055293ce-fdb6-45c9-9b62-07b07f5a3968"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Dto. %]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="497" y="0" width="58" height="15" uuid="4b4368ca-b9ed-49cf-ac02-a803406acf4c"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Importe]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="393" y="0" width="50" height="15" uuid="cd02bdf5-ed53-4f5a-971d-2bc69b979113"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Precio]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="351" y="0" width="40" height="15" uuid="f043f43b-6a18-49b2-9d1e-f176a125419f"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Cant.]]></text>
-					</staticText>
-				</elementGroup>
+				<subreport isUsingCache="false">
+					<reportElement x="0" y="0" width="555" height="15" uuid="389ba4b5-79b5-4cee-b860-49299ef7b1fb"/>
+					<subreportParameter name="PARAM_subtabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="WHERE">
+						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_titulo">
+						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_reldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tablareldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="PAGE_COUNT" toVariable="subreport_count"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "titulos_lineas.jasper"]]></subreportExpression>
+				</subreport>
 			</band>
 			<band height="20">
 				<subreport isUsingCache="false">
@@ -670,14 +653,14 @@ ORDER BY $P!{ORDERBY}]]>
 	<detail>
 		<band height="21" splitType="Immediate">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="62" y="0" width="287" height="17" uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d"/>
+				<reportElement x="62" y="0" width="275" height="17" uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
-				<reportElement x="351" y="0" width="40" height="17" uuid="f88d3006-6144-4bd3-a6d2-f8a51c5c9e22">
+				<reportElement x="339" y="0" width="52" height="17" uuid="f88d3006-6144-4bd3-a6d2-f8a51c5c9e22">
 					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
 				</reportElement>
 				<box leftPadding="0"/>
