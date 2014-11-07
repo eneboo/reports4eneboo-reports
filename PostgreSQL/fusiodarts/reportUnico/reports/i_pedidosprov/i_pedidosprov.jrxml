@@ -34,6 +34,9 @@
 	<parameter name="PARAM_LOAD_seriesobs" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="PARAM_LOAD_traza" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT $P!{PARAM_tabla}.id$P!{PARAM_subtabla} as id,
 	$P!{PARAM_tabla}.codigo as codigo,
@@ -50,7 +53,7 @@
 	$P!{PARAM_tabla}.totalirpf as totalirpf,
     formaspago.domiciliado as domiciliado,
     ( select impuestos.iva from impuestos where impuestos.codimpuesto = 'GEN' ) as IVA,
- 	lineas$P!{PARAM_tabla}.id$P!{PARAM_subtabla} as idlinea,
+ 	lineas$P!{PARAM_tabla}.idlinea as idlinea,
 	lineas$P!{PARAM_tabla}.referencia as referencia,
 	lineas$P!{PARAM_tabla}.descripcion as descripcionreferencia,
 	lineas$P!{PARAM_tabla}.cantidad as cantidadreferencia,
@@ -277,11 +280,29 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_traza">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_reldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_orderdef">
 						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
@@ -311,8 +332,26 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_reldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_traza">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_orderdef">
 						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
@@ -330,14 +369,8 @@ ORDER BY $P!{ORDERBY}]]>
 					<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="5575b67e-67e2-401f-890c-909923d83c94">
 						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"]]></printWhenExpression>
 					</reportElement>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="PARAM_subtabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_LOAD_dirEnvio">
-						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="WHERE">
 						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
@@ -345,17 +378,32 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="ORDERBY">
-						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_orderdef">
-						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_reldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_traza">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_tablareldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
@@ -652,13 +700,60 @@ ORDER BY $P!{ORDERBY}]]>
 	</pageHeader>
 	<detail>
 		<band height="21" splitType="Immediate">
-			<textField isStretchWithOverflow="true">
-				<reportElement x="62" y="0" width="275" height="17" uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d"/>
-				<textElement>
-					<font fontName="Arial" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
-			</textField>
+			<subreport isUsingCache="false">
+				<reportElement key="Subreport Traza" x="269" y="0" width="68" height="17" isRemoveLineWhenBlank="true" uuid="9e2b2e1e-b5c7-4616-95a7-40f2ec33d887">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&
+!$P{PARAM_tabla}.equals( "pedidoscli" ) &&
+!$P{PARAM_tabla}.equals( "pedidosprov" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="PARAM_subtabla">
+					<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="WHERE">
+					<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_tabla">
+					<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_traza">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_titulo">
+					<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_incoterms">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_reldoc">
+					<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_seriesobs">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_dirEnvio">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDLINEA">
+					<subreportParameterExpression><![CDATA[$F{idlinea}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ORDERBY">
+					<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_orderdef">
+					<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_tablareldoc">
+					<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "traza_detalle.jasper"]]></subreportExpression>
+			</subreport>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
 				<reportElement x="339" y="0" width="52" height="17" uuid="f88d3006-6144-4bd3-a6d2-f8a51c5c9e22">
 					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
@@ -705,6 +800,24 @@ ORDER BY $P!{ORDERBY}]]>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="Desc sin Traza" x="62" y="0" width="275" height="17" isRemoveLineWhenBlank="true" uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "No" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="Desc. con Traza" mode="Transparent" x="62" y="0" width="205" height="17" uuid="e2720a04-692e-43d0-985c-e6724068a94d">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="lotes_titulos" pageWidth="275" pageHeight="15" whenNoDataType="AllSectionsNoDetail" columnWidth="275" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<background>
+		<band height="15">
+			<staticText>
+				<reportElement style="Cabeceras" x="0" y="0" width="205" height="15" uuid="15edfbba-373b-435a-b323-7f26181e27fd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Cabeceras" x="207" y="0" width="68" height="15" uuid="4812c16a-1d51-49c4-8e56-8f53e24c75b4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOTE]]></text>
+			</staticText>
+		</band>
+	</background>
+	<detail>
+		<band/>
+	</detail>
+</jasperReport>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="lotes_detalle" pageWidth="68" pageHeight="17" whenNoDataType="AllSectionsNoDetail" columnWidth="68" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="IDLINEA" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[7]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_reldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="IDLINEA_TRAZA" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals( "facturascli" ) ? "idlineafc"
+    : ( $P{PARAM_tabla}.equals( "albaranescli" ) ? "idlineaac"
+        : ( $P{PARAM_tabla}.equals( "facturasprov" ) ? "idlineafp"
+            : ( $P{PARAM_tabla}.equals( "albaranesprov" ) ? "idlineaap" : "" ) ) ) )]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT nombre,
+(SELECT codlote as codlote FROM movilote WHERE $P!{IDLINEA_TRAZA} = $P!{IDLINEA}) as codlote
+FROM empresa
+WHERE empresa.id = 1]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="codlote" class="java.lang.String"/>
+	<detail>
+		<band height="17">
+			<printWhenExpression><![CDATA[!$F{codlote}.equals( null )]]></printWhenExpression>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="68" height="17" uuid="f433d589-d07d-4817-bb17-0e48dc3c0bd9"/>
+				<box leftPadding="0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codlote}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -4,6 +4,24 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_reldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_LOAD_traza" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<background>
 		<band height="15">
 			<staticText>
@@ -48,6 +66,21 @@
 				</textElement>
 				<text><![CDATA[Importe]]></text>
 			</staticText>
+			<subreport>
+				<reportElement mode="Opaque" x="62" y="0" width="275" height="15" isRemoveLineWhenBlank="true" uuid="77d914a9-541c-4df1-a575-50d0da61f69e">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&
+!$P{PARAM_tabla}.equals( "pedidoscli" ) &&
+!$P{PARAM_tabla}.equals( "pedidosprov" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_traza">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "traza_titulos.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</background>
 	<detail>
