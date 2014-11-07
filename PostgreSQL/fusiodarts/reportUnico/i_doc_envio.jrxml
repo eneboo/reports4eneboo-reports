@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Albarán de Envío" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Doc. Envío" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="109"/>
+	<property name="ireport.y" value="96"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -25,6 +25,18 @@
 	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="PARAM_LOAD_dirEnvio" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_incoterms" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_seriesobs" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_traza" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT $P!{PARAM_tabla}.id$P!{PARAM_subtabla} as id,
 	$P!{PARAM_tabla}.codigo as codigo,
@@ -39,10 +51,10 @@
 	$P!{PARAM_tabla}.neto as neto,
 	$P!{PARAM_tabla}.irpf as irpf,
 	$P!{PARAM_tabla}.totalirpf as totalirpf,
-    $P!{PARAM_tabla}.transportista as transportista,
+$P!{PARAM_tabla}.transportista as transportista,
     formaspago.domiciliado as domiciliado,
     ( select impuestos.iva from impuestos where impuestos.codimpuesto = 'GEN' ) as IVA,
- 	lineas$P!{PARAM_tabla}.id$P!{PARAM_subtabla} as idlinea,
+ 	lineas$P!{PARAM_tabla}.idlinea as idlinea,
 	lineas$P!{PARAM_tabla}.referencia as referencia,
 	lineas$P!{PARAM_tabla}.descripcion as descripcionreferencia,
 	lineas$P!{PARAM_tabla}.cantidad as cantidadreferencia,
@@ -105,7 +117,7 @@ ORDER BY $P!{ORDERBY}]]>
 		<groupHeader>
 			<band height="80">
 				<subreport isUsingCache="false">
-					<reportElement x="199" y="3" width="355" height="73" uuid="3aeb2a94-68b1-442d-9502-645a8dc4e236">
+					<reportElement key="Header Proveedor" x="199" y="3" width="355" height="73" uuid="3aeb2a94-68b1-442d-9502-645a8dc4e236">
 						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturasprov" || $P{PARAM_tabla} == "albaranesprov" || $P{PARAM_tabla} == "pedidosprov"]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
@@ -117,6 +129,9 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="WHERE">
 						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -125,6 +140,9 @@ ORDER BY $P!{ORDERBY}]]>
 					</subreportParameter>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_orderdef">
 						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
@@ -135,6 +153,9 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_tablareldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="ID_SUBREPORT">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -142,14 +163,17 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header_prov.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport isUsingCache="false">
-					<reportElement x="199" y="3" width="355" height="73" uuid="878f5e8b-94e9-47cd-a566-bf5ddcccbf9d">
+					<reportElement key="Header Cliente" x="199" y="3" width="355" height="73" uuid="878f5e8b-94e9-47cd-a566-bf5ddcccbf9d">
 						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
 					</reportElement>
+					<subreportParameter name="PARAM_subtabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_subtabla">
-						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="WHERE">
 						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
@@ -163,14 +187,20 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_orderdef">
-						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_reldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_tablareldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="ID_SUBREPORT">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
@@ -200,33 +230,35 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreport>
 			</band>
 			<band height="20">
-				<printWhenExpression><![CDATA[$F{transportista} != null]]></printWhenExpression>
+				<printWhenExpression><![CDATA[!$F{transportista}.equals( null )]]></printWhenExpression>
+				<staticText>
+					<reportElement style="Cabeceras" x="0" y="0" width="89" height="17" uuid="0d5c36f1-78ec-4850-8e2a-17f1a9672692"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Transportista]]></text>
+				</staticText>
 				<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement style="Recuadros" x="91" y="0" width="464" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="2b584854-6c83-4be7-b5fd-8fcf05d23529"/>
+					<reportElement style="Recuadros" x="89" y="0" width="464" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="7cfdc708-2c0f-4525-a0e9-c81e2b22672d"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" size="8"/>
 						<paragraph leftIndent="2"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{transportista}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement style="Cabeceras" x="2" y="0" width="89" height="17" uuid="f0a45528-8516-4133-a002-8507314da22b"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Transportista]]></text>
-				</staticText>
 			</band>
 			<band height="40">
+				<printWhenExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}.equals( "Si" )]]></printWhenExpression>
 				<subreport isUsingCache="false">
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="37" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="555f1066-c394-40ec-a5f4-6ba2d8457856">
-						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
-					</reportElement>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="37" isPrintWhenDetailOverflows="true" uuid="555f1066-c394-40ec-a5f4-6ba2d8457856"/>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_subtabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="WHERE">
 						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
@@ -240,6 +272,9 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_orderdef">
 						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -249,58 +284,75 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_tablareldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="ID_SUBREPORT">
-						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header_direnvio.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 			<band height="20">
-				<elementGroup>
-					<staticText>
-						<reportElement style="Cabeceras" x="62" y="0" width="287" height="15" uuid="5ea80f58-df36-4a78-99d3-80c39c0a0713"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Descripción]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="0" y="0" width="60" height="15" uuid="b3bdefc4-ff7e-453e-bfa3-233687821837"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Referencia]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="445" y="0" width="50" height="15" uuid="055293ce-fdb6-45c9-9b62-07b07f5a3968"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="497" y="0" width="58" height="15" uuid="4b4368ca-b9ed-49cf-ac02-a803406acf4c"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[Cantidad]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="393" y="0" width="50" height="15" uuid="cd02bdf5-ed53-4f5a-971d-2bc69b979113"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[]]></text>
-					</staticText>
-					<staticText>
-						<reportElement style="Cabeceras" x="351" y="0" width="40" height="15" uuid="f043f43b-6a18-49b2-9d1e-f176a125419f"/>
-						<textElement textAlignment="Center">
-							<font fontName="Arial" size="9" isBold="true"/>
-						</textElement>
-						<text><![CDATA[]]></text>
-					</staticText>
-				</elementGroup>
+				<staticText>
+					<reportElement style="Cabeceras" x="0" y="1" width="60" height="15" uuid="ed3b6156-0bfd-4762-b592-f5492ace0eca"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Referencia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Cabeceras" x="445" y="1" width="50" height="15" uuid="54661ab1-406b-4ec1-a8dd-5d05281bd520"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Cabeceras" x="393" y="1" width="50" height="15" uuid="2b797d1e-e7fa-46c4-bed4-69aee8a9f2d6"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Cabeceras" x="497" y="1" width="58" height="15" uuid="093b2c1b-b182-4fc9-9e33-8b18ae342673"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Cabeceras" x="339" y="1" width="52" height="15" uuid="39705eba-a4c9-45e7-a6cc-fa8a05e3ee5e"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Cabeceras" x="62" y="1" width="275" height="15" uuid="a8fdfeb0-0604-46ac-9407-53e30b8f637e">
+						<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&
+!$P{PARAM_tabla}.equals( "pedidoscli" ) &&
+!$P{PARAM_tabla}.equals( "pedidosprov" )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descripción]]></text>
+				</staticText>
+				<subreport>
+					<reportElement mode="Opaque" x="62" y="1" width="275" height="15" isRemoveLineWhenBlank="true" uuid="d515e96c-0592-4005-b16b-86d19b280076">
+						<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&
+!$P{PARAM_tabla}.equals( "pedidoscli" ) &&
+!$P{PARAM_tabla}.equals( "pedidosprov" )]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_traza">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "traza_titulos.jasper"]]></subreportExpression>
+				</subreport>
 			</band>
 			<band height="20">
 				<subreport isUsingCache="false">
@@ -319,8 +371,26 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_titulo">
 						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_reldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_traza">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_orderdef">
 						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
@@ -333,18 +403,60 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "doc_rel.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
+			<band height="20">
+				<subreport isUsingCache="false">
+					<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="5575b67e-67e2-401f-890c-909923d83c94">
+						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="PARAM_subtabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="WHERE">
+						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tabla">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_titulo">
+						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_incoterms">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_reldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_seriesobs">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_traza">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ORDERBY">
+						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_tablareldoc">
+						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<returnValue subreportVariable="PAGE_COUNT" toVariable="subreport_count"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_facturascli_deabono.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
 		</groupHeader>
 		<groupFooter>
 			<band height="42" splitType="Stretch">
-				<staticText>
-					<reportElement style="Cabeceras" x="465" y="0" width="89" height="17" uuid="b1fdea82-78c2-4ac5-b846-2f41cc9e74e8"/>
-					<textElement textAlignment="Center">
-						<font fontName="Arial" size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Total Artículos]]></text>
-				</staticText>
 				<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement style="Recuadros" x="465" y="17" width="89" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="7a49ff4f-123a-4229-a570-80e53533bb6d">
+					<reportElement style="Recuadros" x="465" y="17" width="89" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="3227013f-dbf3-4960-a8ea-b7036d762603">
 						<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -353,11 +465,19 @@ ORDER BY $P!{ORDERBY}]]>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{sumacantidad}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement style="Cabeceras" x="465" y="0" width="89" height="17" uuid="4fcd46a3-ffd1-4379-951c-f5d43938be09"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Artículos]]></text>
+				</staticText>
 			</band>
 			<band height="42">
-				<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"]]></printWhenExpression>
 				<subreport>
-					<reportElement x="435" y="5" width="120" height="34" uuid="ba7aef0c-4a02-4953-b771-12602672a847"/>
+					<reportElement x="455" y="5" width="100" height="34" uuid="ba7aef0c-4a02-4953-b771-12602672a847">
+						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
+					</reportElement>
 					<subreportParameter name="ID">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -365,8 +485,8 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_facturascli_vencimientos.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement x="302" y="5" width="130" height="35" uuid="7a5dd860-88c0-401c-b414-1d883938e481">
-						<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == false]]></printWhenExpression>
+					<reportElement x="282" y="5" width="170" height="35" uuid="7a5dd860-88c0-401c-b414-1d883938e481">
+						<printWhenExpression><![CDATA[$F{domiciliado}.equals( true ) && $P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
@@ -402,8 +522,8 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_cuentabco.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport runToBottom="false">
-					<reportElement x="302" y="5" width="130" height="35" uuid="054fc1e8-bd8d-4a72-bae9-1b0efa26c70b">
-						<printWhenExpression><![CDATA[$F{domiciliado}.booleanValue() == true]]></printWhenExpression>
+					<reportElement x="282" y="5" width="170" height="35" uuid="054fc1e8-bd8d-4a72-bae9-1b0efa26c70b">
+						<printWhenExpression><![CDATA[$F{domiciliado}.equals( true ) && $P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="PARAM_subtabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
@@ -439,7 +559,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_cuentabcocli.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="5" width="226" height="35" uuid="dd2a6355-6a0c-4d96-9c40-17309af92797"/>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="5" width="206" height="35" uuid="dd2a6355-6a0c-4d96-9c40-17309af92797"/>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -471,11 +591,11 @@ ORDER BY $P!{ORDERBY}]]>
 						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_facturascli_totalivas.jasper"]]></subreportExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_totalivas.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport>
-					<reportElement x="229" y="5" width="70" height="34" uuid="ebb32d8e-df41-4b93-b1d7-988b9e208879">
-						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"]]></printWhenExpression>
+					<reportElement x="224" y="5" width="54" height="34" isRemoveLineWhenBlank="true" uuid="ebb32d8e-df41-4b93-b1d7-988b9e208879">
+						<printWhenExpression><![CDATA[$P{PARAM_LOAD_incoterms}.equals( "Si" )]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
@@ -508,7 +628,7 @@ ORDER BY $P!{ORDERBY}]]>
 						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "i_facturascli_incoterms.jasper"]]></subreportExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "footer_incoterms.jasper"]]></subreportExpression>
 				</subreport>
 			</band>
 			<band height="22">
@@ -531,12 +651,14 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreport>
 			</band>
 			<band height="20">
-				<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli" 
-|| $P{PARAM_tabla} == "albaranescli" 
-|| $P{PARAM_tabla} == "pedidoscli" 
+				<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli"
+|| $P{PARAM_tabla} == "albaranescli"
+|| $P{PARAM_tabla} == "pedidoscli"
 || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
 				<subreport isUsingCache="false">
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="71b9ec3b-28c3-4ce0-b453-2896363ab7f5"/>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="71b9ec3b-28c3-4ce0-b453-2896363ab7f5">
+						<printWhenExpression><![CDATA[$P{PARAM_LOAD_seriesobs}.equals( "Si" )]]></printWhenExpression>
+					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
 						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -587,49 +709,94 @@ ORDER BY $P!{ORDERBY}]]>
 	</pageHeader>
 	<detail>
 		<band height="21" splitType="Immediate">
-			<textField isStretchWithOverflow="true">
-				<reportElement x="62" y="0" width="287" height="17" uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d"/>
-				<textElement>
-					<font fontName="Arial" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="351" y="0" width="40" height="17" uuid="95d66e3d-9ee6-41d6-b930-5896d614d0db">
-					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
+			<subreport isUsingCache="false">
+				<reportElement key="Subreport Traza" x="269" y="0" width="68" height="17" isRemoveLineWhenBlank="true" uuid="9e2b2e1e-b5c7-4616-95a7-40f2ec33d887">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&
+!$P{PARAM_tabla}.equals( "pedidoscli" ) &&
+!$P{PARAM_tabla}.equals( "pedidosprov" )]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Right" markup="none">
-					<font fontName="Arial" size="8"/>
-				</textElement>
-				<text><![CDATA[]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="393" y="0" width="50" height="17" uuid="8acb6a54-ab56-45d0-b8aa-e196151c9b1d">
-					<printWhenExpression><![CDATA[$F{referenciaprecio} != 0]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Right" markup="none">
-					<font fontName="Arial" size="8"/>
-				</textElement>
-				<text><![CDATA[]]></text>
-			</staticText>
+				<subreportParameter name="PARAM_subtabla">
+					<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="WHERE">
+					<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_tabla">
+					<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_traza">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_titulo">
+					<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_incoterms">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_reldoc">
+					<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_seriesobs">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_dirEnvio">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IDLINEA">
+					<subreportParameterExpression><![CDATA[$F{idlinea}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ORDERBY">
+					<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ID">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_orderdef">
+					<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_tablareldoc">
+					<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "traza_detalle.jasper"]]></subreportExpression>
+			</subreport>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
-				<reportElement x="497" y="0" width="58" height="17" uuid="2c41dcb6-caaf-4455-9238-e051b5164172">
+				<reportElement x="497" y="0" width="58" height="17" uuid="f88d3006-6144-4bd3-a6d2-f8a51c5c9e22">
 					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
 				</reportElement>
+				<box leftPadding="0"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidadreferencia}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="445" y="0" width="50" height="17" uuid="88edafd2-5dda-4a2a-ac3e-3a6b0a4c3273">
-					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0 && $F{dtoporreferencia} != 0]]></printWhenExpression>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="393" y="0" width="50" height="17" uuid="f3e68a67-1a55-4e0a-8943-795a7aa6593f">
+					<printWhenExpression><![CDATA[$F{referenciaprecio} != 0]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Right" markup="none">
+				<textElement textAlignment="Right">
 					<font fontName="Arial" size="8"/>
 				</textElement>
-				<text><![CDATA[]]></text>
-			</staticText>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="339" y="0" width="52" height="17" uuid="2c41dcb6-caaf-4455-9238-e051b5164172"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="445" y="0" width="50" height="17" uuid="5bf5fb2c-2fce-4125-9447-34317bd43f39">
+					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0 && $F{dtoporreferencia} != 0]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="60" height="17" uuid="3f12babc-5e82-43c6-af94-bf258fa87894">
 					<printWhenExpression><![CDATA[$F{referencia} != 0]]></printWhenExpression>
@@ -639,6 +806,24 @@ ORDER BY $P!{ORDERBY}]]>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="Desc sin Traza" x="62" y="0" width="275" height="17" isRemoveLineWhenBlank="true" uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "No" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="Desc. con Traza" mode="Transparent" x="62" y="0" width="205" height="17" uuid="e2720a04-692e-43d0-985c-e6724068a94d">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -27,7 +27,7 @@
 	<parameter name="where_direnvio" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[( $P{PARAM_LOAD_dirEnvio}.equals( "Si" ) ?
     "" :
-    "AND dirproveedores.direccionppal = true")]]></defaultValueExpression>
+    "AND dirproveedores.direccionppal = true ")]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -44,7 +44,7 @@ $P!{tabla_direnvio}.codpais as paisproveedor
 FROM $P!{PARAM_tabla}
 LEFT OUTER JOIN proveedores ON proveedores.codproveedor = $P!{PARAM_tabla}.codproveedor
 LEFT OUTER JOIN dirproveedores ON dirproveedores.codproveedor = $P!{PARAM_tabla}.codproveedor
-WHERE $P!{WHERE} $P!{where_direnvio} LIMIT 1]]>
+WHERE $P!{WHERE} $P!{where_direnvio}LIMIT 1]]>
 	</queryString>
 	<field name="direccionproveedor" class="java.lang.String"/>
 	<field name="nombreproveedor" class="java.lang.String"/>

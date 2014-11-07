@@ -112,7 +112,7 @@ ORDER BY $P!{ORDERBY}]]>
 		<groupHeader>
 			<band height="80">
 				<subreport isUsingCache="false">
-					<reportElement x="199" y="3" width="355" height="73" uuid="3aeb2a94-68b1-442d-9502-645a8dc4e236">
+					<reportElement key="Header Proveedor" x="199" y="3" width="355" height="73" uuid="3aeb2a94-68b1-442d-9502-645a8dc4e236">
 						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturasprov" || $P{PARAM_tabla} == "albaranesprov" || $P{PARAM_tabla} == "pedidosprov"]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="SUBREPORT_DIR">
@@ -158,7 +158,7 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header_prov.jasper"]]></subreportExpression>
 				</subreport>
 				<subreport isUsingCache="false">
-					<reportElement x="199" y="3" width="355" height="73" uuid="878f5e8b-94e9-47cd-a566-bf5ddcccbf9d">
+					<reportElement key="Header Cliente" x="199" y="3" width="355" height="73" uuid="878f5e8b-94e9-47cd-a566-bf5ddcccbf9d">
 						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="PARAM_subtabla">
