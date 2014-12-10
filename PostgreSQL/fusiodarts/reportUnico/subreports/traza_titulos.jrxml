@@ -6,20 +6,20 @@
 	<template><![CDATA["../style.jrtx"]]></template>
 	<background>
 		<band height="15">
-			<staticText>
-				<reportElement style="Cabeceras" x="0" y="0" width="205" height="15" uuid="15edfbba-373b-435a-b323-7f26181e27fd"/>
-				<textElement textAlignment="Center">
+			<textField>
+				<reportElement style="Cabeceras" x="0" y="0" width="205" height="15" uuid="8cdf91fa-6a2c-4cd7-849a-26d426d4b10b"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Descripción]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="207" y="0" width="68" height="15" uuid="4812c16a-1d51-49c4-8e56-8f53e24c75b4"/>
-				<textElement textAlignment="Center">
+				<textFieldExpression><![CDATA[$R{i18n.descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="207" y="0" width="68" height="15" uuid="fde98729-eea8-460d-a48d-95b98b61fcc8"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[LOTE]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$R{i18n.traza_lote}]]></textFieldExpression>
+			</textField>
 		</band>
 	</background>
 	<detail>

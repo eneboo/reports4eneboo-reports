@@ -24,48 +24,48 @@
 	</parameter>
 	<background>
 		<band height="15">
-			<staticText>
-				<reportElement style="Cabeceras" x="0" y="0" width="60" height="15" uuid="c6730ffb-743e-4cd0-bfdc-47243b585c62"/>
-				<textElement textAlignment="Center">
+			<textField>
+				<reportElement style="Cabeceras" x="0" y="0" width="60" height="15" uuid="775f79ab-e70d-4692-9e3d-d264994eacf2"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Referencia]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="339" y="0" width="52" height="15" uuid="6c46591e-331e-4371-a42d-4837dbe1df80"/>
-				<textElement textAlignment="Center">
+				<textFieldExpression><![CDATA[$R{i18n.referencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="339" y="0" width="52" height="15" uuid="bc3c493d-fccb-4a86-8950-b1a9a8beca2c"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cant.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="62" y="0" width="275" height="15" uuid="15edfbba-373b-435a-b323-7f26181e27fd"/>
-				<textElement textAlignment="Center">
+				<textFieldExpression><![CDATA[$R{i18n.cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="62" y="0" width="275" height="15" uuid="2ac5e99a-54f2-4204-9148-147012677390"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Descripción]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="393" y="0" width="50" height="15" uuid="e8d2c6b2-f661-4103-94b1-e3bef1cabb54"/>
-				<textElement textAlignment="Center">
+				<textFieldExpression><![CDATA[$R{i18n.descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="393" y="0" width="50" height="15" uuid="e8ec5113-2650-48ed-8e85-be2d6dc3c1d7"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Precio]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="445" y="0" width="50" height="15" uuid="5405a0c2-97eb-484c-97c8-3b358bff9358"/>
-				<textElement textAlignment="Center">
+				<textFieldExpression><![CDATA[$R{i18n.precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="445" y="0" width="50" height="15" uuid="87bdec71-e46d-472d-8a34-c2d104403a85"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Dto. %]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="497" y="0" width="58" height="15" uuid="8e38541a-d0d7-4bba-9af1-afbf37c0ca81"/>
-				<textElement textAlignment="Center">
+				<textFieldExpression><![CDATA[$R{i18n.descuento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="497" y="0" width="58" height="15" uuid="9099b735-8a7a-4f37-be4d-f41042b6cd85"/>
+				<textElement textAlignment="Center" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Importe]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$R{i18n.importe}]]></textFieldExpression>
+			</textField>
 			<subreport>
 				<reportElement mode="Opaque" x="62" y="0" width="275" height="15" isRemoveLineWhenBlank="true" uuid="77d914a9-541c-4df1-a575-50d0da61f69e">
 					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&

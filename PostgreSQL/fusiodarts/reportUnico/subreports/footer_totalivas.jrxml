@@ -161,8 +161,8 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_ivasred}*$F{RESRED}/100]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement style="Cabeceras" x="31" y="0" width="47" height="15" uuid="7ea8dc7f-e852-4d36-9b66-6b01f293bdec">
+			<textField>
+				<reportElement style="Cabeceras" x="31" y="0" width="47" height="15" uuid="2a8415f9-9dae-405c-8e42-c318fb778ca2">
 					<printWhenExpression><![CDATA[!$F{total_ivagen}.equals( null ) ||
 !$F{total_ivared}.equals( null ) ||
 !$F{total_ivasred}.equals( null )]]></printWhenExpression>
@@ -170,10 +170,10 @@ WHERE $P!{WHERE}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="7" isBold="true"/>
 				</textElement>
-				<text><![CDATA[BASE IMP.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="80" y="0" width="44" height="15" uuid="3bea1609-6271-48f6-bae3-fbb2b6aee563">
+				<textFieldExpression><![CDATA[$R{i18n.baseimp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="80" y="0" width="44" height="15" uuid="e501d4b1-4dba-4903-bfee-2436ef0cec74">
 					<printWhenExpression><![CDATA[!$F{total_ivagen}.equals( null ) ||
 !$F{total_ivared}.equals( null ) ||
 !$F{total_ivasred}.equals( null )]]></printWhenExpression>
@@ -181,17 +181,17 @@ WHERE $P!{WHERE}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[IVA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="126" y="0" width="39" height="15" isRemoveLineWhenBlank="true" uuid="7c90674a-5b36-4c7d-9202-04c438f6a9af">
+				<textFieldExpression><![CDATA[$R{i18n.iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="126" y="0" width="39" height="15" isRemoveLineWhenBlank="true" uuid="cec68281-0608-4640-9885-192a65342dce">
 					<printWhenExpression><![CDATA[!$F{totalrecargo}.equals( 0.00 ) || $F{totalrecargo}.equals( null )]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[% RE]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA["% " + $R{i18n.recargoequivalencia}]]></textFieldExpression>
+			</textField>
 			<textField>
 				<reportElement style="Cabeceras" x="167" y="0" width="39" height="15" isRemoveLineWhenBlank="true" uuid="84cca166-456a-45a0-ab23-76d243f733bb">
 					<printWhenExpression><![CDATA[!$F{totalrecargo}.equals( 0.00 ) || $F{totalrecargo}.equals( null )]]></printWhenExpression>
@@ -199,7 +199,7 @@ WHERE $P!{WHERE}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["RE"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{i18n.recargoequivalencia}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="80" y="37" width="44" height="19" isRemoveLineWhenBlank="true" uuid="26c4c9c0-6767-431c-aef2-c03820054fd0">
@@ -228,8 +228,8 @@ WHERE $P!{WHERE}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_ivasred}*$F{IVASRED}/100]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement style="Cabeceras" x="0" y="0" width="29" height="15" uuid="bb1c256d-c86f-46c4-9647-cf0b20f34655">
+			<textField>
+				<reportElement style="Cabeceras" x="0" y="0" width="29" height="15" uuid="f3b8ef5f-5457-45c0-beeb-6c85a72f7b87">
 					<printWhenExpression><![CDATA[!$F{total_ivagen}.equals( null ) ||
 !$F{total_ivared}.equals( null ) ||
 !$F{total_ivasred}.equals( null )]]></printWhenExpression>
@@ -237,8 +237,8 @@ WHERE $P!{WHERE}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[% IVA]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA["% " + $R{i18n.iva}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

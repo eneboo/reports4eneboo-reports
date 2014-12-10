@@ -80,7 +80,7 @@ WHERE $P!{WHERE}]]>
 					<textElement>
 						<font fontName="Arial" size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[de]]></text>
+					<text><![CDATA[>>]]></text>
 				</staticText>
 				<textField>
 					<reportElement x="41" y="0" width="84" height="20" uuid="1cca06ee-7911-4a6e-a59d-c199d324f934"/>

@@ -64,14 +64,13 @@ WHERE $P!{WHERE} $P!{where_direnvio}LIMIT 1]]>
 				<frame>
 					<reportElement style="Cabeceras" x="0" y="0" width="355" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>
 				</frame>
-				<staticText>
-					<reportElement mode="Transparent" x="0" y="0" width="55" height="15" uuid="9abba737-1804-4cce-b039-bfd6c641744c"/>
-					<textElement verticalAlignment="Middle">
+				<textField>
+					<reportElement mode="Transparent" x="0" y="0" width="55" height="15" uuid="b3485af7-c678-4710-8724-90819ec833df"/>
+					<textElement verticalAlignment="Middle" markup="none">
 						<font fontName="Arial" size="9" isBold="true"/>
-						<paragraph leftIndent="5"/>
 					</textElement>
-					<text><![CDATA[Proveedor]]></text>
-				</staticText>
+					<textFieldExpression><![CDATA[$R{i18n.proveedor}]]></textFieldExpression>
+				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement x="58" y="0" width="79" height="15" uuid="bdd8a260-42a6-4912-9efd-0532b1de96e7"/>
 					<textElement verticalAlignment="Middle">

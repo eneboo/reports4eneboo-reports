@@ -26,16 +26,15 @@
 	</background>
 	<detail>
 		<band height="20">
-			<staticText>
-				<reportElement style="Cabeceras" mode="Opaque" x="0" y="0" width="555" height="15" uuid="b2557855-6c3f-4d20-8368-5782087efa83">
+			<textField>
+				<reportElement style="Cabeceras" mode="Opaque" x="0" y="0" width="555" height="15" uuid="9e888592-c080-4d43-98b8-192718742fae">
 					<printWhenExpression><![CDATA[$F{observaciones}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Left">
+				<textElement textAlignment="Left" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
-					<paragraph leftIndent="5"/>
 				</textElement>
-				<text><![CDATA[OBSERVACIONES]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$R{i18n.observaciones}]]></textFieldExpression>
+			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="0" y="14" width="555" height="5" isPrintWhenDetailOverflows="true" uuid="ec157cdd-abb2-41b1-b9b9-f9a9357f2e9f">
 					<printWhenExpression><![CDATA[$F{observaciones}!=null]]></printWhenExpression>

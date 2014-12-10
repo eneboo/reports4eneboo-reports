@@ -26,26 +26,26 @@ WHERE
 			<frame>
 				<reportElement style="Cabeceras" x="0" y="0" width="110" height="15" uuid="0444e582-15b9-4bfa-85b2-dc94d9141445"/>
 				<staticText>
-					<reportElement x="57" y="0" width="53" height="15" uuid="6466f50c-bc71-4db0-b153-8f67c73e32ca"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="8" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Cantidad]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="0" width="50" height="15" uuid="84cb075d-0e4c-4d38-afae-c61d09948342"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="8" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Vencimiento]]></text>
-				</staticText>
-				<staticText>
 					<reportElement x="52" y="0" width="5" height="15" uuid="6376fdfa-7201-45ef-9589-8ea21ee53159"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Arial" size="8" isBold="true"/>
 					</textElement>
 					<text><![CDATA[-]]></text>
 				</staticText>
+				<textField>
+					<reportElement style="Cabeceras" x="0" y="0" width="50" height="15" uuid="f2e39601-72cd-4b58-81e6-010bde950358"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{i18n.recibo_vencimiento}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Cabeceras" x="57" y="0" width="53" height="15" uuid="8c780f5b-ee33-4f97-bf72-80b743407e26"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{i18n.recibo_cantidad}]]></textFieldExpression>
+				</textField>
 			</frame>
 			<frame>
 				<reportElement style="Recuadros" x="0" y="15" width="110" height="19" uuid="86c15537-cdb8-4669-aca3-d4ff181f130d"/>

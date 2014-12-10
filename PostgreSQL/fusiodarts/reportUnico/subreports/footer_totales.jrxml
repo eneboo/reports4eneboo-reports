@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="footer_totales" pageWidth="555" pageHeight="75" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
 	<property name="ireport.zoom" value="1.4641000000000013"/>
-	<property name="ireport.x" value="99"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<template><![CDATA["../style.jrtx"]]></template>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -59,13 +59,13 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{totalrecargo}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement style="Cabeceras" x="206" y="0" width="90" height="15" uuid="3c5722b1-3a31-49c9-9be9-a518aa317b7b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+			<textField>
+				<reportElement style="Cabeceras" x="206" y="0" width="90" height="15" uuid="10030699-a795-4b55-9b96-4d4b7f18d6c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Base Imp.]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$R{i18n.baseimp}]]></textFieldExpression>
+			</textField>
 			<textField pattern="#,##0.00 ¤;-#,##0.00 ¤">
 				<reportElement style="Recuadros" x="435" y="15" width="120" height="19" uuid="446cbc68-700f-44fc-9400-b6f4879b1907"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
@@ -74,40 +74,40 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{CURRENCY_FORMAT}.format($F{total})]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement style="Cabeceras" x="299" y="0" width="65" height="15" uuid="59780779-9b66-441a-8b70-6bd98e32a214"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+			<textField>
+				<reportElement style="Cabeceras" x="299" y="0" width="65" height="15" uuid="5405c104-8814-45d5-aeb7-61801413762c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[IVA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="367" y="0" width="65" height="15" uuid="8368820b-c25e-4786-96e9-e35b3398be7f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textFieldExpression><![CDATA[$R{i18n.iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="367" y="0" width="65" height="15" uuid="10da5535-03bb-446b-b63b-aebef7aa71b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[RE]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="73" y="0" width="130" height="15" uuid="00fdf2b3-d0a6-49ae-957c-545ecda38b24"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textFieldExpression><![CDATA[$R{i18n.recargoequivalencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="73" y="0" width="130" height="15" uuid="ebe2d404-ff33-43a5-aa0d-60fe6c3d94b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Forma de Pago]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Cabeceras" x="0" y="0" width="70" height="15" uuid="099a456a-1509-48c4-9ece-c331803ed300"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textFieldExpression><![CDATA[$R{i18n.formapago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="0" y="0" width="70" height="15" uuid="3cc698d9-e201-42cd-8882-73847fad1df3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total Dto.]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$R{i18n.totaldescuento}]]></textFieldExpression>
+			</textField>
 			<textField>
 				<reportElement style="Cabeceras" x="435" y="0" width="120" height="15" uuid="1cadce65-5119-4c3f-a572-34287bc9bcba"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Total " + $P{PARAM_titulo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{i18n.total}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Recuadros" x="73" y="15" width="130" height="19" uuid="d6992a9e-6fa4-445b-9ec1-9187a2bbc1dc"/>

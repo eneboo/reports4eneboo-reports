@@ -66,13 +66,13 @@ WHERE $P!{WHERE}]]>
 					<printWhenExpression><![CDATA[$F{empresabco_bic} == null || $F{cliente_codpais}.matches( "ES" )]]></printWhenExpression>
 				</reportElement>
 			</frame>
-			<staticText>
-				<reportElement style="Cabeceras" x="0" y="0" width="170" height="15" uuid="00fdf2b3-d0a6-49ae-957c-545ecda38b24"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+			<textField>
+				<reportElement style="Cabeceras" x="0" y="0" width="170" height="15" uuid="e2d0722d-8a8a-4d8b-aefe-1543308e77e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cuenta Bancaria]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$R{i18n.cuentabanco}]]></textFieldExpression>
+			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="15" width="170" height="19" uuid="4ed6dcb1-fd10-4f96-b5cb-5128f8a64ddf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

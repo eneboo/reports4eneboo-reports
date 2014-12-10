@@ -49,16 +49,16 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 				<frame>
 					<reportElement style="Cabeceras" x="0" y="0" width="355" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>
 				</frame>
-				<staticText>
-					<reportElement mode="Transparent" x="0" y="0" width="55" height="15" uuid="9abba737-1804-4cce-b039-bfd6c641744c"/>
-					<textElement verticalAlignment="Middle">
+				<textField>
+					<reportElement mode="Transparent" x="0" y="0" width="60" height="15" uuid="7c66d2ce-a1cf-4887-adea-fd5f1abe4040"/>
+					<textElement verticalAlignment="Middle" markup="none">
 						<font fontName="Arial" size="9" isBold="true"/>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<text><![CDATA[Cliente]]></text>
-				</staticText>
+					<textFieldExpression><![CDATA[$R{i18n.cliente}]]></textFieldExpression>
+				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="58" y="0" width="79" height="15" uuid="bdd8a260-42a6-4912-9efd-0532b1de96e7"/>
+					<reportElement x="63" y="0" width="79" height="15" uuid="bdd8a260-42a6-4912-9efd-0532b1de96e7"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="9" isBold="true"/>
 					</textElement>
@@ -74,14 +74,6 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{nombrecliente}]]></textFieldExpression>
 					</textField>
-					<staticText>
-						<reportElement x="223" y="2" width="40" height="15" uuid="b3715721-af88-4fbe-a855-b90d3c0d1ad7"/>
-						<textElement textAlignment="Right" verticalAlignment="Middle">
-							<font fontName="Arial" size="8" isBold="false"/>
-							<paragraph leftIndent="5"/>
-						</textElement>
-						<text><![CDATA[CIF/NIF]]></text>
-					</staticText>
 					<textField isBlankWhenNull="true">
 						<reportElement x="266" y="2" width="89" height="15" uuid="b2b3348b-a757-4e1e-a673-d7fbb37e8cc0"/>
 						<textElement verticalAlignment="Middle">
@@ -120,6 +112,13 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 							<paragraph rightIndent="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{provinciacliente}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="false">
+						<reportElement x="223" y="2" width="40" height="15" uuid="22d6402c-0129-49a4-bd93-5dec2430a8b7"/>
+						<textElement verticalAlignment="Middle">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$R{i18n.cifnif}]]></textFieldExpression>
 					</textField>
 				</frame>
 			</elementGroup>

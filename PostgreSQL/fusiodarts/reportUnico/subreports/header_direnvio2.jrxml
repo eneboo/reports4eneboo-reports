@@ -49,14 +49,13 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 				<frame>
 					<reportElement style="Cabeceras" x="0" y="0" width="355" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>
 				</frame>
-				<staticText>
-					<reportElement mode="Transparent" x="0" y="0" width="55" height="15" uuid="9abba737-1804-4cce-b039-bfd6c641744c"/>
-					<textElement verticalAlignment="Middle">
+				<textField>
+					<reportElement mode="Transparent" x="0" y="0" width="55" height="15" uuid="7c4a1a0b-9e2a-43b5-8c86-c09358286dcf"/>
+					<textElement verticalAlignment="Middle" markup="none">
 						<font fontName="Arial" size="9" isBold="true"/>
-						<paragraph leftIndent="5"/>
 					</textElement>
-					<text><![CDATA[Dir. Envio]]></text>
-				</staticText>
+					<textFieldExpression><![CDATA[$R{i18n.dirEnvio_direccion}]]></textFieldExpression>
+				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement x="66" y="0" width="289" height="15" uuid="caeda6bc-6c4a-49ff-90d6-4d5d3c056600"/>
 					<textElement verticalAlignment="Middle" markup="none">

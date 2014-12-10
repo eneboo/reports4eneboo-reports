@@ -76,7 +76,7 @@ WHERE
 					</textField>
 					<frame>
 						<reportElement style="Recuadros" x="200" y="16" width="355" height="74" uuid="b56d44cc-933c-439a-a420-4e116eecee40"/>
-						<textField>
+						<textField isBlankWhenNull="true">
 							<reportElement x="0" y="4" width="355" height="15" uuid="f8583f4d-b584-4bac-bf85-dd8a9e5a7b6f"/>
 							<textElement verticalAlignment="Middle">
 								<font fontName="Arial" size="8"/>
@@ -84,7 +84,7 @@ WHERE
 							</textElement>
 							<textFieldExpression><![CDATA[$F{direccionempresa}]]></textFieldExpression>
 						</textField>
-						<textField>
+						<textField isBlankWhenNull="true">
 							<reportElement x="0" y="22" width="40" height="15" uuid="423af2b4-d5c6-4a9d-80cb-ec00151a90fd"/>
 							<textElement verticalAlignment="Middle">
 								<font fontName="Arial" size="8"/>
@@ -92,7 +92,7 @@ WHERE
 							</textElement>
 							<textFieldExpression><![CDATA[$F{cpempresa}]]></textFieldExpression>
 						</textField>
-						<textField>
+						<textField isBlankWhenNull="true">
 							<reportElement x="45" y="22" width="155" height="15" uuid="cf04fae3-64c8-4a72-a51b-dfaaa7eb11d4"/>
 							<textElement verticalAlignment="Middle">
 								<font fontName="Arial" size="8"/>
@@ -106,24 +106,34 @@ WHERE
 							</textElement>
 							<textFieldExpression><![CDATA[$F{provinciaempresa}]]></textFieldExpression>
 						</textField>
-						<staticText>
-							<reportElement x="0" y="40" width="26" height="15" uuid="4880d971-d974-4441-b73a-ae697b73c7a9">
+						<textField>
+							<reportElement x="0" y="40" width="34" height="15" uuid="8039648a-77b4-4173-8880-cd040662b289">
 								<printWhenExpression><![CDATA[$F{telefonoempresa} != null]]></printWhenExpression>
 							</reportElement>
 							<textElement verticalAlignment="Middle">
-								<font fontName="Arial" size="8" isBold="false"/>
+								<font size="8"/>
 								<paragraph leftIndent="5"/>
 							</textElement>
-							<text><![CDATA[Telf:]]></text>
-						</staticText>
+							<textFieldExpression><![CDATA[$R{i18n.telefono}]]></textFieldExpression>
+						</textField>
 						<textField>
-							<reportElement x="27" y="40" width="100" height="15" uuid="1b24943f-8634-4500-910c-333d36e3a878">
+							<reportElement x="35" y="40" width="100" height="15" uuid="1b24943f-8634-4500-910c-333d36e3a878">
 								<printWhenExpression><![CDATA[$F{telefonoempresa} != null]]></printWhenExpression>
 							</reportElement>
 							<textElement verticalAlignment="Middle">
 								<font fontName="Arial" size="8"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{telefonoempresa}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="157" y="40" width="25" height="15" uuid="8d1b0362-8cf7-48ae-8e0e-6437aaf38afc">
+								<printWhenExpression><![CDATA[$F{faxempresa} != null]]></printWhenExpression>
+							</reportElement>
+							<textElement verticalAlignment="Middle">
+								<font size="8"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$R{i18n.fax}]]></textFieldExpression>
 						</textField>
 						<textField>
 							<reportElement x="182" y="40" width="173" height="15" uuid="84c6eb95-3be8-4806-88fe-f5bf72ccbe0e">
@@ -134,26 +144,16 @@ WHERE
 							</textElement>
 							<textFieldExpression><![CDATA[$F{faxempresa}]]></textFieldExpression>
 						</textField>
-						<staticText>
-							<reportElement x="157" y="40" width="25" height="15" uuid="c03cd643-4747-470e-8b3a-61a671bd0f90">
-								<printWhenExpression><![CDATA[$F{faxempresa} != null]]></printWhenExpression>
-							</reportElement>
-							<textElement verticalAlignment="Middle">
-								<font fontName="Arial" size="8" isBold="false"/>
-								<paragraph leftIndent="5"/>
-							</textElement>
-							<text><![CDATA[Fax:]]></text>
-						</staticText>
-						<staticText>
-							<reportElement x="0" y="58" width="34" height="15" uuid="c545522a-7088-4555-88c7-c8533a48df00">
+						<textField>
+							<reportElement x="0" y="58" width="34" height="15" uuid="15fc2506-5f35-4594-b7d2-53435e584bd5">
 								<printWhenExpression><![CDATA[$F{emailempresa} != null]]></printWhenExpression>
 							</reportElement>
 							<textElement verticalAlignment="Middle">
-								<font fontName="Arial" size="8" isBold="false"/>
+								<font size="8"/>
 								<paragraph leftIndent="5"/>
 							</textElement>
-							<text><![CDATA[Email:]]></text>
-						</staticText>
+							<textFieldExpression><![CDATA[$R{i18n.email}]]></textFieldExpression>
+						</textField>
 						<textField>
 							<reportElement x="34" y="58" width="144" height="15" uuid="97c22f50-9d49-44ae-a099-e1d16d70b6ef">
 								<printWhenExpression><![CDATA[$F{emailempresa} != null]]></printWhenExpression>
