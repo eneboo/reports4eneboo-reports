@@ -184,7 +184,7 @@ WHERE
 						</textField>
 					</frame>
 				</elementGroup>
-				<image onErrorType="Blank">
+				<image scaleImage="RealSize" onErrorType="Blank">
 					<reportElement x="0" y="0" width="555" height="92" uuid="bcfaf1d8-21ad-49bf-b766-f87f1c5b0824"/>
 					<imageExpression><![CDATA["../../logo.jpg"]]></imageExpression>
 				</image>
