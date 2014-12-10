@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Albarán de Envío" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Transferencia de Stocks" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="66"/>
+	<property name="ireport.y" value="0"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PAGE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
@@ -60,7 +60,7 @@
     almadestino.telefono as almadestino_telefono,
     almadestino.contacto as almadestino_contacto,
     almadestino.observaciones as almadestino_observaciones,
-    transstock.transportista as transportista,
+    transstock.matriculatrans as matriculatrans,
     lineastransstock.referencia as referencia,
     lineastransstock.descripcion as descripcionreferencia,
     lineastransstock.cantidad as cantidadreferencia,
@@ -100,7 +100,7 @@ WHERE $P!{WHERE}]]>
 	<field name="almadestino_telefono" class="java.lang.String"/>
 	<field name="almadestino_contacto" class="java.lang.String"/>
 	<field name="almadestino_observaciones" class="java.lang.String"/>
-	<field name="transportista" class="java.lang.String"/>
+	<field name="matriculatrans" class="java.lang.String"/>
 	<field name="referencia" class="java.lang.String"/>
 	<field name="descripcionreferencia" class="java.lang.String"/>
 	<field name="cantidadreferencia" class="java.lang.Double"/>
@@ -229,14 +229,14 @@ WHERE $P!{WHERE}]]>
 				</textField>
 			</band>
 			<band height="40">
-				<printWhenExpression><![CDATA[$F{transportista} != null]]></printWhenExpression>
+				<printWhenExpression><![CDATA[$F{matriculatrans} != null]]></printWhenExpression>
 				<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 					<reportElement style="Recuadros" x="0" y="15" width="556" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="2b584854-6c83-4be7-b5fd-8fcf05d23529"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Arial" size="8"/>
 						<paragraph leftIndent="2"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{transportista}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{matriculatrans}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="d0fa80d8-2316-491b-a8b4-1e08b3db87f2"/>

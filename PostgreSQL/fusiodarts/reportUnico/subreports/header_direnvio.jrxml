@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header_direnvio" pageWidth="556" pageHeight="37" columnWidth="556" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header_direnvio" pageWidth="556" pageHeight="37" columnWidth="556" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
 	<property name="ireport.zoom" value="1.7715610000000044"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -73,6 +73,27 @@ WHERE $P!{WHERE}]]>
 	<variable name="separador" class="java.lang.String">
 		<variableExpression><![CDATA["   -   "]]></variableExpression>
 	</variable>
+	<variable name="direccionenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{direccionenv} != null ? $F{direccionenv} + $V{separador} : " " )]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="ciudadenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{ciudadenv} != null ? $F{ciudadenv} + $V{separador} : " " )]]></variableExpression>
+	</variable>
+	<variable name="provinciaenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{provinciaenv} != null ? $F{provinciaenv} + $V{separador} : " " )]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="apartadoenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{apartadoenv} != null ? $F{apartadoenv} + $V{separador} : " " )]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="cpenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{cpenv} != null ? $F{cpenv} + $V{separador} : " " )]]></variableExpression>
+	</variable>
+	<variable name="paisenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{paisenv} != null ? $F{paisenv} : " " )]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -106,11 +127,12 @@ WHERE $P!{WHERE}]]>
 							<font fontName="Arial" size="8"/>
 							<paragraph leftIndent="5" rightIndent="5"/>
 						</textElement>
-						<textFieldExpression><![CDATA[( !$F{direccionenv}.equals(null) ? $F{direccionenv} + $V{separador} : "" ) +
-( !$F{ciudadenv}.equals(null) ? $F{ciudadenv} + $V{separador} : "" ) +
-( !$F{cpenv}.equals(null) ? $F{cpenv} + $V{separador} : "" ) +
-( !$F{provinciaenv}.equals(null) ? $F{provinciaenv} + $V{separador} : "" ) +
-( !$F{paisenv}.equals(null) ? $F{paisenv} : "" )]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$V{direccionenv} +
+$V{ciudadenv} +
+$V{provinciaenv} +
+$V{cpenv} +
+$V{apartadoenv} +
+$V{paisenv}]]></textFieldExpression>
 					</textField>
 				</frame>
 			</elementGroup>

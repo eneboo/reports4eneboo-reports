@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Doc. Envío" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Doc. Envío" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="../../i18n" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="211"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -51,7 +51,7 @@
 	$P!{PARAM_tabla}.neto as neto,
 	$P!{PARAM_tabla}.irpf as irpf,
 	$P!{PARAM_tabla}.totalirpf as totalirpf,
-$P!{PARAM_tabla}.transportista as transportista,
+    $P!{PARAM_tabla}.matriculatrans as matriculatrans,
     formaspago.domiciliado as domiciliado,
     ( select impuestos.iva from impuestos where impuestos.codimpuesto = 'GEN' ) as IVA,
  	lineas$P!{PARAM_tabla}.idlinea as idlinea,
@@ -98,7 +98,7 @@ ORDER BY $P!{ORDERBY}]]>
 	<field name="empresa_lopd" class="java.lang.String"/>
 	<field name="dtoporreferencia" class="java.lang.Integer"/>
 	<field name="domiciliado" class="java.lang.Boolean"/>
-	<field name="transportista" class="java.lang.String"/>
+	<field name="matriculatrans" class="java.lang.String"/>
 	<variable name="sumaysigue" class="java.math.BigDecimal" resetType="Group" resetGroup="ID" calculation="Sum">
 		<variableExpression><![CDATA[$F{pvptotallinea}]]></variableExpression>
 	</variable>
@@ -230,7 +230,7 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreport>
 			</band>
 			<band height="20">
-				<printWhenExpression><![CDATA[!$F{transportista}.equals( null )]]></printWhenExpression>
+				<printWhenExpression><![CDATA[!$F{matriculatrans}.equals( null )]]></printWhenExpression>
 				<staticText>
 					<reportElement style="Cabeceras" x="0" y="0" width="89" height="17" uuid="0d5c36f1-78ec-4850-8e2a-17f1a9672692"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -244,7 +244,7 @@ ORDER BY $P!{ORDERBY}]]>
 						<font fontName="Arial" size="8"/>
 						<paragraph leftIndent="2"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{transportista}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{matriculatrans}]]></textFieldExpression>
 				</textField>
 			</band>
 			<band height="40">
@@ -474,6 +474,7 @@ ORDER BY $P!{ORDERBY}]]>
 				</staticText>
 			</band>
 			<band height="42">
+				<printWhenExpression><![CDATA["1" == "2"]]></printWhenExpression>
 				<subreport>
 					<reportElement x="455" y="5" width="100" height="34" uuid="ba7aef0c-4a02-4953-b771-12602672a847">
 						<printWhenExpression><![CDATA[$P{PARAM_tabla} == "facturascli" || $P{PARAM_tabla} == "albaranescli" || $P{PARAM_tabla} == "pedidoscli" || $P{PARAM_tabla} == "presupuestoscli"]]></printWhenExpression>
