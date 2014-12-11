@@ -69,6 +69,7 @@
 			<subreport>
 				<reportElement mode="Opaque" x="62" y="0" width="275" height="15" isRemoveLineWhenBlank="true" uuid="77d914a9-541c-4df1-a575-50d0da61f69e">
 					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&
+!$P{PARAM_tabla}.equals( "presupuestoscli" ) &&
 !$P{PARAM_tabla}.equals( "pedidoscli" ) &&
 !$P{PARAM_tabla}.equals( "pedidosprov" )]]></printWhenExpression>
 				</reportElement>

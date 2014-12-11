@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="lotes_detalle" pageWidth="68" pageHeight="17" whenNoDataType="AllSectionsNoDetail" columnWidth="68" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="traza_detalle" pageWidth="68" pageHeight="17" whenNoDataType="AllSectionsNoDetail" columnWidth="68" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
 	<property name="ireport.zoom" value="1.1000000000000005"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -24,7 +24,7 @@
 		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals( "facturascli" ) ? "idlineafc"
     : ( $P{PARAM_tabla}.equals( "albaranescli" ) ? "idlineaac"
         : ( $P{PARAM_tabla}.equals( "facturasprov" ) ? "idlineafp"
-            : ( $P{PARAM_tabla}.equals( "albaranesprov" ) ? "idlineaap" : "" ) ) ) )]]></defaultValueExpression>
+            : ( $P{PARAM_tabla}.equals( "albaranesprov" ) ? "idlineaap" : "idlineafc" ) ) ) )]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT nombre,
@@ -36,7 +36,11 @@ WHERE empresa.id = 1]]>
 	<field name="codlote" class="java.lang.String"/>
 	<detail>
 		<band height="17">
-			<printWhenExpression><![CDATA[!$F{codlote}.equals( null )]]></printWhenExpression>
+			<printWhenExpression><![CDATA[$F{codlote} != null &&
+$P{PARAM_tabla}.equals( "facturascli" ) ||
+$P{PARAM_tabla}.equals( "albaranescli" ) ||
+$P{PARAM_tabla}.equals( "facturasprov" ) ||
+$P{PARAM_tabla}.equals( "albaranesprov" )]]></printWhenExpression>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="68" height="17" uuid="f433d589-d07d-4817-bb17-0e48dc3c0bd9"/>
 				<box leftPadding="0"/>

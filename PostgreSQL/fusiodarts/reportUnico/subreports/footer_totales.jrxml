@@ -104,7 +104,7 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 			</textField>
 			<textField>
 				<reportElement style="Cabeceras" x="435" y="0" width="120" height="15" uuid="1cadce65-5119-4c3f-a572-34287bc9bcba"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
 					<font fontName="Arial" size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{i18n.total}]]></textFieldExpression>
