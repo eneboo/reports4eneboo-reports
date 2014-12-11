@@ -24,7 +24,6 @@
 		<defaultValueExpression><![CDATA["facturasprov"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="codcliprov" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals("facturascli")

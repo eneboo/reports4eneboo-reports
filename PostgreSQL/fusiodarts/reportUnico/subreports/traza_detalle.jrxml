@@ -18,7 +18,6 @@
 	</parameter>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="IDLINEA_TRAZA" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals( "facturascli" ) ? "idlineafc"

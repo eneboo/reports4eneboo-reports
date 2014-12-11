@@ -15,7 +15,6 @@
 	</parameter>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
 	</parameter>

@@ -15,7 +15,6 @@
 	</parameter>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
 	</parameter>
@@ -138,9 +137,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="PARAM_LOAD_incoterms">
 						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -184,9 +180,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="PARAM_LOAD_incoterms">
 						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -212,9 +205,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<reportElement x="0" y="3" width="177" height="73" uuid="9ef9e30e-c16f-4adc-8f83-36312d956b06"/>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PAGE_SUBREPORT">
 						<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></subreportParameterExpression>
@@ -268,9 +258,6 @@ ORDER BY $P!{ORDERBY}]]>
 					</subreportParameter>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_LOAD_incoterms">
 						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
@@ -368,9 +355,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="PARAM_LOAD_incoterms">
 						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -416,9 +400,6 @@ ORDER BY $P!{ORDERBY}]]>
 					</subreportParameter>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_LOAD_incoterms">
 						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
@@ -504,9 +485,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="ID">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -541,9 +519,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="ID">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -575,9 +550,6 @@ ORDER BY $P!{ORDERBY}]]>
 					</subreportParameter>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="ID">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
@@ -613,9 +585,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="ID">
 						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -637,9 +606,6 @@ ORDER BY $P!{ORDERBY}]]>
 					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="0345c3f7-adc9-447f-b582-04d9d4e8b0d1"/>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_subtabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
@@ -674,9 +640,6 @@ ORDER BY $P!{ORDERBY}]]>
 					</subreportParameter>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="PARAM_titulo">
-						<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_orderdef">
 						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
@@ -727,9 +690,6 @@ ORDER BY $P!{ORDERBY}]]>
 				</subreportParameter>
 				<subreportParameter name="PARAM_LOAD_traza">
 					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="PARAM_titulo">
-					<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="PARAM_LOAD_incoterms">
 					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>

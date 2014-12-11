@@ -20,7 +20,6 @@
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
 	</parameter>

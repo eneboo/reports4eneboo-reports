@@ -14,7 +14,9 @@
 	<parameter name="PAGE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PROFORMA" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
 	$P!{PARAM_tabla}.codigo as codigo,
@@ -41,7 +43,11 @@ WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
 						<font fontName="Arial" size="9" isBold="true"/>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{PARAM_titulo}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[( $P{PARAM_tabla}.equals( "facturascli" ) || $P{PARAM_tabla}.equals( "facturasprov" ) ? $R{i18n.factura} :
+    $P{PARAM_tabla}.equals( "albaranescli" ) || $P{PARAM_tabla}.equals( "albaranesprov" ) ? $R{i18n.albaran} :
+    $P{PARAM_tabla}.equals( "pedidoscli" ) || $P{PARAM_tabla}.equals( "pedidosprov" ) ? $R{i18n.pedido} :
+    $P{PARAM_tabla}.equals( "presupuestoscli" )  ? $R{i18n.presupuesto} :
+    $P{PARAM_tabla} )]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="80" y="0" width="94" height="15" uuid="8f20b834-7605-42d5-a02f-e442664cfb2b"/>

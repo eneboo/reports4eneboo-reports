@@ -17,7 +17,6 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="PARAM_titulo" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["empresa.id = '1'"]]></defaultValueExpression>
 	</parameter>
