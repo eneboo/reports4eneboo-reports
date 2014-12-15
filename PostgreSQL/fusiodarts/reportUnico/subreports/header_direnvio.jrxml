@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header_direnvio" pageWidth="556" pageHeight="37" columnWidth="556" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
 	<property name="ireport.zoom" value="1.7715610000000044"/>
-	<property name="ireport.x" value="28"/>
+	<property name="ireport.x" value="14"/>
 	<property name="ireport.y" value="0"/>
 	<template><![CDATA["../style.jrtx"]]></template>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
@@ -40,6 +40,9 @@
 || $P{PARAM_tabla}.equals("presupuestoscli")
 ? "clientes"
 : "proveedores" )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_cae" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Si"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -101,6 +104,46 @@ WHERE $P!{WHERE}]]>
 			<elementGroup>
 				<frame>
 					<reportElement style="Cabeceras" x="0" y="0" width="555" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>
+					<subreport isUsingCache="false">
+						<reportElement x="111" y="0" width="200" height="15" uuid="0cf51975-d2ec-4c34-8ac8-02e59cb05702">
+							<printWhenExpression><![CDATA[$P{PARAM_LOAD_cae}.equals( "Si" )]]></printWhenExpression>
+						</reportElement>
+						<subreportParameter name="PARAM_subtabla">
+							<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="WHERE">
+							<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="PARAM_tabla">
+							<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="TITLE_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{TITLE_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="PARAM_LOAD_cae">
+							<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_cae}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="SUBREPORT_DIR">
+							<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="TABLE_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{TABLE_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="ORDERBY">
+							<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="PARAM_orderdef">
+							<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="TEXT_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{TEXT_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="ID_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{ID_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "cae_dirEnvio.jasper"]]></subreportExpression>
+					</subreport>
 				</frame>
 				<textField>
 					<reportElement mode="Transparent" x="0" y="0" width="99" height="15" uuid="8ce1ecb6-78a3-495d-8b08-2561593b487f"/>
@@ -111,7 +154,7 @@ WHERE $P!{WHERE}]]>
 					<textFieldExpression><![CDATA[$R{i18n.dirEnvio_direccion}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="99" y="0" width="456" height="15" uuid="caeda6bc-6c4a-49ff-90d6-4d5d3c056600"/>
+					<reportElement x="450" y="0" width="105" height="15" uuid="caeda6bc-6c4a-49ff-90d6-4d5d3c056600"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
 						<font fontName="Arial" size="9" isBold="true"/>
 						<paragraph leftIndent="5" rightIndent="5"/>
