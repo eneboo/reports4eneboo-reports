@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe Oficial" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="../../i18n" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
 	<property name="ireport.zoom" value="1.4641000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="112"/>
+	<property name="ireport.y" value="16"/>
 	<template><![CDATA["../../style.jrtx"]]></template>
 	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -34,6 +34,9 @@
 		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="PARAM_LOAD_traza" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_cae" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -248,20 +251,23 @@ ORDER BY $P!{ORDERBY}]]>
 				<printWhenExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}.equals( "Si" )]]></printWhenExpression>
 				<subreport isUsingCache="false">
 					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="554" height="37" isPrintWhenDetailOverflows="true" uuid="555f1066-c394-40ec-a5f4-6ba2d8457856"/>
-					<subreportParameter name="SUBREPORT_DIR">
-						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="PARAM_subtabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_LOAD_dirEnvio">
-						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="WHERE">
 						<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_dirEnvio">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_dirEnvio}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="PARAM_tabla">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_traza">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="ORDERBY">
 						<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
@@ -269,17 +275,20 @@ ORDER BY $P!{ORDERBY}]]>
 					<subreportParameter name="PARAM_LOAD_incoterms">
 						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_incoterms}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="PARAM_orderdef">
-						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="PARAM_reldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_orderdef">
+						<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_tablareldoc">
 						<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="PARAM_LOAD_seriesobs">
 						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_seriesobs}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="PARAM_LOAD_cae">
+						<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_cae}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header_direnvio.jasper"]]></subreportExpression>

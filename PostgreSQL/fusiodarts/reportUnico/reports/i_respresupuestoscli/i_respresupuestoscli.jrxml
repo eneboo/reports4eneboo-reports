@@ -88,7 +88,13 @@
 	<variable name="total_totalrecargo" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{totalrecargo}]]></variableExpression>
 	</variable>
-	<variable name="variable1" class="java.lang.String"/>
+	<variable name="TITULO" class="java.lang.String">
+		<variableExpression><![CDATA[( $P{PARAM_tabla}.equals( "facturascli" ) || $P{PARAM_tabla}.equals( "facturasprov" ) ? $R{i18n.facturas} :
+    $P{PARAM_tabla}.equals( "albaranescli" ) || $P{PARAM_tabla}.equals( "albaranesprov" ) ? $R{i18n.albaranes} :
+    $P{PARAM_tabla}.equals( "pedidoscli" ) || $P{PARAM_tabla}.equals( "pedidosprov" ) ? $R{i18n.pedidos} :
+    $P{PARAM_tabla}.equals( "presupuestoscli" )  ? $R{i18n.presupuestos} :
+    $P{PARAM_tabla} )]]></variableExpression>
+	</variable>
 	<group name="COD">
 		<groupFooter>
 			<band height="20">
@@ -169,7 +175,7 @@
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="14" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Resumen de " + $P{TITULO} + " de Cliente"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Resumen de " + $V{TITULO} + " de Cliente"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE, dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
 					<reportElement x="6" y="27" width="200" height="15" uuid="ee375dbe-1584-4df9-9b2a-a5d086548186"/>
