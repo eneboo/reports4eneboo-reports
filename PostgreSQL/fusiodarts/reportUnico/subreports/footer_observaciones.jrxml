@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="footer_observaciones" pageWidth="555" pageHeight="20" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.6105100000000012"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+	$P!{PARAM_tabla}.observaciones as observaciones
+    FROM $P!{PARAM_tabla}
+    WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
+	</queryString>
+	<field name="observaciones" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement style="Cabeceras" mode="Opaque" x="0" y="0" width="555" height="15" uuid="9e888592-c080-4d43-98b8-192718742fae">
+					<printWhenExpression><![CDATA[$F{observaciones}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" markup="none">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{i18n.observaciones}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Recuadros" x="0" y="14" width="555" height="5" isPrintWhenDetailOverflows="true" uuid="ec157cdd-abb2-41b1-b9b9-f9a9357f2e9f">
+					<printWhenExpression><![CDATA[$F{observaciones}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="styled">
+					<font fontName="Arial" size="8"/>
+					<paragraph lineSpacing="1_1_2" leftIndent="2" rightIndent="2" spacingBefore="2" spacingAfter="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header_codigo" pageWidth="174" pageHeight="72" columnWidth="174" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PAGE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PROFORMA" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["No"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	$P!{PARAM_tabla}.codigo as codigo,
+    $P!{PARAM_tabla}.fecha as fecha,
+	$P!{PARAM_tabla}.coddivisa as divisa
+FROM $P!{PARAM_tabla}
+WHERE $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = $P!{ID_SUBREPORT}]]>
+	</queryString>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="divisa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="72">
+			<elementGroup>
+				<frame>
+					<reportElement style="Cabeceras" x="0" y="0" width="174" height="15" uuid="1f63855f-2623-4479-b51a-c5dc35f67836"/>
+				</frame>
+				<textField>
+					<reportElement x="0" y="0" width="81" height="15" uuid="d38cf27a-b235-4dd6-9245-a6839b6f7c4b"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $P{PARAM_tabla}.equals( "facturascli" ) || $P{PARAM_tabla}.equals( "facturasprov" ) ? $R{i18n.factura} :
+    $P{PARAM_tabla}.equals( "albaranescli" ) || $P{PARAM_tabla}.equals( "albaranesprov" ) ? $R{i18n.albaran} :
+    $P{PARAM_tabla}.equals( "pedidoscli" ) || $P{PARAM_tabla}.equals( "pedidosprov" ) ? $R{i18n.pedido} :
+    $P{PARAM_tabla}.equals( "presupuestoscli" )  ? $R{i18n.presupuesto} :
+    $P{PARAM_tabla} )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="80" y="0" width="94" height="15" uuid="8f20b834-7605-42d5-a02f-e442664cfb2b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement style="Recuadros" x="0" y="15" width="174" height="57" uuid="8570c31b-e84c-46e9-a184-0115f92c41a3"/>
+					<textField>
+						<reportElement x="84" y="19" width="15" height="15" uuid="762de803-ae71-49be-85f7-75c3ac2ffa5c"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font fontName="Arial" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{PAGE_SUBREPORT}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="5" y="20" width="55" height="15" uuid="e45755ae-f946-43e4-890a-4f192dfdae03"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$R{i18n.pagina}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="84" y="38" width="36" height="15" uuid="913deae0-ee4e-42f6-bbef-27a02d8e2815"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font fontName="Arial" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{divisa}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement x="5" y="39" width="55" height="15" uuid="44f6ee01-b928-4d5e-8e6b-af792f9d268b"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$R{i18n.divisa}]]></textFieldExpression>
+					</textField>
+					<textField pattern="dd/MM/yyyy">
+						<reportElement x="84" y="2" width="90" height="15" uuid="68b1d17c-078b-4467-8d19-9e0af7059b27"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+					</textField>
+					<textField pattern="">
+						<reportElement x="5" y="2" width="55" height="15" uuid="918c89a6-184b-4633-96cc-6a2678eaf340"/>
+						<textElement>
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$R{i18n.fecha}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>

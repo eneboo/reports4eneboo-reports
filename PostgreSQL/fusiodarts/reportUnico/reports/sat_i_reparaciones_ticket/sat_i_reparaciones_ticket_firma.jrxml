@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tiquet Firma Sat" language="groovy" pageWidth="226" pageHeight="600" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e13ed734-5a41-4beb-9e61-dbddf5609ecf">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="IDDOCUMENTO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["sat_reparaciones.codreparacion"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     sat_reparaciones."codreparacion" AS sat_reparaciones_codreparacion,
+     sat_reparaciones."fecha" AS sat_reparaciones_fecha,
+     sat_reparaciones."satnumserie" AS sat_reparaciones_satnumserie,
+     sat_reparaciones."codcliente" AS sat_reparaciones_codcliente,
+     sat_reparaciones."nombre" AS sat_reparaciones_nombre,
+     sat_reparaciones."modelo" AS sat_reparaciones_modelo,
+     sat_reparaciones."anticipos" AS sat_reparaciones_anticipos,
+     sat_reparaciones."codtiporep" AS sat_reparaciones_codtiporep,
+     sat_tiposrep."condicionesrep" AS sat_tiposrep_condicionesrep,
+     sat_reparaciones."fechaprev" AS sat_reparaciones_fechaprev,
+     sat_reparaciones."descripcion" AS sat_reparaciones_descripcion,
+     sat_reparaciones."accesorios" AS sat_reparaciones_accesorios,
+     sat_reparaciones."desperfectos" AS sat_reparaciones_desperfectos
+FROM
+     "sat_reparaciones" sat_reparaciones
+INNER JOIN sat_tiposrep ON sat_tiposrep.codtiporep = sat_reparaciones.codtiporep
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="sat_reparaciones_codreparacion" class="java.lang.String"/>
+	<field name="sat_reparaciones_descripcion" class="java.lang.String"/>
+	<field name="sat_reparaciones_modelo" class="java.lang.String"/>
+	<field name="sat_reparaciones_nombre" class="java.lang.String"/>
+	<field name="sat_reparaciones_codcliente" class="java.lang.String"/>
+	<field name="sat_reparaciones_accesorios" class="java.lang.String"/>
+	<field name="sat_reparaciones_desperfectos" class="java.lang.String"/>
+	<field name="sat_reparaciones_fechaprev" class="java.util.Date"/>
+	<field name="sat_reparaciones_satnumserie" class="java.lang.String"/>
+	<field name="sat_reparaciones_anticipos" class="java.lang.Double"/>
+	<field name="sat_reparaciones_fecha" class="java.util.Date"/>
+	<field name="sat_tiposrep_condicionesrep" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="007adca1-324a-450c-a742-655023f7c8bf" stretchType="RelativeToTallestObject" x="0" y="0" width="206" height="50"/>
+				<subreportParameter name="IDDOCUMENTO">
+					<subreportParameterExpression><![CDATA[]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ticket_header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="300" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e9390d11-6fc1-471f-be2d-e57c2e2a03e7" x="1" y="5" width="73" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[Reparación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d05fa10-a47b-4d57-914d-17203481afb6" x="1" y="52" width="45" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_modelo} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="85678e24-b396-44a6-87c5-d8a342f27226" x="47" y="52" width="159" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="45cfb707-36fa-4def-ae6d-85ee088f8fa9" x="75" y="5" width="54" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_codreparacion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="152fadd5-c6a8-434b-8463-ccfc7953ebe2" x="0" y="0" width="206" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="f0bc8a27-6c82-4808-9fe4-c13092607ea0" x="1" y="25" width="205" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="79b09b49-86fb-407d-abd4-d2c2fb0cc068" x="143" y="5" width="63" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_fecha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="d67020be-0ef5-4d13-a660-b85c9faf2299" x="0" y="45" width="206" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="8d9a8508-44d1-4e4f-8109-013e1b092ae2" x="1" y="68" width="58" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_satnumserie} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Serie:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="734074ef-d437-4525-af53-03f54dd548d2" x="1" y="84" width="93" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_fechaprev} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Prevista:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e7070dbc-d764-4022-8137-62def2333d19" x="1" y="100" width="64" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_anticipos} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anticipos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a7a82c40-0615-4810-8227-c676cbe22ba4" x="1" y="115" width="117" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_descripcion} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción Avería:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="9d0ec644-1c41-4dba-9f7a-08b9b220db54" x="1" y="131" width="205" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5d37a1d3-f8dc-4dd6-aab7-95465ca93e87" x="1" y="147" width="142" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_accesorios} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Accesorios Entregados:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="0abfbec2-462b-4ae8-8278-ebe3b5f177fa" x="0" y="163" width="205" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_accesorios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a176255e-ad2c-4e0a-92fe-b876c20ee396" x="1" y="179" width="155" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_desperfectos} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desperfectos Observados:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="12d8b253-234e-4710-aad9-25dc24bdd07b" x="1" y="195" width="205" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_desperfectos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="68bbd9b3-2695-4243-a2ec-10d6bf3a3589" x="1" y="220" width="142" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[Firma cliente:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="cc6a7ac9-3c39-4024-b1f0-ce10dab9654a" x="60" y="68" width="140" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_satnumserie}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="f7efab90-e217-48df-8849-0d5990a7fb96" x="95" y="84" width="111" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_fechaprev}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤ " isBlankWhenNull="true">
+				<reportElement uuid="08bcae62-873f-4f4d-8570-29e9f74ebf6b" x="66" y="100" width="140" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_anticipos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="d0b21898-c61b-459a-ace0-89dab5006b00" x="0" y="214" width="206" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="4b1ab625-4746-4cc7-880a-df0c277aeb9f" x="1" y="278" width="205" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_tiposrep_condicionesrep}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="6c575e9b-eb9d-4b0c-8eed-908771a59a0d" x="0" y="273" width="206" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+</jasperReport>

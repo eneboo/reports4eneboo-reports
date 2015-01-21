@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_facturascli_deabono" pageWidth="555" pageHeight="20" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_reldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    $P!{PARAM_tabla}.id$P!{PARAM_subtabla} as id,
+	$P!{PARAM_tabla}.deabono as deabono,
+    $P!{PARAM_tabla}.idfacturarect as idfacturarect,
+    (SELECT $P!{PARAM_tabla}.fecha FROM $P!{PARAM_tabla} as fcli WHERE fcli.idfactura = $P!{PARAM_tabla}.idfactura) as fecha,
+    $P!{PARAM_tabla}.codigorect as codigorect
+FROM
+     $P!{PARAM_tabla}
+WHERE $P!{WHERE}]]>
+	</queryString>
+	<field name="deabono" class="java.lang.Boolean"/>
+	<field name="codigorect" class="java.lang.String"/>
+	<field name="fecha" class="java.util.Date"/>
+	<variable name="texto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20">
+			<printWhenExpression><![CDATA[$F{deabono}.equals( true )]]></printWhenExpression>
+			<frame>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="37cc8117-3b54-499e-a945-e6f835d56c95"/>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="6b7e009e-b265-4db4-8bc5-eda1970fa2c0"/>
+					<textElement>
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["          >>>> Rectifica a la factura  " + $F{codigorect} + "  de  " + (new SimpleDateFormat("dd/MM/yyyy").format($F{fecha}))]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

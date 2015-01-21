@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="doc_rel" pageWidth="555" pageHeight="20" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_reldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	empresa.nombre as nombreempresa,
+	empresa.cifnif as cifempresa,
+	empresa.direccion as direccionempresa,
+	empresa.telefono as telefonoempresa,
+	empresa.codpostal as cpempresa,
+	empresa.ciudad as ciudadempresa,
+	empresa.provincia as provinciaempresa,
+	empresa.apartado as apartadoempresa,
+	empresa.codpais as codpaisempresa,
+    empresa.lopd AS empresa_lopd,
+    empresa.rmercantil AS empresa_rmercantil,
+    $P!{PARAM_tablareldoc}.codigo as codreldoc,
+	$P!{PARAM_tablareldoc}.fecha as fechareldoc,
+    lineas$P!{PARAM_tabla}.id$P!{PARAM_reldoc} as idreldoc
+FROM
+     empresa, $P!{PARAM_tabla}
+INNER JOIN lineas$P!{PARAM_tabla} ON $P!{PARAM_tabla}.id$P!{PARAM_subtabla} = lineas$P!{PARAM_tabla}.id$P!{PARAM_subtabla}
+INNER JOIN $P!{PARAM_tablareldoc} ON $P!{PARAM_tablareldoc}.id$P!{PARAM_reldoc} = lineas$P!{PARAM_tabla}.id$P!{PARAM_reldoc}
+WHERE $P!{WHERE}]]>
+	</queryString>
+	<field name="idreldoc" class="java.lang.String"/>
+	<field name="fechareldoc" class="java.lang.String"/>
+	<field name="codreldoc" class="java.lang.String"/>
+	<variable name="titulo_reldoc" class="java.lang.String">
+		<variableExpression><![CDATA[($P{PARAM_tabla} == "facturascli") ? "Albaran Num" :  "Pedido Num"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20">
+			<frame>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="37cc8117-3b54-499e-a945-e6f835d56c95"/>
+				<textField isBlankWhenNull="true">
+					<reportElement x="124" y="0" width="80" height="20" isRemoveLineWhenBlank="true" uuid="6b7e009e-b265-4db4-8bc5-eda1970fa2c0"/>
+					<textElement>
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codreldoc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="40" height="20" uuid="c3ef345e-78b4-4e16-ba33-31c9236499ac"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<text><![CDATA[>>>>]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="237" y="0" width="116" height="20" isRemoveLineWhenBlank="true" uuid="b9b19651-808c-4464-bfff-fc5d580e1bcb"/>
+					<textElement>
+						<font fontName="Arial" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fechareldoc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="209" y="0" width="23" height="20" uuid="904f4c53-5c11-4007-ac57-1060caffeffb"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[>>]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="41" y="0" width="84" height="20" uuid="1cca06ee-7911-4a6e-a59d-c199d324f934"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{titulo_reldoc}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

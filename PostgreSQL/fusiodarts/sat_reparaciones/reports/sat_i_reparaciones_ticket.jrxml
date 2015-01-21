@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tiquet Resguardo Sat" language="groovy" pageWidth="226" pageHeight="600" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e13ed734-5a41-4beb-9e61-dbddf5609ecf">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="IDDOCUMENTO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["sat_reparaciones.codreparacion"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     empresa."direccion" AS empresa_direccion,
+     empresa."web" AS empresa_web,
+     empresa."cifnif" AS empresa_cifnif,
+     empresa."nombre" AS empresa_nombre,
+     empresa."telefono" AS empresa_telefono,
+     empresa."codpostal" AS empresa_codpostal,
+     empresa."ciudad" AS empresa_ciudad,
+     empresa."provincia" AS empresa_provincia,
+     empresa."email" AS empresa_email,
+     empresa."fax" AS empresa_fax,
+     empresa."administrador" AS empresa_administrador,
+     (select contenido from fllarge where refkey = empresa.logo) as logoempresa,
+     sat_reparaciones."codreparacion" AS sat_reparaciones_codreparacion,
+     sat_reparaciones."fecha" AS sat_reparaciones_fecha,
+     sat_reparaciones."satnumserie" AS sat_reparaciones_satnumserie,
+     sat_reparaciones."codcliente" AS sat_reparaciones_codcliente,
+     sat_reparaciones."nombre" AS sat_reparaciones_nombre,
+     sat_reparaciones."modelo" AS sat_reparaciones_modelo,
+     sat_reparaciones."anticipos" AS sat_reparaciones_anticipos,
+     sat_reparaciones."codtiporep" AS sat_reparaciones_codtiporep,
+     sat_tiposrep."condicionesrep" AS sat_tiposrep_condicionesrep,
+     sat_reparaciones."fechaprev" AS sat_reparaciones_fechaprev,
+     sat_reparaciones."descripcion" AS sat_reparaciones_descripcion,
+     sat_reparaciones."accesorios" AS sat_reparaciones_accesorios,
+     sat_reparaciones."desperfectos" AS sat_reparaciones_desperfectos
+FROM
+     "empresa" empresa,"sat_reparaciones" sat_reparaciones
+INNER JOIN sat_tiposrep ON sat_tiposrep.codtiporep = sat_reparaciones.codtiporep
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="empresa_direccion" class="java.lang.String"/>
+	<field name="empresa_web" class="java.lang.String"/>
+	<field name="empresa_cifnif" class="java.lang.String"/>
+	<field name="empresa_nombre" class="java.lang.String"/>
+	<field name="empresa_administrador" class="java.lang.String"/>
+	<field name="empresa_telefono" class="java.lang.String"/>
+	<field name="empresa_fax" class="java.lang.String"/>
+	<field name="empresa_codpostal" class="java.lang.String"/>
+	<field name="empresa_ciudad" class="java.lang.String"/>
+	<field name="empresa_provincia" class="java.lang.String"/>
+	<field name="empresa_email" class="java.lang.String"/>
+	<field name="sat_reparaciones_codreparacion" class="java.lang.String"/>
+	<field name="sat_reparaciones_descripcion" class="java.lang.String"/>
+	<field name="sat_reparaciones_modelo" class="java.lang.String"/>
+	<field name="sat_reparaciones_nombre" class="java.lang.String"/>
+	<field name="sat_reparaciones_codcliente" class="java.lang.String"/>
+	<field name="sat_reparaciones_accesorios" class="java.lang.String"/>
+	<field name="sat_reparaciones_desperfectos" class="java.lang.String"/>
+	<field name="sat_reparaciones_fechaprev" class="java.util.Date"/>
+	<field name="sat_reparaciones_satnumserie" class="java.lang.String"/>
+	<field name="sat_reparaciones_anticipos" class="java.lang.Double"/>
+	<field name="sat_reparaciones_fecha" class="java.util.Date"/>
+	<field name="logoempresa" class="java.lang.String"/>
+	<field name="sat_tiposrep_condicionesrep" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="174" splitType="Stretch">
+			<textField>
+				<reportElement uuid="2d9422f0-5670-469b-aec4-5b1c42bfc16c" x="0" y="71" width="206" height="14"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fc97d032-97c1-4490-aa7a-280d3ba3beba" x="0" y="95" width="206" height="13"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_cifnif}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a52c30dd-1d8a-44de-adfd-93d00c7f36cf" x="0" y="108" width="206" height="12"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="de2de7b5-d6f7-4714-8c4d-ca0451291774" x="0" y="120" width="45" height="12"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_codpostal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d6aab61e-f6a4-4f2a-9765-8f2a1e6678da" x="53" y="120" width="92" height="12"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_ciudad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0ab8d282-44c8-4239-bb3a-d53be9b9a75d" x="156" y="120" width="50" height="12"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_provincia}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="e309eefc-f34b-4106-a355-d70d22e154ba" x="1" y="0" width="205" height="64"/>
+				<imageExpression><![CDATA[Xpm.XpmToImage($F{logoempresa})]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="d8f4a6cf-ee6b-44e2-a008-7ec7b011cf7a" x="59" y="137" width="49" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6fb3b5f7-6fde-4397-a316-8fa94828704a" x="7" y="137" width="44" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7303c961-d0e9-49d2-918d-3511a177994b" x="39" y="149" width="151" height="12" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8a742583-3829-473d-9a01-e1fe33c1f7bc" x="7" y="149" width="29" height="12" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{empresa_email} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8c452fb1-c3c5-48d1-9cec-f88d2e836133" x="108" y="137" width="10" height="12">
+					<printWhenExpression><![CDATA[$F{empresa_fax} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="567ed76a-96db-4a2a-ab50-3f7008ffeea0" x="118" y="137" width="78" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_fax}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f7d63cbd-f961-48e8-b17c-6f1cdfb7e419" x="39" y="161" width="141" height="12" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_web}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ebdb5963-1bfe-48e6-b7a0-1e19f35b002e" x="7" y="161" width="29" height="12" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{empresa_web} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Web:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2275625e-f49a-4039-9869-81bc7282942c" x="1" y="85" width="203" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_administrador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="200" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e9390d11-6fc1-471f-be2d-e57c2e2a03e7" x="1" y="5" width="73" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[Reparación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d05fa10-a47b-4d57-914d-17203481afb6" x="1" y="52" width="45" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_modelo} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="85678e24-b396-44a6-87c5-d8a342f27226" x="47" y="52" width="159" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="45cfb707-36fa-4def-ae6d-85ee088f8fa9" x="75" y="5" width="54" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_codreparacion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="152fadd5-c6a8-434b-8463-ccfc7953ebe2" x="0" y="0" width="206" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="f0bc8a27-6c82-4808-9fe4-c13092607ea0" x="1" y="25" width="205" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="79b09b49-86fb-407d-abd4-d2c2fb0cc068" x="143" y="5" width="63" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_fecha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="d67020be-0ef5-4d13-a660-b85c9faf2299" x="0" y="45" width="206" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="8d9a8508-44d1-4e4f-8109-013e1b092ae2" x="1" y="68" width="58" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_satnumserie} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Serie:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="734074ef-d437-4525-af53-03f54dd548d2" x="1" y="84" width="93" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_fechaprev} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Prevista:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e7070dbc-d764-4022-8137-62def2333d19" x="1" y="100" width="64" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{sat_reparaciones_anticipos} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anticipos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="68bbd9b3-2695-4243-a2ec-10d6bf3a3589" x="1" y="125" width="142" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[Firma cliente:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="cc6a7ac9-3c39-4024-b1f0-ce10dab9654a" x="60" y="68" width="140" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_satnumserie}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="f7efab90-e217-48df-8849-0d5990a7fb96" x="95" y="84" width="111" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_fechaprev}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤ " isBlankWhenNull="true">
+				<reportElement uuid="08bcae62-873f-4f4d-8570-29e9f74ebf6b" x="66" y="100" width="140" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_reparaciones_anticipos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="d0b21898-c61b-459a-ace0-89dab5006b00" x="0" y="119" width="206" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="4b1ab625-4746-4cc7-880a-df0c277aeb9f" x="1" y="183" width="205" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sat_tiposrep_condicionesrep}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="6c575e9b-eb9d-4b0c-8eed-908771a59a0d" x="0" y="178" width="206" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+</jasperReport>

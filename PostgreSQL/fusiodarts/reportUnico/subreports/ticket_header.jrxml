@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tiquet Firma Sat" language="groovy" pageWidth="226" pageHeight="174" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" isIgnorePagination="true" uuid="e13ed734-5a41-4beb-9e61-dbddf5609ecf">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     empresa."direccion" AS empresa_direccion,
+     empresa."web" AS empresa_web,
+     empresa."cifnif" AS empresa_cifnif,
+     empresa."nombre" AS empresa_nombre,
+     empresa."telefono" AS empresa_telefono,
+     empresa."codpostal" AS empresa_codpostal,
+     empresa."ciudad" AS empresa_ciudad,
+     empresa."provincia" AS empresa_provincia,
+     empresa."email" AS empresa_email,
+     empresa."fax" AS empresa_fax,
+     empresa."administrador" AS empresa_administrador,
+     (select contenido from fllarge where refkey = empresa.logo) as logoempresa
+FROM
+     "empresa" empresa
+WHERE 
+    empresa.id = 1]]>
+	</queryString>
+	<field name="empresa_direccion" class="java.lang.String"/>
+	<field name="empresa_web" class="java.lang.String"/>
+	<field name="empresa_cifnif" class="java.lang.String"/>
+	<field name="empresa_nombre" class="java.lang.String"/>
+	<field name="empresa_administrador" class="java.lang.String"/>
+	<field name="empresa_telefono" class="java.lang.String"/>
+	<field name="empresa_fax" class="java.lang.String"/>
+	<field name="empresa_codpostal" class="java.lang.String"/>
+	<field name="empresa_ciudad" class="java.lang.String"/>
+	<field name="empresa_provincia" class="java.lang.String"/>
+	<field name="empresa_email" class="java.lang.String"/>
+	<field name="logoempresa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="174">
+			<textField>
+				<reportElement uuid="2d9422f0-5670-469b-aec4-5b1c42bfc16c" x="0" y="71" width="206" height="14"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fc97d032-97c1-4490-aa7a-280d3ba3beba" x="0" y="95" width="206" height="13"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_cifnif}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a52c30dd-1d8a-44de-adfd-93d00c7f36cf" x="0" y="108" width="206" height="12"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="de2de7b5-d6f7-4714-8c4d-ca0451291774" x="0" y="120" width="45" height="12"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_codpostal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d6aab61e-f6a4-4f2a-9765-8f2a1e6678da" x="53" y="120" width="92" height="12"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_ciudad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0ab8d282-44c8-4239-bb3a-d53be9b9a75d" x="156" y="120" width="50" height="12"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_provincia}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="e309eefc-f34b-4106-a355-d70d22e154ba" x="1" y="0" width="205" height="64"/>
+				<imageExpression><![CDATA[Xpm.XpmToImage($F{logoempresa})]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="d8f4a6cf-ee6b-44e2-a008-7ec7b011cf7a" x="59" y="137" width="59" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6fb3b5f7-6fde-4397-a316-8fa94828704a" x="7" y="137" width="44" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7303c961-d0e9-49d2-918d-3511a177994b" x="39" y="149" width="167" height="12" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8a742583-3829-473d-9a01-e1fe33c1f7bc" x="7" y="149" width="29" height="12" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{empresa_email} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8c452fb1-c3c5-48d1-9cec-f88d2e836133" x="118" y="137" width="10" height="12">
+					<printWhenExpression><![CDATA[$F{empresa_fax} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="567ed76a-96db-4a2a-ab50-3f7008ffeea0" x="128" y="137" width="78" height="12"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_fax}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f7d63cbd-f961-48e8-b17c-6f1cdfb7e419" x="39" y="161" width="167" height="12" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_web}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ebdb5963-1bfe-48e6-b7a0-1e19f35b002e" x="7" y="161" width="29" height="12" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{empresa_web} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Web:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="2275625e-f49a-4039-9869-81bc7282942c" x="0" y="85" width="206" height="10"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_administrador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

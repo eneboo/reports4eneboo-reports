@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="titulos_lineas" pageWidth="555" pageHeight="15" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_reldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_LOAD_traza" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<background>
+		<band height="15">
+			<textField>
+				<reportElement style="Cabeceras" x="0" y="0" width="60" height="15" uuid="775f79ab-e70d-4692-9e3d-d264994eacf2"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{i18n.referencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="339" y="0" width="52" height="15" uuid="bc3c493d-fccb-4a86-8950-b1a9a8beca2c"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{i18n.cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="62" y="0" width="275" height="15" uuid="2ac5e99a-54f2-4204-9148-147012677390"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{i18n.descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="393" y="0" width="50" height="15" uuid="e8ec5113-2650-48ed-8e85-be2d6dc3c1d7"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{i18n.precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="445" y="0" width="50" height="15" uuid="87bdec71-e46d-472d-8a34-c2d104403a85"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{i18n.descuento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Cabeceras" x="497" y="0" width="58" height="15" uuid="9099b735-8a7a-4f37-be4d-f41042b6cd85"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{i18n.importe}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement mode="Opaque" x="62" y="0" width="275" height="15" isRemoveLineWhenBlank="true" uuid="77d914a9-541c-4df1-a575-50d0da61f69e">
+					<printWhenExpression><![CDATA[$P{PARAM_LOAD_traza}.equals( "Si" ) &&
+!$P{PARAM_tabla}.equals( "presupuestoscli" ) &&
+!$P{PARAM_tabla}.equals( "pedidoscli" ) &&
+!$P{PARAM_tabla}.equals( "pedidosprov" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_LOAD_traza">
+					<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_traza}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "traza_titulos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</background>
+	<detail>
+		<band/>
+	</detail>
+</jasperReport>

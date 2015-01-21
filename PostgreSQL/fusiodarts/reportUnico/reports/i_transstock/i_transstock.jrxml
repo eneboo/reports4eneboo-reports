@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Transferencia de Stocks" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cd7fb0f-b4b7-405f-ada2-1688f71c68c6">
+	<property name="ireport.zoom" value="1.4641000000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../../style.jrtx"]]></template>
+	<parameter name="PAGE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PARAM_tablareldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_reldoc" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{PARAM_orderdef}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    transstock.codalmaorigen as codalmaorigen,
+    transstock.codalmadestino as codalmadestino,
+    transstock.fecha as fecha,
+    transstock.hora as hora,
+    almaorigen.nombre as almaorigen_nombre,
+    almaorigen.direccion as almaorigen_dir,
+    almaorigen.codpostal as almaorigen_codpostal,
+    almaorigen.apartado as almaorigen_apartado,
+    almaorigen.poblacion as almaorigen_poblacion,
+    almaorigen.idprovincia as almaorigen_idprovincia,
+    almaorigen.provincia as almaorigen_provincia,
+    almaorigen.codpais as almaorigen_codpais,
+    origenpais.nombre as almaorigen_pais,
+    almaorigen.telefono as almaorigen_telefono,
+    almaorigen.contacto as almaorigen_contacto,
+    almaorigen.observaciones as almaorigen_observaciones,
+    almadestino.nombre as almadestino_nombre,
+    almadestino.direccion as almadestino_dir,
+    almadestino.codpostal as almadestino_codpostal,
+    almadestino.apartado as almadestino_apartado,
+    almadestino.poblacion as almadestino_poblacion,
+    almadestino.idprovincia as almadestino_idprovincia,
+    almadestino.provincia as almadestino_provincia,
+    almadestino.codpais as almadestino_codpais,
+    destinopais.nombre as almadestino_pais,
+    almadestino.telefono as almadestino_telefono,
+    almadestino.contacto as almadestino_contacto,
+    almadestino.observaciones as almadestino_observaciones,
+    transstock.matriculatrans as matriculatrans,
+    lineastransstock.referencia as referencia,
+    lineastransstock.descripcion as descripcionreferencia,
+    lineastransstock.cantidad as cantidadreferencia,
+    empresa.lopd AS empresa_lopd,
+    empresa.rmercantil AS empresa_rmercantil
+FROM empresa, transstock
+INNER JOIN almacenes almaorigen ON transstock.codalmaorigen = almaorigen.codalmacen
+INNER JOIN almacenes almadestino ON transstock.codalmadestino = almadestino.codalmacen
+INNER JOIN lineastransstock ON transstock.idtrans = lineastransstock.idtrans
+INNER JOIN paises origenpais ON almaorigen.codpais = origenpais.codpais
+INNER JOIN paises destinopais ON almadestino.codpais = destinopais.codpais
+WHERE $P!{WHERE}]]>
+	</queryString>
+	<field name="codalmaorigen" class="java.lang.String"/>
+	<field name="codalmadestino" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="almaorigen_nombre" class="java.lang.String"/>
+	<field name="almaorigen_dir" class="java.lang.String"/>
+	<field name="almaorigen_codpostal" class="java.lang.String"/>
+	<field name="almaorigen_apartado" class="java.lang.String"/>
+	<field name="almaorigen_poblacion" class="java.lang.String"/>
+	<field name="almaorigen_idprovincia" class="java.lang.Integer"/>
+	<field name="almaorigen_provincia" class="java.lang.String"/>
+	<field name="almaorigen_codpais" class="java.lang.String"/>
+	<field name="almaorigen_telefono" class="java.lang.String"/>
+	<field name="almaorigen_contacto" class="java.lang.String"/>
+	<field name="almaorigen_observaciones" class="java.lang.String"/>
+	<field name="almadestino_nombre" class="java.lang.String"/>
+	<field name="almadestino_dir" class="java.lang.String"/>
+	<field name="almadestino_codpostal" class="java.lang.String"/>
+	<field name="almadestino_apartado" class="java.lang.String"/>
+	<field name="almadestino_poblacion" class="java.lang.String"/>
+	<field name="almadestino_idprovincia" class="java.lang.Integer"/>
+	<field name="almadestino_provincia" class="java.lang.String"/>
+	<field name="almadestino_codpais" class="java.lang.String"/>
+	<field name="almadestino_telefono" class="java.lang.String"/>
+	<field name="almadestino_contacto" class="java.lang.String"/>
+	<field name="almadestino_observaciones" class="java.lang.String"/>
+	<field name="matriculatrans" class="java.lang.String"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="descripcionreferencia" class="java.lang.String"/>
+	<field name="cantidadreferencia" class="java.lang.Double"/>
+	<field name="empresa_lopd" class="java.lang.String"/>
+	<field name="empresa_rmercantil" class="java.lang.String"/>
+	<field name="almadestino_pais" class="java.lang.String"/>
+	<field name="almaorigen_pais" class="java.lang.String"/>
+	<variable name="subreport_count" class="java.lang.Integer"/>
+	<variable name="sumacantidad" class="java.lang.Double" resetType="Group" resetGroup="ID" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidadreferencia}]]></variableExpression>
+	</variable>
+	<group name="ID" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true" footerPosition="ForceAtBottom" keepTogether="true">
+		<groupHeader>
+			<band height="40">
+				<elementGroup>
+					<frame>
+						<reportElement style="Cabeceras" x="0" y="0" width="554" height="15" uuid="01e28b32-f8ae-480a-8b56-1e46f1c45fa9"/>
+					</frame>
+					<staticText>
+						<reportElement style="Cabeceras" x="0" y="0" width="554" height="15" uuid="5ea0a4fe-8ecb-4bb4-a16e-8c0bb4c379c0"/>
+						<textElement verticalAlignment="Middle" markup="none">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[ORDEN DE TRASPASO]]></text>
+					</staticText>
+					<frame>
+						<reportElement style="Recuadros" x="0" y="15" width="554" height="18" uuid="56b53f73-72de-4c40-85a3-c5e84e3cbb6f"/>
+						<staticText>
+							<reportElement x="484" y="2" width="55" height="15" uuid="c6dd4dee-714c-4ace-8ee4-09c0c41d181e"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" size="8" isBold="false"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<text><![CDATA[Página]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="539" y="2" width="15" height="15" uuid="2bc74bdd-ae92-4a1c-8807-4ef6b36a52a2"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Arial" size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd/MM/yyyy">
+							<reportElement x="55" y="2" width="90" height="15" uuid="e2c08eed-1998-4ed9-aaa3-45919d5fa9b0"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="2" width="55" height="15" uuid="57cbc0bc-5aad-4d66-9f19-558966fa4043"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" size="8" isBold="false"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<text><![CDATA[Fecha]]></text>
+						</staticText>
+					</frame>
+				</elementGroup>
+			</band>
+			<band height="40">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement style="Recuadros" x="0" y="15" width="556" height="15" uuid="4c3f85fd-2cb9-46b0-be8c-ed5c28d65d94"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $F{almaorigen_dir} != null ? $F{almaorigen_dir} + "   -   " : "" ) +
+( $F{almaorigen_poblacion} != null ? $F{almaorigen_poblacion} + "   -   " : "" ) +
+( $F{almaorigen_codpostal} != null ? $F{almaorigen_codpostal} + "   -   " : "" ) +
+( $F{almaorigen_provincia} != null ? $F{almaorigen_provincia} + "   -   " : "" ) +
+( $F{almaorigen_pais} != null ? $F{almaorigen_pais} : "" )]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="8684a42a-6073-4c52-b541-387b4f9947d5"/>
+					<staticText>
+						<reportElement mode="Transparent" x="0" y="0" width="118" height="15" uuid="4650ea23-35e8-46f5-9470-6478c2e3531c"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[ALMACEN DE ORIGEN:]]></text>
+					</staticText>
+					<textField>
+						<reportElement mode="Transparent" x="118" y="0" width="436" height="15" uuid="e1c22be9-d5d9-4287-8652-0ddd94b4a39a"/>
+						<textElement verticalAlignment="Middle" markup="none">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5" rightIndent="5"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{almaorigen_nombre}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+			<band height="40">
+				<frame>
+					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="4761c098-e0ed-4753-bd22-bffe5937cb9e"/>
+					<staticText>
+						<reportElement mode="Transparent" x="0" y="0" width="118" height="15" uuid="75ec8267-e720-415b-b66e-e3a0133818b3"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5"/>
+						</textElement>
+						<text><![CDATA[ALMACEN DE DESTINO:]]></text>
+					</staticText>
+					<textField>
+						<reportElement mode="Transparent" x="118" y="0" width="436" height="15" uuid="3254ed5f-0729-43b6-8b6e-7783c01e2110"/>
+						<textElement verticalAlignment="Middle" markup="none">
+							<font fontName="Arial" size="9" isBold="true"/>
+							<paragraph leftIndent="5" rightIndent="5"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{almadestino_nombre}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement style="Recuadros" x="0" y="15" width="556" height="15" uuid="a14b5adc-183a-42a6-a812-a03c9e398266"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $F{almadestino_dir} != null ? $F{almadestino_dir} + "   -   " : "" ) +
+( $F{almadestino_poblacion} != null ? $F{almadestino_poblacion} + "   -   " : "" ) +
+( $F{almadestino_codpostal} != null ? $F{almadestino_codpostal} + "   -   " : "" ) +
+( $F{almadestino_provincia} != null ? $F{almadestino_provincia} + "   -   " : "" ) +
+( $F{almadestino_pais} != null ? $F{almadestino_pais} : "" )]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="40">
+				<printWhenExpression><![CDATA[$F{matriculatrans} != null]]></printWhenExpression>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement style="Recuadros" x="0" y="15" width="556" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="2b584854-6c83-4be7-b5fd-8fcf05d23529"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{matriculatrans}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Cabeceras" x="0" y="0" width="556" height="15" uuid="d0fa80d8-2316-491b-a8b4-1e08b3db87f2"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[TRANSPORTE]]></text>
+				</staticText>
+			</band>
+			<band height="20">
+				<elementGroup>
+					<staticText>
+						<reportElement style="Cabeceras" x="62" y="0" width="287" height="15" uuid="5ea80f58-df36-4a78-99d3-80c39c0a0713"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Descripción]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Cabeceras" x="0" y="0" width="60" height="15" uuid="b3bdefc4-ff7e-453e-bfa3-233687821837"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Referencia]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Cabeceras" x="445" y="0" width="50" height="15" uuid="055293ce-fdb6-45c9-9b62-07b07f5a3968"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Cabeceras" x="497" y="0" width="58" height="15" uuid="4b4368ca-b9ed-49cf-ac02-a803406acf4c"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Cantidad]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Cabeceras" x="393" y="0" width="50" height="15" uuid="cd02bdf5-ed53-4f5a-971d-2bc69b979113"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="Cabeceras" x="351" y="0" width="40" height="15" uuid="f043f43b-6a18-49b2-9d1e-f176a125419f"/>
+						<textElement textAlignment="Center">
+							<font fontName="Arial" size="9" isBold="true"/>
+						</textElement>
+						<text><![CDATA[]]></text>
+					</staticText>
+				</elementGroup>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="42" splitType="Stretch">
+				<staticText>
+					<reportElement style="Cabeceras" x="465" y="0" width="89" height="17" uuid="b1fdea82-78c2-4ac5-b846-2f41cc9e74e8"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Artículos]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+					<reportElement style="Recuadros" x="465" y="17" width="89" height="17" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="7a49ff4f-123a-4229-a570-80e53533bb6d">
+						<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="8"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sumacantidad}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="92">
+			<subreport isUsingCache="false">
+				<reportElement x="-1" y="0" width="556" height="92" uuid="134b6849-52ed-482b-9d59-0ace48d348ad"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_subtabla">
+					<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="WHERE">
+					<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_tabla">
+					<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ORDERBY">
+					<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_titulo">
+					<subreportParameterExpression><![CDATA[$P{PARAM_titulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_orderdef">
+					<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_reldoc">
+					<subreportParameterExpression><![CDATA[$P{PARAM_reldoc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PARAM_tablareldoc">
+					<subreportParameterExpression><![CDATA[$P{PARAM_tablareldoc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21" splitType="Immediate">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="62" y="0" width="287" height="17" uuid="dc8178c9-2748-4eeb-9a9f-90252053b98d"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcionreferencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="351" y="0" width="40" height="17" uuid="95d66e3d-9ee6-41d6-b930-5896d614d0db"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="0" width="50" height="17" uuid="8acb6a54-ab56-45d0-b8aa-e196151c9b1d"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="false">
+				<reportElement x="497" y="0" width="58" height="17" uuid="2c41dcb6-caaf-4455-9238-e051b5164172">
+					<printWhenExpression><![CDATA[$F{cantidadreferencia} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidadreferencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="445" y="0" width="50" height="17" uuid="88edafd2-5dda-4a2a-ac3e-3a6b0a4c3273"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="60" height="17" uuid="3f12babc-5e82-43c6-af94-bf258fa87894">
+					<printWhenExpression><![CDATA[$F{referencia} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="8"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="62" splitType="Stretch">
+			<elementGroup>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="14" width="555" height="14" uuid="371bc6b5-1306-425e-902a-b6ca8f4716cb"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{empresa_rmercantil}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="27" width="555" height="35" uuid="ee4b2559-eafd-421a-a18b-6412efbd592d"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" size="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{empresa_lopd}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="13" width="555" height="1" forecolor="#AAAAAA" uuid="f992d50c-406c-453c-b5b8-66a2adede0f4"/>
+				</line>
+			</elementGroup>
+		</band>
+	</pageFooter>
+</jasperReport>

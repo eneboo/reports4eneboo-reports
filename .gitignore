@@ -1,0 +1,7 @@
+
+# .gitignore #
+###################################
+*~
+.directory
+*.kate-swp
+/PostgreSQL/fusiodarts/reportUnico/temp_files/*

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_facturascli_vencimientos" pageWidth="110" pageHeight="34" columnWidth="110" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="ee23847a-7b6e-4ec3-8a18-ca8dc51bdf04">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="ID" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1874]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     reciboscli."fechav" AS reciboscli_fechav,
+     reciboscli."importe" AS reciboscli_importeeuros
+FROM
+     "public"."reciboscli" reciboscli
+WHERE
+     reciboscli."idfactura" = $P!{ID}]]>
+	</queryString>
+	<field name="reciboscli_fechav" class="java.sql.Date"/>
+	<field name="reciboscli_importeeuros" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<frame>
+				<reportElement style="Cabeceras" x="0" y="0" width="110" height="15" uuid="0444e582-15b9-4bfa-85b2-dc94d9141445"/>
+				<staticText>
+					<reportElement x="52" y="0" width="5" height="15" uuid="6376fdfa-7201-45ef-9589-8ea21ee53159"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Cabeceras" x="0" y="0" width="50" height="15" uuid="f2e39601-72cd-4b58-81e6-010bde950358"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{i18n.recibo_vencimiento}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Cabeceras" x="57" y="0" width="53" height="15" uuid="8c780f5b-ee33-4f97-bf72-80b743407e26"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{i18n.recibo_cantidad}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement style="Recuadros" x="0" y="15" width="110" height="19" uuid="86c15537-cdb8-4669-aca3-d4ff181f130d"/>
+			</frame>
+			<textField pattern="#,##0.00">
+				<reportElement mode="Transparent" x="57" y="15" width="53" height="19" uuid="df74b1e9-d7fb-45d3-931a-d77b1b67340f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reciboscli_importeeuros}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Transparent" x="0" y="15" width="50" height="19" uuid="ea24c02a-eaa3-485f-96eb-f799ad30201d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reciboscli_fechav}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="52" y="15" width="5" height="19" uuid="8949e23e-87d9-4a25-b6f4-a56ed38f5a4c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header_direnvio" pageWidth="556" pageHeight="37" columnWidth="556" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="../../i18n" uuid="67659ae4-cf79-425a-b9a0-1bda7ce36b79">
+	<property name="ireport.zoom" value="1.7715610000000044"/>
+	<property name="ireport.x" value="14"/>
+	<property name="ireport.y" value="0"/>
+	<template><![CDATA["../style.jrtx"]]></template>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TABLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TITLE_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ID_SUBREPORT" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="TEXT_SUBREPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["$P!{PARAM_tabla}.codejercicio = '2012' AND $P!{PARAM_tabla}.fecha >= '2012-01-01T00:00:00' AND $P!{PARAM_tabla}.fecha <= '2012-10-20T00:00:00' AND empresa.id = '1'"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{PARAM_orderdef}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_orderdef" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_tabla" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["facturasprov"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_subtabla" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="codcliprov" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals("facturascli")
+|| $P{PARAM_tabla}.equals("albaranescli")
+|| $P{PARAM_tabla}.equals("pedidoscli")
+|| $P{PARAM_tabla}.equals("presupuestoscli")
+? "cliente"
+: "proveedor" )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="clis_provs" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[( $P{PARAM_tabla}.equals("facturascli")
+|| $P{PARAM_tabla}.equals("albaranescli")
+|| $P{PARAM_tabla}.equals("pedidoscli")
+|| $P{PARAM_tabla}.equals("presupuestoscli")
+? "clientes"
+: "proveedores" )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PARAM_LOAD_cae" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Si"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+$P!{PARAM_tabla}.cod$P!{codcliprov} as codcliprov,
+$P!{PARAM_tabla}.coddirenv as coddirenv,
+$P!{PARAM_tabla}.direccionenv as direccionenv,
+$P!{PARAM_tabla}.codpostalenv as cpenv,
+$P!{PARAM_tabla}.ciudadenv as ciudadenv,
+$P!{PARAM_tabla}.provinciaenv as provinciaenv,
+$P!{PARAM_tabla}.apartadoenv as apartadoenv,
+$P!{PARAM_tabla}.codpaisenv as codpaisenv,
+dir$P!{clis_provs}.descripcion as descripcionenv,
+paises.nombre as paisenv
+FROM $P!{PARAM_tabla}
+LEFT OUTER JOIN $P!{clis_provs} ON $P!{clis_provs}.cod$P!{codcliprov} = $P!{PARAM_tabla}.cod$P!{codcliprov}
+LEFT OUTER JOIN dir$P!{clis_provs} ON dir$P!{clis_provs}.id = $P!{PARAM_tabla}.coddirenv
+LEFT OUTER JOIN paises ON paises.codpais = $P!{PARAM_tabla}.codpaisenv
+WHERE $P!{WHERE}]]>
+	</queryString>
+	<field name="codcliprov" class="java.lang.String"/>
+	<field name="coddirenv" class="java.lang.Integer"/>
+	<field name="direccionenv" class="java.lang.String"/>
+	<field name="cpenv" class="java.lang.String"/>
+	<field name="ciudadenv" class="java.lang.String"/>
+	<field name="provinciaenv" class="java.lang.String"/>
+	<field name="apartadoenv" class="java.lang.String"/>
+	<field name="paisenv" class="java.lang.String"/>
+	<field name="descripcionenv" class="java.lang.String"/>
+	<field name="codpaisenv" class="java.lang.String"/>
+	<variable name="separador" class="java.lang.String">
+		<variableExpression><![CDATA["   -   "]]></variableExpression>
+	</variable>
+	<variable name="direccionenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{direccionenv} != null ? $F{direccionenv} + $V{separador} : " " )]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="ciudadenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{ciudadenv} != null ? $F{ciudadenv} + $V{separador} : " " )]]></variableExpression>
+	</variable>
+	<variable name="provinciaenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{provinciaenv} != null ? $F{provinciaenv} + $V{separador} : " " )]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="apartadoenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{apartadoenv} != null ? $F{apartadoenv} + $V{separador} : " " )]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="cpenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{cpenv} != null ? $F{cpenv} + $V{separador} : " " )]]></variableExpression>
+	</variable>
+	<variable name="paisenv" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{paisenv} != null ? $F{paisenv} : " " )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="37">
+			<elementGroup>
+				<frame>
+					<reportElement style="Cabeceras" x="0" y="0" width="555" height="15" uuid="ffc880ab-588b-4e89-8955-390f21dc0168"/>
+					<subreport isUsingCache="false">
+						<reportElement x="111" y="0" width="200" height="15" uuid="0cf51975-d2ec-4c34-8ac8-02e59cb05702">
+							<printWhenExpression><![CDATA[$P{PARAM_LOAD_cae}.equals( "Si" )]]></printWhenExpression>
+						</reportElement>
+						<subreportParameter name="PARAM_subtabla">
+							<subreportParameterExpression><![CDATA[$P{PARAM_subtabla}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="WHERE">
+							<subreportParameterExpression><![CDATA[$P{WHERE}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="PARAM_tabla">
+							<subreportParameterExpression><![CDATA[$P{PARAM_tabla}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="TITLE_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{TITLE_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="PARAM_LOAD_cae">
+							<subreportParameterExpression><![CDATA[$P{PARAM_LOAD_cae}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="SUBREPORT_DIR">
+							<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="TABLE_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{TABLE_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="ORDERBY">
+							<subreportParameterExpression><![CDATA[$P{ORDERBY}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="PARAM_orderdef">
+							<subreportParameterExpression><![CDATA[$P{PARAM_orderdef}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="TEXT_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{TEXT_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<subreportParameter name="ID_SUBREPORT">
+							<subreportParameterExpression><![CDATA[$P{ID_SUBREPORT}]]></subreportParameterExpression>
+						</subreportParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "cae_dirEnvio.jasper"]]></subreportExpression>
+					</subreport>
+				</frame>
+				<textField>
+					<reportElement mode="Transparent" x="0" y="0" width="99" height="15" uuid="8ce1ecb6-78a3-495d-8b08-2561593b487f"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{i18n.dirEnvio_direccion}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="450" y="0" width="105" height="15" uuid="caeda6bc-6c4a-49ff-90d6-4d5d3c056600"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" size="9" isBold="true"/>
+						<paragraph leftIndent="5" rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descripcionenv}]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement style="Recuadros" x="0" y="15" width="555" height="22" isPrintWhenDetailOverflows="true" uuid="6abac60b-54e3-498e-b485-a401beeb2e7a"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+						<reportElement x="0" y="3" width="555" height="15" uuid="026f1017-51cf-4eda-89f6-f8353c526f3c"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="8"/>
+							<paragraph leftIndent="5" rightIndent="5"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{direccionenv} +
+$V{ciudadenv} +
+$V{provinciaenv} +
+$V{cpenv} +
+$V{apartadoenv} +
+$V{paisenv}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</elementGroup>
+		</band>
+	</detail>
+</jasperReport>
