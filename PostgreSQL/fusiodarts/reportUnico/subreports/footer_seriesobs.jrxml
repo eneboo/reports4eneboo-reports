@@ -27,11 +27,9 @@
 	</background>
 	<detail>
 		<band height="20">
-			<printWhenExpression><![CDATA[$F{observaciones}!=null]]></printWhenExpression>
+			<printWhenExpression><![CDATA[$F{observaciones} != null]]></printWhenExpression>
 			<staticText>
-				<reportElement style="Cabeceras" mode="Opaque" x="0" y="0" width="555" height="15" isRemoveLineWhenBlank="true" uuid="b2557855-6c3f-4d20-8368-5782087efa83">
-					<printWhenExpression><![CDATA[$F{observaciones}!=null]]></printWhenExpression>
-				</reportElement>
+				<reportElement style="Cabeceras" mode="Opaque" x="0" y="0" width="555" height="15" isRemoveLineWhenBlank="true" uuid="b2557855-6c3f-4d20-8368-5782087efa83"/>
 				<textElement textAlignment="Left">
 					<font fontName="Arial" size="8" isBold="true"/>
 					<paragraph leftIndent="5"/>
@@ -39,9 +37,7 @@
 				<text><![CDATA[AVISO]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Recuadros" x="0" y="14" width="555" height="5" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="ec157cdd-abb2-41b1-b9b9-f9a9357f2e9f">
-					<printWhenExpression><![CDATA[$F{observaciones}!=null]]></printWhenExpression>
-				</reportElement>
+				<reportElement style="Recuadros" x="0" y="14" width="555" height="5" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="ec157cdd-abb2-41b1-b9b9-f9a9357f2e9f"/>
 				<textElement markup="styled">
 					<font fontName="Arial" size="8"/>
 					<paragraph lineSpacing="1_1_2" leftIndent="2" rightIndent="2" spacingBefore="2" spacingAfter="5"/>
