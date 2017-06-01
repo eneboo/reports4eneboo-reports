@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-23T12:15:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="i_facturascli_ivas" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="75632c9b-172c-430e-aa60-856bbfca6dfb">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IDFACTURA" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+     lineasivafactcli."iva" AS lineasivafactcli_iva,
+     SUM(lineasivafactcli."totaliva") AS lineasivafactcli_totaliva,
+     SUM(lineasivafactcli."neto") AS lineasivafactcli_neto
+FROM
+     "public"."lineasivafactcli" lineasivafactcli
+WHERE
+     lineasivafactcli."idfactura" = $P{IDFACTURA}
+GROUP BY lineasivafactcli_iva]]>
+	</queryString>
+	<field name="lineasivafactcli_iva" class="java.lang.Double"/>
+	<field name="lineasivafactcli_totaliva" class="java.lang.Double"/>
+	<field name="lineasivafactcli_neto" class="java.lang.Double"/>
+	<group name="lineasivafactcli_iva">
+		<groupExpression><![CDATA[$F{lineasivafactcli_iva}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField pattern="###0.00€;-###0.00€">
+				<reportElement x="0" y="1" width="40" height="15" uuid="c568c584-bda5-4ee5-add5-1f041f69e440"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineasivafactcli_neto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="40" y="1" width="32" height="15" uuid="5f985718-9934-48fd-8381-121665a58cd6"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineasivafactcli_iva}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00€;-###0.00€">
+				<reportElement x="101" y="1" width="34" height="15" uuid="f0495ca7-a660-4111-824f-def26a2ac0d0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineasivafactcli_totaliva}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="1" width="29" height="15" uuid="78f4f717-af80-4b5b-a7e0-35407d392631"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField pattern="###0.00€;-###0.00€">
+				<reportElement x="145" y="1" width="40" height="15" uuid="2965438a-d5c4-4794-950f-bf0feb81bc2c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineasivafactcli_totaliva}+$F{lineasivafactcli_neto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

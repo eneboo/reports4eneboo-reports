@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-24T17:40:56 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tpv_i_comandas" language="groovy" pageWidth="230" pageHeight="500" columnWidth="230" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="e13ed734-5a41-4beb-9e61-dbddf5609ecf">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="76"/>
+	<parameter name="WHERE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="ORDERBY" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["tpv_comandas.codigo"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../../subreports/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     empresa."direccion" AS empresa_direccion,
+     empresa."web" AS empresa_web,
+     empresa."cifnif" AS empresa_cifnif,
+     empresa."logo" AS empresa_logo,
+     empresa."nombre" AS empresa_nombre,
+     empresa."telefono" AS empresa_telefono,
+     empresa."codpostal" AS empresa_codpostal,
+     empresa."ciudad" AS empresa_ciudad,
+     empresa."provincia" AS empresa_provincia,
+     empresa."email" AS empresa_email,
+     empresa."fax" AS empresa_fax,
+     empresa."administrador" AS empresa_administrador,
+     (select contenido from fllarge where refkey = empresa.logo) as logoempresa,
+     (select descripcion from tpv_agentes where codtpv_agente = tpv_comandas.codtpv_agente) as nombreagente,
+     (select codigo from facturascli where idfactura = tpv_comandas.idfactura) as codigofactura,
+     (select nombre from clientes where codcliente = tpv_comandas.codcliente) as nombrecliente,
+     (select cifnif from clientes where codcliente = tpv_comandas.codcliente) as cifcliente,
+     (select direccion from dirclientes where codcliente = tpv_comandas.codcliente) as dircliente,
+     (select provincia from dirclientes where codcliente = tpv_comandas.codcliente) as provinciacliente,
+     (select codpostal from dirclientes where codcliente = tpv_comandas.codcliente) as codpostalcliente,
+     tpv_comandas."codigo" AS tpv_comandas_codigo,
+     tpv_comandas."hora" AS tpv_comandas_hora,
+     tpv_comandas."total" AS tpv_comandas_total,
+     tpv_comandas."nombrecliente" AS tpv_comandas_nombrecliente,
+     tpv_comandas."idfactura" AS tpv_comandas_idfactura,
+     tpv_comandas."codcliente" AS tpv_comandas_codcliente,
+     tpv_comandas."codpais" AS tpv_comandas_codpais,
+     tpv_comandas."coddir" AS tpv_comandas_coddir,
+     tpv_comandas."cifnif" AS tpv_comandas_cifnif,
+     tpv_comandas."provincia" AS tpv_comandas_provincia,
+     tpv_comandas."tipopago" AS tpv_comandas_tipopago,
+     tpv_comandas."fecha" AS tpv_comandas_fecha,
+     tpv_comandas."idtpv_comanda" AS tpv_comandas_idtpv_comanda,
+     tpv_comandas."neto" AS tpv_comandas_neto,
+     tpv_comandas."codpostal" AS tpv_comandas_codpostal,
+     tpv_comandas."idprovincia" AS tpv_comandas_idprovincia,
+     tpv_comandas."totaliva" AS tpv_comandas_totaliva,
+     tpv_comandas."ultentregado" AS tpv_comandas_ultentregado,
+     tpv_comandas."referencia" AS tpv_comandas_referencia,
+     tpv_comandas."codtpv_agente" AS tpv_comandas_codtpv_agente
+FROM
+     "empresa" empresa,
+     "tpv_comandas" tpv_comandas
+WHERE $P!{WHERE}
+ORDER BY $P!{ORDERBY}]]>
+	</queryString>
+	<field name="empresa_direccion" class="java.lang.String"/>
+	<field name="empresa_web" class="java.lang.String"/>
+	<field name="empresa_cifnif" class="java.lang.String"/>
+	<field name="empresa_logo" class="java.lang.String"/>
+	<field name="empresa_nombre" class="java.lang.String"/>
+	<field name="empresa_administrador" class="java.lang.String"/>
+	<field name="empresa_telefono" class="java.lang.String"/>
+	<field name="empresa_fax" class="java.lang.String"/>
+	<field name="empresa_codpostal" class="java.lang.String"/>
+	<field name="empresa_ciudad" class="java.lang.String"/>
+	<field name="empresa_provincia" class="java.lang.String"/>
+	<field name="empresa_email" class="java.lang.String"/>
+	<field name="logoempresa" class="java.lang.String"/>
+	<field name="codigofactura" class="java.lang.String"/>
+	<field name="tpv_comandas_codigo" class="java.lang.String"/>
+	<field name="tpv_comandas_hora" class="java.sql.Time"/>
+	<field name="tpv_comandas_total" class="java.lang.Double"/>
+	<field name="tpv_comandas_nombrecliente" class="java.lang.String"/>
+	<field name="tpv_comandas_idfactura" class="java.lang.Integer"/>
+	<field name="tpv_comandas_codcliente" class="java.lang.String"/>
+	<field name="tpv_comandas_codpais" class="java.lang.String"/>
+	<field name="tpv_comandas_coddir" class="java.lang.Integer"/>
+	<field name="tpv_comandas_cifnif" class="java.lang.String"/>
+	<field name="tpv_comandas_provincia" class="java.lang.String"/>
+	<field name="tpv_comandas_tipopago" class="java.lang.String"/>
+	<field name="tpv_comandas_fecha" class="java.sql.Date"/>
+	<field name="tpv_comandas_idtpv_comanda" class="java.lang.Integer"/>
+	<field name="tpv_comandas_neto" class="java.lang.Double"/>
+	<field name="tpv_comandas_codpostal" class="java.lang.String"/>
+	<field name="tpv_comandas_idprovincia" class="java.lang.Integer"/>
+	<field name="tpv_comandas_totaliva" class="java.lang.Double"/>
+	<field name="tpv_comandas_ultentregado" class="java.lang.Double"/>
+	<field name="tpv_comandas_referencia" class="java.lang.String"/>
+	<field name="tpv_comandas_codtpv_agente" class="java.lang.String"/>
+	<field name="nombreagente" class="java.lang.String"/>
+	<field name="nombrecliente" class="java.lang.String"/>
+	<field name="cifcliente" class="java.lang.String"/>
+	<field name="dircliente" class="java.lang.String"/>
+	<field name="provinciacliente" class="java.lang.String"/>
+	<field name="codpostalcliente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="155" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="74" width="206" height="13" uuid="fc97d032-97c1-4490-aa7a-280d3ba3beba"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_cifnif}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="11" y="87" width="206" height="17" uuid="a52c30dd-1d8a-44de-adfd-93d00c7f36cf"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="104" width="45" height="12" uuid="de2de7b5-d6f7-4714-8c4d-ca0451291774"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_codpostal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="64" y="104" width="92" height="12" uuid="d6aab61e-f6a4-4f2a-9765-8f2a1e6678da"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_ciudad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="167" y="104" width="50" height="12" uuid="0ab8d282-44c8-4239-bb3a-d53be9b9a75d"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_provincia}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="11" y="0" width="205" height="64" uuid="e309eefc-f34b-4106-a355-d70d22e154ba"/>
+				<imageExpression><![CDATA[Xpm.XpmToImage($F{logoempresa})]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="56" y="116" width="49" height="12" uuid="d8f4a6cf-ee6b-44e2-a008-7ec7b011cf7a"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="116" width="44" height="12" uuid="6fb3b5f7-6fde-4397-a316-8fa94828704a"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Telefonos]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="44" y="128" width="151" height="12" uuid="7303c961-d0e9-49d2-918d-3511a177994b"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="128" width="26" height="12" uuid="8a742583-3829-473d-9a01-e1fe33c1f7bc"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Em@il  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="116" width="10" height="12" uuid="8c452fb1-c3c5-48d1-9cec-f88d2e836133"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="129" y="116" width="78" height="12" uuid="567ed76a-96db-4a2a-ab50-3f7008ffeea0"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_fax}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="44" y="140" width="141" height="12" uuid="f7d63cbd-f961-48e8-b17c-6f1cdfb7e419"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_web}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="140" width="26" height="12" uuid="ebdb5963-1bfe-48e6-b7a0-1e19f35b002e"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[Web]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="10" y="64" width="207" height="10" uuid="2275625e-f49a-4039-9869-81bc7282942c"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_administrador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="120" width="45" height="11" uuid="aa04e592-2ffd-4878-8e42-f4b2859b8d3a"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="7"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="120" width="38" height="11" uuid="b77bc41d-488b-4170-993b-924f181214c3"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="7"/>
+				</textElement>
+				<text><![CDATA[PRECIO/U]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="120" width="34" height="11" uuid="8791dbc7-6bdb-4c14-8f00-71f33d42767b"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="7"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="120" width="64" height="11" uuid="811246d5-2380-4760-a2b3-08f078f37753"/>
+				<textElement textAlignment="Left">
+					<font fontName="DejaVu Sans Mono" size="7"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="206" height="27" uuid="a279537f-8b18-4065-b89e-dc80c41450f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[FACTURA SIMPLIFICADA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="39" width="73" height="13" uuid="e9390d11-6fc1-471f-be2d-e57c2e2a03e7"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[Nº FACTURA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="52" width="45" height="12" uuid="4d05fa10-a47b-4d57-914d-17203481afb6"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[FECHA :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="56" y="52" width="62" height="12" uuid="85678e24-b396-44a6-87c5-d8a342f27226"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_comandas_fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="125" y="52" width="37" height="12" uuid="f9fc8d92-fb6c-4cd0-8194-d2d9825903b8"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[HORA :]]></text>
+			</staticText>
+			<textField pattern="HH:mm">
+				<reportElement x="163" y="52" width="51" height="12" uuid="b1b67cb3-1d76-493c-96eb-1d49b8c88285"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_comandas_hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="39" width="124" height="13" uuid="45cfb707-36fa-4def-ae6d-85ee088f8fa9"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigofactura}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="171" y="120" width="20" height="11" uuid="61c49ebc-5c99-4d7b-83df-96a69d9b0e5e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="7"/>
+				</textElement>
+				<text><![CDATA[DTO.]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="56" y="64" width="158" height="12" uuid="b20df892-97dc-4525-8e72-be191436e40b"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrecliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="64" width="45" height="12" uuid="c94d895d-e1c2-4d37-a65e-d1e0b17902d8">
+					<printWhenExpression><![CDATA[$F{nombrecliente}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[CLIENTE:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="45" y="76" width="144" height="12" uuid="1d3861a6-642b-48d9-8357-3355e75e83f7"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cifcliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="76" width="33" height="12" uuid="74da3ae5-b12b-4186-aea4-a3db238281b9">
+					<printWhenExpression><![CDATA[$F{nombrecliente}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[CIF:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="70" y="88" width="144" height="12" uuid="de955ed1-6e0a-40d5-9f1f-6fc8136795be">
+					<printWhenExpression><![CDATA[$F{nombrecliente}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dircliente} +" " + $F{codpostalcliente} + " " +$F{provinciacliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="88" width="60" height="12" uuid="7e7651f0-2681-426a-b30d-ceca178d0d8d">
+					<printWhenExpression><![CDATA[$F{nombrecliente}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[DIRECCIÓN:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<subreport>
+				<reportElement x="10" y="0" width="156" height="18" uuid="a92aa11a-e3a7-4529-8ba7-0c64006b8420"/>
+				<subreportParameter name="IDCOMANDA">
+					<subreportParameterExpression><![CDATA[$F{tpv_comandas_idtpv_comanda}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "tpv_i_comandas_lineas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="103" splitType="Stretch">
+			<textField pattern="###0.00€;-###0.00€">
+				<reportElement x="156" y="0" width="59" height="13" uuid="f83df324-7e1b-4525-9d28-0fd69f3d6a4e"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_comandas_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="0" width="94" height="13" uuid="735a424a-88f9-4403-b5a1-792ea30b9205"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL A PAGAR]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="9" y="44" width="196" height="49" uuid="a92aa11a-e3a7-4529-8ba7-0c64006b8420"/>
+				<subreportParameter name="IDFACTURA">
+					<subreportParameterExpression><![CDATA[$F{tpv_comandas_idfactura}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "tpv_i_ivas.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="23" y="32" width="32" height="15" uuid="6c04666f-e32a-41d2-9929-a8a7cbaa49fd"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[BASE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="32" width="32" height="15" uuid="2c497c41-1d0f-44b4-8901-380d26b46fe0"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="32" width="42" height="15" uuid="96e671a8-ebdb-4ac7-b935-cb995911077d"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[CUOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="32" width="47" height="15" uuid="0917be0b-4e83-403f-a78c-e5d03d96e8f2"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="11" y="17" width="205" height="1" uuid="5437d2d8-e9c9-46cb-a428-248da42b171f"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="43" width="226" height="12" uuid="05b83abc-d22b-4fa6-8f26-5cc8838bbb28"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[CONSERVE ESTA FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="226" height="13" uuid="a5b7c5dd-0736-47d4-bb88-c0c8258aa801"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono"/>
+				</textElement>
+				<text><![CDATA[GRACIAS POR SU VISITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="0" width="55" height="10" uuid="74bfee83-8b36-4633-9208-c339b2808f1b"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[LE ATENDIÓ:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="61" y="0" width="113" height="10" uuid="4f445895-3f9c-497c-909d-c62d3cba9970"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreagente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="10" width="113" height="10" uuid="569b0000-f81c-49cf-b814-0bd5016ba25d"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tpv_comandas_tipopago}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="10" width="55" height="10" uuid="8af62eb9-d7c8-4261-8062-2cd9752b7059"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="8"/>
+				</textElement>
+				<text><![CDATA[PAGO:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
