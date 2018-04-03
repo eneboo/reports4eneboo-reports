@@ -399,7 +399,7 @@ ORDER BY $P!{ORDERBY}]]>
 				<textField>
 					<reportElement x="111" y="74" width="198" height="12" uuid="05447177-a554-4b14-9aad-2816ecb3ef3b"/>
 					<textElement>
-						<font fontName="Arial Narrow" size="9"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nomfpago}]]></textFieldExpression>
 				</textField>
@@ -425,7 +425,7 @@ ORDER BY $P!{ORDERBY}]]>
 				<textField pattern="" isBlankWhenNull="true">
 					<reportElement x="111" y="87" width="198" height="12" uuid="aa6cf767-2329-4adb-a1f9-569b3b481a7b"/>
 					<textElement>
-						<font fontName="Arial Narrow" size="9" isBold="false"/>
+						<font fontName="Arial" size="9" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{CCC_FormaPago}]]></textFieldExpression>
 				</textField>
